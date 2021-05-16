@@ -1,0 +1,31 @@
+.nav_bar {
+  position: fixed;
+  top: 7vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  background-color: aliceblue;
+}
+
+.nav_bar_filters {
+  outline: 1px solid green;
+  width: 100%;
+}
+
+.nav_bar_pages {
+  outline: 1px solid red;
+  width: 100%;
+}
+
+.list_styles {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.list_styles li {
+  outline: 1px solid red;
+  width: 3vw;
+  height: 4vh;
+}

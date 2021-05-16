@@ -28,3 +28,13 @@ ul li {
   --border-color: rgb(158, 158, 158);
   --button-font-color: rgb(119, 119, 119);
 }
+
+/* Utility classes */
+.hide_bar {
+  transform: translateX(1000%);
+  transition: all 3s ease;
+}
+
+.show_bar {
+  background-color: red;
+}

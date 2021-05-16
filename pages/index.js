@@ -1,14 +1,19 @@
 import Link from "next/link";
 import { useState, useRef, useEffect, useCallback } from "react";
 import Card from "../components/ui/Card";
+import Menubar from "../components/layout/MenuBar";
+import SearchStocks from "../components/layout/SearchStocks";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [stockInfo, setStockInfo] = useState([]);
   const [stockSymbol, setStockSymbol] = useState(null);
   const [date, setDate] = useState("");
+  const [classTrigger, setClassTrigger] = useState(false);
 
   const inputRef = useRef();
+  const searchRef = useRef();
+  const containerRef = useRef();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -44,7 +49,8 @@ export default function Home() {
       <nav className={styles.nav}>
         <h1>Sideways Report</h1>
       </nav>
-      <div className={styles.container}>
+      <Menubar classTrigger={classTrigger} setClassTrigger={setClassTrigger} />
+      <div className={styles.container} ref={containerRef}>
         <div className={styles.data}>
           {stockInfo.length > 0 && (
             <div className={styles.stockData}>
@@ -56,34 +62,13 @@ export default function Home() {
             </div>
           )}
         </div>
-        <div className={styles.search}>
-          {stockSymbol && (
-            <div className={styles.search_details}>
-              <h3>{stockSymbol}</h3>
-              <span>
-                <Link href={`/${stockSymbol}`}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={styles.dots}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1}
-                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-                    />
-                  </svg>
-                </Link>
-              </span>
-            </div>
-          )}
-          <div className={styles.search_buttons}>
-            <input type="text" placeholder="symbol" ref={inputRef} autoFocus />
-            <input type="date" onChange={changeHandler} />
-          </div>
+        <div className={styles.search} ref={searchRef}>
+          <SearchStocks
+            classTrigger={classTrigger}
+            stockSymbol={stockSymbol}
+            changeHandler={changeHandler}
+            inputRef={inputRef}
+          />
         </div>
       </div>
     </>

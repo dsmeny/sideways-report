@@ -9,7 +9,7 @@ export default function Home() {
   const [stockInfo, setStockInfo] = useState([]);
   const [stockSymbol, setStockSymbol] = useState(null);
   const [date, setDate] = useState("");
-  const [classTrigger, setClassTrigger] = useState(false);
+  const [isSearch, setIsSearch] = useState(false);
 
   const inputRef = useRef();
   const searchRef = useRef();
@@ -49,7 +49,7 @@ export default function Home() {
       <nav className={styles.nav}>
         <h1>Sideways Report</h1>
       </nav>
-      <Menubar classTrigger={classTrigger} setClassTrigger={setClassTrigger} />
+      <Menubar isSearch={isSearch} setIsSearch={setIsSearch} />
       <div className={styles.container} ref={containerRef}>
         <div className={styles.data}>
           {stockInfo.length > 0 && (
@@ -64,7 +64,7 @@ export default function Home() {
         </div>
         <div className={styles.search} ref={searchRef}>
           <SearchStocks
-            classTrigger={classTrigger}
+            isSearch={isSearch}
             stockSymbol={stockSymbol}
             changeHandler={changeHandler}
             inputRef={inputRef}

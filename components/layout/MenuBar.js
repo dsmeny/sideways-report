@@ -1,6 +1,6 @@
 import classes from "./MenuBar.module.css";
 
-const MenuBar = ({ classTrigger, setClassTrigger }) => {
+const MenuBar = ({ isSearch, setIsSearch }) => {
   function classTriggerHandler() {
     console.log("function called");
     // setClassTrigger(!classTrigger);

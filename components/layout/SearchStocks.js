@@ -1,14 +1,13 @@
+import Link from "next/link";
+import { useContext } from "react";
+import TriggerContext from "../../store/context-provider";
 import styles from "./SearchStocks.module.css";
 
-const SearchStocks = ({
-  classTrigger,
-  stockSymbol,
-  changeHandler,
-  inputRef,
-}) => {
+const SearchStocks = ({ stockSymbol, changeHandler, inputRef }) => {
+  const searcContext = useContext(TriggerContext);
   return (
     <>
-      <div className={classTrigger ? "hide_bar" : "show_bar"}>
+      <div className={searcContext.searchTrigger ? "show_view" : "hide_view"}>
         {stockSymbol && (
           <div className={styles.search_details}>
             <h3>{stockSymbol}</h3>
@@ -33,13 +32,7 @@ const SearchStocks = ({
           </div>
         )}
         <div className={styles.search_buttons}>
-          <input
-            type="text"
-            className={classTrigger ? styles.hide_bar : ""}
-            placeholder="symbol"
-            ref={inputRef}
-            autoFocus
-          />
+          <input type="text" placeholder="symbol" ref={inputRef} autoFocus />
           <input type="date" onChange={changeHandler} />
         </div>
       </div>

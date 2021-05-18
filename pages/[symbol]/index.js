@@ -6,6 +6,11 @@ import Card from "../../components/ui/Card";
 const Details = () => {
   const [data, setData] = useState([]);
 
+  const styles = {
+    position: "relative",
+    top: "15vh",
+  };
+
   const router = useRouter();
   const { symbol } = router.query;
 
@@ -17,7 +22,7 @@ const Details = () => {
     res && setData((prev) => [...prev, Object.entries(res)]);
   }, []);
   return (
-    <div>
+    <div style={styles}>
       <Link href="/">
         <h1 style={{ textAlign: "center" }}>{symbol}</h1>
       </Link>

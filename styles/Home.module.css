@@ -8,18 +8,6 @@
   position: relative;
 }
 
-.nav {
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  width: 100%;
-  background-color: rgb(250, 250, 250);
-}
-
-.nav h1 {
-  transform: translateX(1rem);
-}
-
 .search {
   width: 27vw;
   display: -moz-box;
@@ -37,6 +25,10 @@
 
 .search > * {
   padding: 10px 12px;
+  height: 100vh;
+  width: 100%;
+  z-index: 99;
+  background-color: red;
 }
 
 .data {

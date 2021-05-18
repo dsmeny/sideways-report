@@ -29,12 +29,40 @@ ul li {
   --button-font-color: rgb(119, 119, 119);
 }
 
-/* Utility classes */
-.hide_bar {
-  transform: translateX(1000%);
-  transition: all 3s ease;
+.show_view {
+  animation-duration: 0.5s;
+  animation-name: slideAnimation;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
 }
 
-.show_bar {
-  background-color: red;
+.hide_view {
+  animation-duration: 0.5s;
+  animation-name: slideout;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes slideAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideout {
+  from {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
+import TriggerContext from "../store/context-provider";
 import Card from "../components/ui/Card";
 import Menubar from "../components/layout/MenuBar";
 import SearchStocks from "../components/layout/SearchStocks";
@@ -9,15 +10,16 @@ export default function Home() {
   const [stockInfo, setStockInfo] = useState([]);
   const [stockSymbol, setStockSymbol] = useState(null);
   const [date, setDate] = useState("");
-  const [isSearch, setIsSearch] = useState(false);
+
+  const searchContext = useContext(TriggerContext);
 
   const inputRef = useRef();
   const searchRef = useRef();
   const containerRef = useRef();
 
   useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+    searchContext.searchTrigger && inputRef.current.focus();
+  }, [searchContext.searchTrigger]);
 
   async function changeHandler(e) {
     const targetDate = e.target.value;
@@ -46,10 +48,6 @@ export default function Home() {
 
   return (
     <>
-      <nav className={styles.nav}>
-        <h1>Sideways Report</h1>
-      </nav>
-      <Menubar isSearch={isSearch} setIsSearch={setIsSearch} />
       <div className={styles.container} ref={containerRef}>
         <div className={styles.data}>
           {stockInfo.length > 0 && (
@@ -64,7 +62,6 @@ export default function Home() {
         </div>
         <div className={styles.search} ref={searchRef}>
           <SearchStocks
-            isSearch={isSearch}
             stockSymbol={stockSymbol}
             changeHandler={changeHandler}
             inputRef={inputRef}

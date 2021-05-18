@@ -33,8 +33,8 @@
 
 .data {
   position: absolute;
-  top: 7%;
-  left: -2vw;
+  top: 16%;
+  left: 0vw;
   width: 65vw;
   padding: 20px;
 }
@@ -44,4 +44,11 @@
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 20px;
   list-style-type: none;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 89%;
 }

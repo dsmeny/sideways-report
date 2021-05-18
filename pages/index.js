@@ -1,8 +1,7 @@
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState, useRef, useEffect, useContext } from "react";
 import TriggerContext from "../store/context-provider";
 import Card from "../components/ui/Card";
-import Menubar from "../components/layout/MenuBar";
 import SearchStocks from "../components/layout/SearchStocks";
 import styles from "../styles/Home.module.css";
 
@@ -12,6 +11,7 @@ export default function Home() {
   const [date, setDate] = useState("");
 
   const searchContext = useContext(TriggerContext);
+  const router = useRouter();
 
   const inputRef = useRef();
   const searchRef = useRef();
@@ -34,6 +34,7 @@ export default function Home() {
     if (res) {
       const dataSymbol = await res["Meta Data"]["2. Symbol"];
       const dataDay = await res["Time Series (Daily)"][`${targetDate}`];
+
       if (dataDay) {
         const dataArray = Object.entries(dataDay);
         setStockInfo(dataArray);
@@ -52,11 +53,37 @@ export default function Home() {
         <div className={styles.data}>
           {stockInfo.length > 0 && (
             <div className={styles.stockData}>
-              <ul>
-                {stockInfo.map((data, index) => (
-                  <Card date={date} data={data} key={index} />
-                ))}
-              </ul>
+              <Card symbol={stockSymbol}>
+                <div
+                  className={styles.details}
+                  onClick={() => router.push(`/${stockSymbol}`)}
+                >
+                  <h3>{stockSymbol}</h3>
+                  <span style={{ transform: "translate(7px, 3px)" }}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="dots"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1}
+                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                      />
+                    </svg>
+                  </span>
+                </div>
+                <p>{date}</p>
+                <ul>
+                  {stockInfo &&
+                    stockInfo.map((data, index) => (
+                      <li key={index}>{`${data[0]}: ${data[1]}`}</li>
+                    ))}
+                </ul>
+              </Card>
             </div>
           )}
         </div>

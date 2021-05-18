@@ -23,12 +23,6 @@
   background-color: rgba(0, 0, 0, 0.01);
 }
 
-.dots {
-  color: var(--button-font-color);
-  height: 1.7rem;
-  width: 1.7rem;
-}
-
 .search_buttons {
   background-color: transparent;
   border: 1px solid var(--border-color);

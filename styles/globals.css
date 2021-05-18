@@ -66,3 +66,9 @@ ul li {
     transform: translateX(100%);
   }
 }
+
+.dots {
+  color: var(--button-font-color);
+  height: 1.7rem;
+  width: 1.7rem;
+}

@@ -7,30 +7,10 @@ const Card = (props) => {
     flexDirection: "column",
     paddingLeft: "2rem",
     paddingTop: "2rem",
+    width: "22rem",
   };
 
-  return (
-    <>
-      <li style={cardStyle}>
-        {props.date && (
-          <div>
-            <p>{props.date}</p>
-          </div>
-        )}
-        <ul>
-          <li>
-            <ul>
-              {props.data.map((el, index) => (
-                <li key={index}>
-                  {el[0]}: {el[1]}
-                </li>
-              ))}
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </>
-  );
+  return <div style={cardStyle}>{props.children}</div>;
 };
 
 export default Card;

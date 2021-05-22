@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Card from "../../components/ui/Card";
 
 const Details = () => {
   const [data, setData] = useState([]);
@@ -19,7 +18,8 @@ const Details = () => {
       `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${process.env.REACT_APP_API_KEY}`
     );
     const res = await req.json();
-    res && setData((prev) => [...prev, Object.entries(res)]);
+    const resDataArr = await Object.entries(res);
+    setData((prev) => [...prev, resDataArr]);
   }, []);
   return (
     <div style={styles}>
@@ -27,7 +27,10 @@ const Details = () => {
         <h1 style={{ textAlign: "center" }}>{symbol}</h1>
       </Link>
       <ul>
-        {data && data.map((array, index) => <Card data={array} key={index} />)}
+        {data.length > 0 &&
+          data[0].map((array, index) => (
+            <li key={index}>{`${array[0]}: ${array[1]}`}</li>
+          ))}
       </ul>
     </div>
   );

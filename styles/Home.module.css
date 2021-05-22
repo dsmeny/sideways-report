@@ -45,10 +45,3 @@
   grid-gap: 20px;
   list-style-type: none;
 }
-
-.details {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 89%;
-}

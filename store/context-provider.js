@@ -8,7 +8,7 @@ const TriggerContext = createContext({
 });
 
 export function TriggerContextProvider(props) {
-  const [isSearch, setIsSearch] = useState(false);
+  const [isSearch, setIsSearch] = useState(true);
   const [storage, setStorage] = useState(0);
 
   function searchHandler() {

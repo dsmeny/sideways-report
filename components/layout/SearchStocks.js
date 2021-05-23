@@ -1,7 +1,7 @@
 import Search from "../ui/Search";
 import classes from "./SearchStocks.module.css";
 
-const SearchStocks = ({ changeHandler, inputRef, clickHandler }) => {
+const SearchStocks = ({ changeHandler, inputRef, dateRef, clickHandler }) => {
   return (
     <>
       <Search className={classes.search_buttons}>
@@ -14,6 +14,7 @@ const SearchStocks = ({ changeHandler, inputRef, clickHandler }) => {
         />
         <input
           type="date"
+          ref={dateRef}
           onChange={(e) => {
             changeHandler(e);
             // searchContext.getStorage();

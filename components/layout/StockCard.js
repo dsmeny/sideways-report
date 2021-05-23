@@ -13,7 +13,7 @@ const StockCard = (props) => {
     },
   };
 
-  console.log("stockData:", props.stockData);
+  console.log("StockCard stockData:", props.stockData);
 
   return (
     <Card symbol={props.stockSymbol}>

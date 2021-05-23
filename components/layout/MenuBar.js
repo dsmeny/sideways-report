@@ -3,6 +3,7 @@ import TriggerContext from "../../store/context-provider";
 import classes from "./MenuBar.module.css";
 
 const MenuBar = () => {
+  const [active, setActive] = useState(false);
   const { searchTrigger, showSearch, getStorage, locStorage } =
     useContext(TriggerContext);
 
@@ -13,12 +14,6 @@ const MenuBar = () => {
   function classTriggerHandler() {
     showSearch();
   }
-
-  const styles = {
-    activeStyle: {
-      backgroundColor: searchTrigger ? "red" : "transparent",
-    },
-  };
 
   return (
     <>
@@ -51,18 +46,24 @@ const MenuBar = () => {
       <div className={classes.nav_bar}>
         <div className={classes.nav_bar_filters}>
           <ul className={classes.list_styles}>
-            <li style={styles.activeStyle}>f1</li>
-            <li style={styles.activeStyle}>f2</li>
-            <li style={styles.activeStyle}>f3</li>
+            <li>f1</li>
+            <li>f2</li>
+            <li>f3</li>
           </ul>
         </div>
         <div className={classes.nav_bar_pages}>
           <ul className={classes.list_styles}>
-            <li style={styles.activeStyle} onClick={classTriggerHandler}>
+            <li
+              className={(searchTrigger && classes.active) || ""}
+              onClick={(e) => {
+                e.target.classList.toggle(classes.active);
+                classTriggerHandler();
+              }}
+            >
               p1
             </li>
-            <li style={styles.activeStyle}>p2</li>
-            <li style={styles.activeStyle}>p3</li>
+            <li>p2</li>
+            <li>p3</li>
           </ul>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useContext } from "react";
+import { useState, useRef, useEffect, useContext, useCallback } from "react";
 import TriggerContext from "../store/context-provider";
 import StockCard from "../components/layout/StockCard";
 import SearchStocks from "../components/layout/SearchStocks";
@@ -6,10 +6,11 @@ import styles from "../styles/Home.module.css";
 import useStockFetch from "../hooks/useStockFetch";
 
 export default function Home() {
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(null);
   const [searchId, setSearchId] = useState(null);
   const { sendRequest: getStockData, stockData } = useStockFetch();
   const [apiData, setApiData] = useState({});
+  const [locStorage, setLocStorage] = useState([]);
 
   const { metaData, series } = stockData;
 
@@ -18,15 +19,22 @@ export default function Home() {
   const inputRef = useRef();
   const searchRef = useRef();
   const containerRef = useRef();
+  const dateRef = useRef();
 
   useEffect(() => {
     inputRef.current.focus();
   }, [searchTrigger]);
 
   useEffect(() => {
-    getStockData(apiData.timeSeries, apiData.enteredSymbol);
     inputRef.current.focus();
-  }, [apiData]);
+
+    if (date && series) {
+      const locStoreData = Object.entries(series[date]);
+      setLocStorage(locStoreData);
+    }
+  }, [date, series]);
+
+  const setStorageCallback = useCallback(changeHandler, [dateRef]);
 
   function clearField() {
     inputRef.current.value = "";
@@ -38,11 +46,11 @@ export default function Home() {
     return dataArr;
   }
 
-  async function changeHandler(e) {
-    const targetDate = e.target.value;
+  async function changeHandler() {
+    const targetDate = dateRef.current.value;
     const enteredSymbol = inputRef.current.value.toUpperCase();
     const timeSeries = "TIME_SERIES_DAILY";
-    setApiData({ timeSeries, enteredSymbol });
+    getStockData(timeSeries, enteredSymbol);
     setDate(targetDate);
   }
 
@@ -52,7 +60,7 @@ export default function Home() {
         <div className={styles.data}>
           {series && (
             <StockCard
-              stockData={Object.entries(series[date])}
+              stockData={locStorage}
               stockSymbol={metaData["2. Symbol"]}
               stockDate={date}
             />
@@ -66,8 +74,9 @@ export default function Home() {
         >
           <SearchStocks
             clickHandler={clearField}
-            changeHandler={changeHandler}
+            changeHandler={setStorageCallback}
             inputRef={inputRef}
+            dateRef={dateRef}
           />
         </div>
       </div>

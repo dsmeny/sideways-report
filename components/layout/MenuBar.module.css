@@ -59,3 +59,7 @@
   width: 3vw;
   height: 4vh;
 }
+
+.active {
+  background-color: red;
+}

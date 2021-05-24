@@ -1,37 +1,40 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import useStockApi from "../../hooks/useStockApi";
 
 const Details = () => {
-  const [data, setData] = useState([]);
+  const router = useRouter();
+  const { symbol } = router.query;
+  const timeSeries = "OVERVIEW";
+
+  const { stockData, isLoading, isError } = useStockApi({
+    symbol,
+    timeSeries,
+  });
+
+  if (isLoading) return <div>Spinner</div>;
+  if (isError) return <div>Error</div>;
 
   const styles = {
     position: "relative",
     top: "15vh",
   };
 
-  const router = useRouter();
-  const { symbol } = router.query;
-
-  useEffect(async () => {
-    const req = await fetch(
-      `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${process.env.REACT_APP_API_KEY}`
-    );
-    const res = await req.json();
-    const resDataArr = await Object.entries(res);
-    setData((prev) => [...prev, resDataArr]);
-  }, []);
   return (
     <div style={styles}>
       <Link href="/">
         <h1 style={{ textAlign: "center" }}>{symbol}</h1>
       </Link>
-      <ul>
-        {data.length > 0 &&
-          data[0].map((array, index) => (
-            <li key={index}>{`${array[0]}: ${array[1]}`}</li>
-          ))}
-      </ul>
+
+      <div>
+        {" "}
+        <ul>
+          {stockData &&
+            Object.entries(stockData).map((el, index) => (
+              <li key={index}>{`${el[0]}: ${el[1]}`}</li>
+            ))}
+        </ul>
+      </div>
     </div>
   );
 };

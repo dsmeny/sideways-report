@@ -13,15 +13,13 @@ const StockCard = (props) => {
     },
   };
 
-  console.log("StockCard stockData:", props.stockData);
-
   return (
-    <Card symbol={props.stockSymbol}>
+    <Card symbol={props.symbol}>
       <div
         style={styles.details}
-        onClick={() => router.push(`/${props.stockSymbol}`)}
+        onClick={() => router.push(`/${props.symbol}`)}
       >
-        <h3>{props.stockSymbol}</h3>
+        <h3>{props.symbol}</h3>
         <span style={{ transform: "translate(7px, 3px)" }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +37,7 @@ const StockCard = (props) => {
           </svg>
         </span>
       </div>
-      <p>{props.stockDate}</p>
+      <p>{props.date}</p>
       <ul>
         {props.stockData.map((data, index) => (
           <li key={index}>

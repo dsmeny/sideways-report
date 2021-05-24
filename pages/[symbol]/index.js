@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import useStockApi from "../../hooks/useStockApi";
+import Spinner from "../../components/ui/Spinner";
 
 const Details = () => {
   const router = useRouter();
@@ -12,7 +13,12 @@ const Details = () => {
     timeSeries,
   });
 
-  if (isLoading) return <div>Spinner</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   if (isError) return <div>Error</div>;
 
   const styles = {

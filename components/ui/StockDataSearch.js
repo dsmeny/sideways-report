@@ -1,9 +1,15 @@
 import useStockApi from "../../hooks/useStockApi";
 import StockCard from "../../components/layout/StockCard";
+import Spinner from "../../components/ui/Spinner";
 const StockDataSearch = ({ date, symbol, timeSeries }) => {
   const { stockData, isLoading, isError } = useStockApi({ symbol, timeSeries });
 
-  if (isLoading) return <div>Spinner</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   if (isError) return <div>Error</div>;
 
   const series = stockData["Time Series (Daily)"];

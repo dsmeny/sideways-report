@@ -7,6 +7,10 @@ function useStockApi({ symbol, timeSeries }) {
     fetcher
   );
 
+  const dataArray = data && Object.entries(data["Time Series (Daily)"]);
+
+  console.log("data:", dataArray);
+
   return {
     stockData: data,
     isLoading: !error && !data,

@@ -7,7 +7,7 @@ import StockDataSearch from "../components/ui/StockDataSearch";
 export default function Home() {
   const [date, setDate] = useState(null);
   const [timeSeries, setTimeSeries] = useState("");
-  const [symbol, setSymbol] = useState("");
+  const [symbol, setSymbol] = useState(null);
 
   const { searchTrigger } = useContext(TriggerContext);
 
@@ -16,16 +16,29 @@ export default function Home() {
   const containerRef = useRef();
   const dateRef = useRef();
 
-  function clearField() {
+  function clickHandler() {
+    const enteredSymbol = inputRef.current.value.toUpperCase();
+    setTimeSeries("TIME_SERIES_DAILY"); // this will eventually be a filter option
+    setSymbol(enteredSymbol);
+  }
+
+  function keypressHandler(e) {
+    if (e.which === 13) {
+      const enteredSymbol = inputRef.current.value.toUpperCase();
+      setTimeSeries("TIME_SERIES_DAILY"); // this will eventually be a filter option
+      setSymbol(enteredSymbol);
+    }
+  }
+
+  function resetSymbol() {
     inputRef.current.value = "";
   }
 
-  function changeHandler() {
+  function changeHandler(e) {
+    e.preventDefault();
+    // we need to set min/max date values and pass them before setting the date.
     const targetDate = dateRef.current.value;
-    const enteredSymbol = inputRef.current.value.toUpperCase();
     setDate(targetDate);
-    setTimeSeries("TIME_SERIES_DAILY"); // this will eventually be a filter option
-    setSymbol(enteredSymbol);
   }
 
   return (
@@ -47,10 +60,13 @@ export default function Home() {
           ref={searchRef}
         >
           <SearchStocks
-            clickHandler={clearField}
+            clickHandler={clickHandler}
+            resetSymbol={resetSymbol}
+            keypressHandler={keypressHandler}
             changeHandler={changeHandler}
             inputRef={inputRef}
             dateRef={dateRef}
+            symbol={symbol}
           />
         </div>
       </div>

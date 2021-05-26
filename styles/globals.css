@@ -11,8 +11,20 @@ a {
   text-decoration: none;
 }
 
+a:active,
+a:focus,
+input:active,
+input:focus {
+  outline: none;
+}
+
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --border-color: rgb(158, 158, 158);
+  --button-font-color: rgb(119, 119, 119);
 }
 
 ul {
@@ -24,9 +36,9 @@ ul li {
   line-height: 2rem;
 }
 
-:root {
-  --border-color: rgb(158, 158, 158);
-  --button-font-color: rgb(119, 119, 119);
+/*For the stock details overview page*/
+.list:nth-child(1) {
+  justify-content: flex-start !important;
 }
 
 .show_view {

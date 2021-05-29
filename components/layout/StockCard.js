@@ -3,6 +3,17 @@ import Card from "../ui/Card";
 
 const StockCard = (props) => {
   const router = useRouter();
+  const addMillions = "(m)";
+
+  // formatting volume data to millions
+  props.stockData[props.stockData.length - 1][0] = props.stockData[
+    props.stockData.length - 1
+  ][0]
+    .toString()
+    .concat(addMillions);
+  props.stockData[props.stockData.length - 1][1] = (
+    props.stockData[props.stockData.length - 1][1] / 1000000
+  ).toFixed(3);
 
   const styles = {
     details: {

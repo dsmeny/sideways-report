@@ -10,7 +10,13 @@ const Card = (props) => {
     width: "22rem",
   };
 
-  return <div style={cardStyle}>{props.children}</div>;
+  const classes = "card" + props.className;
+
+  return (
+    <div className={classes} style={cardStyle}>
+      {props.children}
+    </div>
+  );
 };
 
 export default Card;

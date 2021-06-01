@@ -38,10 +38,3 @@
   width: 65vw;
   padding: 20px;
 }
-
-.data ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  grid-gap: 20px;
-  list-style-type: none;
-}

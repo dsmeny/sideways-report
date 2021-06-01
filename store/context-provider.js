@@ -1,33 +1,29 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 const TriggerContext = createContext({
-  searchTrigger: null,
-  showSearch: function () {},
-  getStorage: function () {},
-  locStorage: null,
+  isSearched: () => {},
+  symbols: null,
+  addSymbols: () => {},
+  isChecked: null,
+  setIsChecked: () => {},
 });
 
 export function TriggerContextProvider(props) {
   const [isSearch, setIsSearch] = useState(true);
-  const [storage, setStorage] = useState(0);
+  const [symbols, setSymbols] = useState([]);
+  const [isChecked, setIsChecked] = useState(null);
 
   function searchHandler() {
     setIsSearch(!isSearch);
   }
 
-  function getStorageLength() {
-    setStorage(localStorage.length);
-  }
-
-  useEffect(() => {
-    searchHandler();
-  }, [storage]);
-
   const context = {
-    searchTrigger: isSearch,
-    showSearch: searchHandler,
-    getStorage: getStorageLength,
-    locStorage: storage,
+    isSearched: searchHandler,
+    searched: isSearch,
+    symbols,
+    setSymbols,
+    isChecked,
+    setIsChecked,
   };
 
   return (

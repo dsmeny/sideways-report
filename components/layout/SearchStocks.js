@@ -8,7 +8,7 @@ const SearchStocks = ({
   inputRef,
   dateRef,
   clickHandler,
-  symbol,
+  userSymbol,
 }) => {
   return (
     <Search className={classes.search_buttons}>
@@ -20,7 +20,7 @@ const SearchStocks = ({
         ref={inputRef}
         autoFocus
       />
-      {!symbol && (
+      {userSymbol.length < 1 && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"
@@ -37,13 +37,12 @@ const SearchStocks = ({
           />
         </svg>
       )}
-      {symbol && (
+      {userSymbol.length > 0 && (
         <input
           type="date"
           ref={dateRef}
           onChange={(e) => {
             changeHandler(e);
-            // searchContext.getStorage();
           }}
         />
       )}

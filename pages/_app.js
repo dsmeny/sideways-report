@@ -1,5 +1,4 @@
 import Head from "next/head";
-
 import Layout from "../components/layout/Layout";
 import { TriggerContextProvider } from "../store/context-provider";
 import "../styles/globals.css";

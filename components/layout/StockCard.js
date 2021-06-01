@@ -3,6 +3,17 @@ import Card from "../ui/Card";
 
 const StockCard = (props) => {
   const router = useRouter();
+  const addMillions = "(m)";
+
+  // formatting volume data to millions
+  props.stockData[props.stockData.length - 1][0] = props.stockData[
+    props.stockData.length - 1
+  ][0]
+    .toString()
+    .concat(addMillions);
+  props.stockData[props.stockData.length - 1][1] = (
+    props.stockData[props.stockData.length - 1][1] / 1000000
+  ).toFixed(3);
 
   const styles = {
     details: {
@@ -14,12 +25,12 @@ const StockCard = (props) => {
   };
 
   return (
-    <Card symbol={props.symbol}>
+    <Card symbol={props.symbol[0]}>
       <div
         style={styles.details}
         onClick={() => router.push(`/${props.symbol}`)}
       >
-        <h3>{props.symbol}</h3>
+        <h3>{props.symbol[0]}</h3>
         <span style={{ transform: "translate(7px, 3px)" }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +48,7 @@ const StockCard = (props) => {
           </svg>
         </span>
       </div>
-      <p>{props.date}</p>
+      <p>{props.symbol[1]}</p>
       <ul>
         {props.stockData.map((data, index) => (
           <li key={index}>

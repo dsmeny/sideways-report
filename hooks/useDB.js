@@ -2,13 +2,16 @@ import { useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import db from "../store/dbStore";
 
-function useDB() {
-  const allItems = useLiveQuery(() => db.items.toArray(), []);
-  const addStockToDb = async ({ name, date, itemHasBeenUpdated = true }) =>
+async function useDB() {
+  const allItems = await useLiveQuery(() => db.items.toArray(), []);
+
+  const addStockToDb = async ({
+    "Meta Data": meta,
+    "Time Series (Daily)": daily,
+  }) =>
     await db.items.add({
-      name,
-      date,
-      itemHasBeenUpdated,
+      meta,
+      daily,
     });
 
   if (!allItems) return null;

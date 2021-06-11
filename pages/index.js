@@ -13,16 +13,17 @@ import styles from "../styles/Home.module.css";
 // import StockDataSearch from "../components/ui/StockDataSearch";
 // import Checkbox from "../components/ui/Checkbox";
 import useDB from "../hooks/useDB";
-import api_data from "../api_data";
+import api from "../api_data";
 
-const Home = memo(() => {
+const Home = () => {
   // const [timeSeries, setTimeSeries] = useState("");
   // const [userSymbol, setUserSymbol] = useState([]);
   const [stockArray, setStockArray] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
+  const [data, setData] = useState(null);
   // const { searched, symbols, setSymbols, isChecked } =
   //   useContext(context_provider);
-  const stocks = useDB();
+  const hookData = useDB();
 
   // const inputRef = useRef();
   // const searchRef = useRef();
@@ -47,10 +48,23 @@ const Home = memo(() => {
   //   inputRef.current.value = "";
   // }
 
+  async function getHookedData() {
+    const response = await hookData;
+    if (response) return response;
+  }
+
+  useEffect(async () => {
+    console.log("useEffect clicked!");
+    const response = await getHookedData();
+    console.log("response:", response);
+    // setData(apiData);
+  }, [isClicked]);
+
   async function addStockHandler() {
-    const stockDb = await stocks;
-    const api = await api_data;
-    stockDb.addStockToDb(api);
+    const apiData = await api;
+    const data = await hookData;
+    console.log("hook_data:", data);
+    data.addStockToDb(apiData);
     setIsClicked(!isClicked);
   }
 
@@ -65,18 +79,6 @@ const Home = memo(() => {
   //     setSymbols((prev) => [...prev, userSymbol]);
   //   }
   // }, [userSymbol]);
-
-  useEffect(async () => {
-    const response = await stocks;
-    const stockItems = await response;
-    console.log("stockItems:", stockItems);
-    if (stockItems) {
-      const data = await stockItems.allItems;
-      // console.log("data:", data);
-      setStockArray(stockItems.allItems);
-    }
-    // console.log("stockArray:", stockArray);
-  }, [isClicked]);
 
   return (
     <>
@@ -115,6 +117,6 @@ const Home = memo(() => {
       </div>
     </>
   );
-});
+};
 
 export default Home;

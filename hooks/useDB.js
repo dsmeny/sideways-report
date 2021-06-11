@@ -5,6 +5,12 @@ import db from "../store/dbStore";
 async function useDB() {
   const allItems = await useLiveQuery(() => db.items.toArray(), []);
 
+  const query = await new Promise((resolve, reject) => {
+    resolve(allItems);
+  }).then((data) => {
+    if (data && data.length) return data;
+  });
+
   const addStockToDb = async ({
     "Meta Data": meta,
     "Time Series (Daily)": daily,
@@ -14,10 +20,8 @@ async function useDB() {
       daily,
     });
 
-  if (!allItems) return null;
-
   return {
-    allItems,
+    allItems: query,
     addStockToDb,
   };
 }

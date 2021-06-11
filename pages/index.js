@@ -54,17 +54,15 @@ const Home = () => {
   }
 
   useEffect(async () => {
-    console.log("useEffect clicked!");
+    const apiData = await api;
     const response = await getHookedData();
-    console.log("response:", response);
+    const data = await hookData;
+    data.addStockToDb(apiData);
+    console.log("useEffect_hook:", response);
     // setData(apiData);
   }, [isClicked]);
 
   async function addStockHandler() {
-    const apiData = await api;
-    const data = await hookData;
-    console.log("hook_data:", data);
-    data.addStockToDb(apiData);
     setIsClicked(!isClicked);
   }
 

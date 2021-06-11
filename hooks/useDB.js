@@ -3,13 +3,9 @@ import { useLiveQuery } from "dexie-react-hooks";
 import db from "../store/dbStore";
 
 async function useDB() {
+  const [queryData, setQueryData] = useState([]);
   const allItems = await useLiveQuery(() => db.items.toArray(), []);
-
-  const query = await new Promise((resolve, reject) => {
-    resolve(allItems);
-  }).then((data) => {
-    if (data && data.length) return data;
-  });
+  setQueryData(allItems);
 
   const addStockToDb = async ({
     "Meta Data": meta,
@@ -21,7 +17,7 @@ async function useDB() {
     });
 
   return {
-    allItems: query,
+    items: queryData,
     addStockToDb,
   };
 }

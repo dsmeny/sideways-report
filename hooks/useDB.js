@@ -10,12 +10,13 @@ async function useDB() {
   const addStockToDb = async ({
     "Meta Data": meta,
     "Time Series (Daily)": daily,
-  }) =>
+  }) => {
+    // const verify = useLiveQuery(() => db.items.where(""));
     await db.items.add({
       meta,
       daily,
     });
-
+  };
   return {
     items: queryData,
     addStockToDb,

@@ -21,6 +21,7 @@ const Home = () => {
   const [stockArray, setStockArray] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
   const [data, setData] = useState(null);
+  const [symbol, setSymbol] = useState(null);
   // const { searched, symbols, setSymbols, isChecked } =
   //   useContext(context_provider);
   const hookData = useDB();
@@ -48,18 +49,26 @@ const Home = () => {
   //   inputRef.current.value = "";
   // }
 
-  async function getHookedData() {
-    const response = await hookData;
-    if (response) return response;
-  }
+  // async function getHookedData() {
+  //   const response = await hookData;
+  //   if (response) return response;
+  // }
 
   useEffect(async () => {
-    const apiData = await api;
-    const response = await getHookedData();
-    const data = await hookData;
-    data.addStockToDb(apiData);
-    console.log("useEffect_hook:", response);
-    // setData(apiData);
+    const apiData = await api; //fetch call eventually
+    const response = await hookData;
+    const hook_response_obj = await response.items[0];
+    for (const key in hook_response_obj) {
+      if (key === "meta") {
+        const s = hook_response_obj[key]["2. Symbol"];
+        setSymbol(s);
+      }
+    }
+    const api_symbol = apiData["Meta Data"]["2. Symbol"];
+
+    if (isClicked === true && api_symbol !== symbol)
+      response.addStockToDb(apiData);
+    setData(response.items[0]);
   }, [isClicked]);
 
   async function addStockHandler() {
@@ -77,7 +86,6 @@ const Home = () => {
   //     setSymbols((prev) => [...prev, userSymbol]);
   //   }
   // }, [userSymbol]);
-
   return (
     <>
       <div className={styles.container} ref={containerRef}>

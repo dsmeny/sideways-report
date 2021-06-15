@@ -1,128 +1,53 @@
-import {
-  useState,
-  useRef,
-  memo,
-  useEffect,
-  useContext,
-  useCallback,
-} from "react";
-
-// import context_provider from "../store/context-provider";
-// import SearchStocks from "../components/layout/SearchStocks";
-import styles from "../styles/Home.module.css";
-// import StockDataSearch from "../components/ui/StockDataSearch";
-// import Checkbox from "../components/ui/Checkbox";
-import useDB from "../hooks/useDB";
+import { useEffect, useState } from "react";
+import classes from "../styles/Home.module.css";
 import api from "../api_data";
+import useDB from "../hooks/useDB";
 
-const Home = () => {
-  // const [timeSeries, setTimeSeries] = useState("");
-  // const [userSymbol, setUserSymbol] = useState([]);
-  const [stockArray, setStockArray] = useState([]);
+const index = () => {
   const [isClicked, setIsClicked] = useState(false);
-  const [data, setData] = useState(null);
-  const [symbol, setSymbol] = useState(null);
-  // const { searched, symbols, setSymbols, isChecked } =
-  //   useContext(context_provider);
-  const hookData = useDB();
+  const [data, setData] = useState([]);
 
-  // const inputRef = useRef();
-  // const searchRef = useRef();
-  const containerRef = useRef();
-  // const dateRef = useRef();
+  const api_data = new Promise((resolve, reject) => resolve(api))
+    .then((res) => res)
+    .then((data) => data);
+  const hookData = useDB(api_data);
 
-  // function clickHandler() {
-  //   const enteredSymbol = inputRef.current.value.toUpperCase();
-  //   setTimeSeries("TIME_SERIES_DAILY"); // this will eventually be a filter option
-  //   setUserSymbol((prev) => [...prev, enteredSymbol]);
-  // }
-
-  // function keypressHandler(e) {
-  //   if (e.which === 13) {
-  //     const enteredSymbol = inputRef.current.value.toUpperCase();
-  //     setTimeSeries("TIME_SERIES_DAILY"); // this will eventually be a filter option
-  //     setUserSymbol((prev) => [...prev, enteredSymbol]);
-  //   }
-  // }
-
-  // function resetSymbol() {
-  //   inputRef.current.value = "";
-  // }
-
-  // async function getHookedData() {
-  //   const response = await hookData;
-  //   if (response) return response;
-  // }
-
-  useEffect(async () => {
-    const apiData = await api; //fetch call eventually
+  async function getHookedData() {
     const response = await hookData;
-    const hook_response_obj = await response.items[0];
-    for (const key in hook_response_obj) {
-      if (key === "meta") {
-        const s = hook_response_obj[key]["2. Symbol"];
-        setSymbol(s);
-      }
+
+    const data = await api_data;
+
+    if (isClicked === true && data) {
+      response.addStockToDb(data);
+      setIsClicked(false);
     }
-    const api_symbol = apiData["Meta Data"]["2. Symbol"];
 
-    if (isClicked === true && api_symbol !== symbol)
-      response.addStockToDb(apiData);
-    setData(response.items[0]);
-  }, [isClicked]);
-
-  async function addStockHandler() {
-    setIsClicked(!isClicked);
+    if (response.items) {
+      return response.items;
+    }
   }
 
-  // function changeHandler() {
-  //   // we need to set min/max date values and pass them before setting the date.
-  //   const targetDate = dateRef.current.value;
-  //   setUserSymbol((prev) => [...prev, targetDate]);
-  // }
+  useEffect(async () => {
+    const response = await getHookedData();
+    setData((prev) => [...prev, response]);
+  }, [isClicked, hookData.items]);
 
-  // useEffect(() => {
-  //   if (userSymbol.length > 1) {
-  //     setSymbols((prev) => [...prev, userSymbol]);
-  //   }
-  // }, [userSymbol]);
+  // data && console.log("index.js_DATA:", data);
+
   return (
-    <>
-      <div className={styles.container} ref={containerRef}>
-        <div>
-          <ul>
-            {stockArray.length > 0 &&
-              stockArray.map((item, index) => (
-                <li key={index}>{`${item.name}: ${item.date}`}</li>
-              ))}
-          </ul>
-          <button onClick={addStockHandler}>add data</button>
-        </div>
-        {/* <div className={styles.data}>
-          {userSymbol.length > 1 && (
-            <StockDataSearch timeSeries={timeSeries} userSymbol={userSymbol} />
-          )}
-        </div>
-        <div
-          className={`${searched ? "show_view" : "hide_view"} ${
-            styles.search
-          } `}
-          ref={searchRef}
+    <div className={classes.container}>
+      <div>hola</div>
+      <div>
+        <button
+          onClick={() => {
+            setIsClicked(!isClicked);
+          }}
         >
-          <Checkbox />
-          <SearchStocks
-            clickHandler={clickHandler}
-            resetSymbol={resetSymbol}
-            keypressHandler={keypressHandler}
-            changeHandler={changeHandler}
-            inputRef={inputRef}
-            dateRef={dateRef}
-            userSymbol={userSymbol}
-          />
-        </div> */}
+          Get Stock Data
+        </button>
       </div>
-    </>
+    </div>
   );
 };
 
-export default Home;
+export default index;

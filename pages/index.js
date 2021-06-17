@@ -1,36 +1,33 @@
 import { useEffect, useState } from "react";
 import classes from "../styles/Home.module.css";
 import useDB from "../hooks/useDB";
+import api from "../api_data";
 
 const index = () => {
   const [isClicked, setIsClicked] = useState(false);
-  const [data, setData] = useState({});
+  const [apiData, setApiData] = useState({});
 
-  const dataHook = new Promise((resolve, reject) => resolve(useDB()))
-    .then((response) => response)
-    .then((one) => one)
-    .finally((two) => two);
+  const { isLoading, error, data } = useDB(apiData);
 
-  // const { isLoading, error, sendRequest: apiData } = dataHook;
+  // async function get(request) {}
 
-  async function getSomething(props) {
-    console.log("props:", props);
-    const response = await props;
-    if (response) setData(response);
-  }
+  useEffect(async () => {
+    console.log("index_useEffect_fired!");
+    new Promise((resolve, reject) => resolve(api))
+      .then((response) => response)
+      .then((data) =>
+        setApiData((prev) => {
+          return {
+            action: "get",
+            data,
+          };
+        })
+      );
 
-  useEffect(() => {
     if (isClicked === true) {
-      console.log("post_apiData:", dataHook);
-      // console.log("post_apiData:", apiData);
-      // console.log("post_isLoading:", isLoading);
-      // apiData("post", null);
+      setApiData("post", apiData);
     }
-
-    // if (isLoading) {
-    //   apiData("get", getSomething);
-    // }
-  }, [isClicked]);
+  }, [isClicked, apiData, isLoading]);
 
   return (
     <div className={classes.container}>

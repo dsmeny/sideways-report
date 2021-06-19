@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import db from "../store/dbStore";
+import api from "../api_data";
 
 const useDB = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,9 +32,12 @@ const useDB = (props) => {
   );
 
   useEffect(() => {
-    console.log("useDB_useEffect_fired!");
-    sendRequest(props.action, props.data);
-  }, [isLoading]);
+    const data = new Promise((resolve, reject) => resolve(api))
+      .then((response) => response)
+      .then((data) => data);
+
+    if (data) sendRequest(props.action, data);
+  }, [props.action]);
 
   return {
     isLoading,

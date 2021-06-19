@@ -1,33 +1,25 @@
 import { useEffect, useState } from "react";
 import classes from "../styles/Home.module.css";
 import useDB from "../hooks/useDB";
-import api from "../api_data";
 
 const index = () => {
   const [isClicked, setIsClicked] = useState(false);
-  const [apiData, setApiData] = useState({});
+  const [action, setAction] = useState({});
 
-  const { isLoading, error, data } = useDB(apiData);
+  const { isLoading, error, data } = useDB(action);
 
-  // async function get(request) {}
+  async function requestData(request) {
+    const api_data = await request;
+    console.log("index_useEffect_data:", api_data);
+  }
 
   useEffect(async () => {
     console.log("index_useEffect_fired!");
-    new Promise((resolve, reject) => resolve(api))
-      .then((response) => response)
-      .then((data) =>
-        setApiData((prev) => {
-          return {
-            action: "get",
-            data,
-          };
-        })
-      );
-
+    requestData(data);
     if (isClicked === true) {
-      setApiData("post", apiData);
+      setApiData("post");
     }
-  }, [isClicked, apiData, isLoading]);
+  }, [isClicked]);
 
   return (
     <div className={classes.container}>

@@ -57,6 +57,7 @@ const StockCard = (props) => {
           </li>
         ))}
       </ul>
+      <ul></ul>
     </Card>
   );
 };

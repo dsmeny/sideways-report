@@ -57,6 +57,11 @@ const StockCard = (props) => {
           </li>
         ))}
       </ul>
+      <ul>
+        {props.stockData.map((data, index) => (
+          <li key={index}>{data[1]}</li>
+        ))}
+      </ul>
     </Card>
   );
 };

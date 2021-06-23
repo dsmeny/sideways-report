@@ -1,0 +1,47 @@
+.tableStyle {
+  width: 71vw;
+  height: 50vh;
+  border: 1px solid gray;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  display: block;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.tableStyle > thead,
+.tableStyle > tbody {
+  display: block;
+}
+
+.tableStyle > thead {
+  position: sticky;
+  width: 70.1vw;
+  background-color: rgb(37, 189, 37);
+  color: white;
+  top: 0px;
+  transform: translateY(-32px);
+}
+
+.tableStyle > thead > tr,
+.tableStyle > tbody > tr {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  line-height: 3rem;
+}
+
+.tableStyle > thead > tr > th,
+.tableStyle > tbody > tr > td,
+.tableStyle > tbody > tr > div > td {
+  width: 7rem;
+  text-align: center;
+}
+
+.trBody {
+  margin-top: -1rem;
+}
+
+.trBody > tr:nth-child(even) {
+  background-color: rgb(239, 247, 250);
+}

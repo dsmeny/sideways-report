@@ -1,19 +1,18 @@
 import { useRouter } from "next/router";
 import Card from "../ui/Card";
+import { ChevronUp, ChevronDown } from "../ui/icons";
 
 const StockCard = (props) => {
   const router = useRouter();
   const addMillions = "(m)";
 
+  const stock = Object.entries(props.stockData)[0][1];
+  const stockPrices = Object.entries(stock[1]);
+
   // formatting volume data to millions
-  props.stockData[props.stockData.length - 1][0] = props.stockData[
-    props.stockData.length - 1
-  ][0]
-    .toString()
-    .concat(addMillions);
-  props.stockData[props.stockData.length - 1][1] = (
-    props.stockData[props.stockData.length - 1][1] / 1000000
-  ).toFixed(3);
+  stockPrices[4][0] = stockPrices[4][0].toString().concat(addMillions);
+
+  stockPrices[4][1] = (stockPrices[4][1] / 1000000).toFixed(3);
 
   const styles = {
     details: {
@@ -48,16 +47,21 @@ const StockCard = (props) => {
           </svg>
         </span>
       </div>
-      <p>{props.date}</p>
+      <p>{stock[0]}</p>
       <ul>
-        {props.stockData.map((data, index) => (
+        {stockPrices.map((data, index) => (
           <li key={index}>
             <strong>{data[0]}: </strong>
             {data[1]}
           </li>
         ))}
       </ul>
-      <ul></ul>
+      <div>
+        <span onClick={props.clickHandler}>
+          {props.isClicked === false && <ChevronDown />}
+          {props.isClicked === true && <ChevronUp />}
+        </span>
+      </div>
     </Card>
   );
 };

@@ -1,0 +1,23 @@
+.btnStyle {
+  font-size: 1rem;
+  padding: 5px;
+  width: 6.5rem;
+  border-radius: 16px;
+  border: 1px solid #d0cfcf;
+  background: white;
+  margin-left: 2rem;
+}
+
+.btnStyle:hover {
+  border: 1px solid #7edd83;
+}
+
+.isActive {
+  background-color: #78d37d !important;
+  border: none !important;
+  color: white;
+}
+
+.isActive:hover {
+  background-color: #83d887 !important;
+}

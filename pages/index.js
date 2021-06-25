@@ -54,7 +54,7 @@ export default function Home() {
           )}
         </div>
         <div
-          className={`${searchTrigger ? "show_view" : "hi0de_view"} ${
+          className={`${searchTrigger ? "show_view" : "hide_view"} ${
             styles.search
           } `}
           ref={searchRef}

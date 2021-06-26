@@ -3,5 +3,11 @@
 }
 
 .trBody > tr:nth-child(even) {
-  background-color: rgb(239, 247, 250);
+  background-color: var(--row-background-color);
+}
+
+.trBody > tr:hover {
+  background-color: var(--hover-highlight-color);
+  color: white;
+  transition: all 0.4s linear;
 }

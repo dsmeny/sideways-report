@@ -41,6 +41,11 @@ input:focus {
 :root {
   --border-color: rgb(158, 158, 158);
   --button-font-color: rgb(119, 119, 119);
+  --green-font-color: rgb(37, 189, 37);
+  --green-highlight-color: rgb(126, 221, 131);
+  --hover-highlight-color: rgb(109, 96, 134);
+  --row-background-color: rgb(239, 247, 250);
+  --row-widths: 70vw;
 }
 
 input::-webkit-datetime-edit-year-field:not([aria-valuenow]),

@@ -3,6 +3,8 @@
   height: 53vh;
   margin-top: 2rem;
   padding-top: 2rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
   display: block;
   overflow-y: scroll;
   position: relative;
@@ -11,7 +13,7 @@
 }
 
 .tableStyle::-webkit-scrollbar-thumb {
-  background-color: rgba(37, 189, 37, 0.5);
+  background-color: var(--green-highlight-color);
 }
 
 .tableStyle > thead,
@@ -21,9 +23,13 @@
 
 .tableStyle > thead {
   position: sticky;
-  width: 70.5vw;
   top: 0px;
   transform: translateY(-32px);
+}
+
+.tableStyle > thead,
+.tableStyle > tbody {
+  width: var(--row-widths);
 }
 
 .tableStyle > thead > tr,
@@ -41,13 +47,14 @@
 }
 
 .tableStyle > thead > tr:nth-child(2) {
-  background-color: rgb(37, 189, 37);
-  width: 70.5vw;
-  color: white;
+  background-color: white;
+  width: var(--row-widths);
+  color: var(--button-font-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .btn_row {
-  width: 70.5vw;
+  width: var(--row-widths);
   background-color: white;
   justify-content: flex-start !important;
   padding-left: 1rem;
@@ -62,21 +69,27 @@
   padding: 5px;
   width: 6.5rem;
   border-radius: 16px;
-  border: 1px solid #d0cfcf;
+  border: 1px solid var(--border-color);
   background: white;
   margin-left: 2rem;
 }
 
 .btn_row > th > button:hover {
-  border: 1px solid #7edd83;
+  border: 1px solid var(--green-highlight-color);
 }
 
 .isActive {
-  background-color: #78d37d !important;
+  background-color: var(--green-highlight-color) !important;
   border: none !important;
   color: white;
 }
 
 .isActive:hover {
-  background-color: #83d887 !important;
+  background-color: var(--green-highlight-color) !important;
+}
+
+.addHighlighting {
+  background-color: var(--hover-highlight-color);
+  color: white;
+  transition: all 0.4s linear;
 }

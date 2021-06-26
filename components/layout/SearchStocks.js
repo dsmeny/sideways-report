@@ -37,18 +37,28 @@ const SearchStocks = ({
           />
         </svg>
       )}
-      {symbol && (
-        <input
-          type="date"
-          ref={dateRef}
-          onChange={(e) => {
-            changeHandler(e);
-            // searchContext.getStorage();
-          }}
-        />
-      )}
+      {symbol && <DatePicker dateRef={dateRef} changeHandler={changeHandler} />}
     </Search>
   );
 };
+
+function DatePicker(props) {
+  return (
+    <>
+      <span className={classes.datepicker_toggle}>
+        <span className={classes.datepicker_toggle_button}></span>
+        <input
+          type="date"
+          className={classes.datepicker_input}
+          ref={props.dateRef}
+          onChange={(e) => {
+            props.changeHandler(e);
+            // searchContext.getStorage();
+          }}
+        />
+      </span>
+    </>
+  );
+}
 
 export default SearchStocks;

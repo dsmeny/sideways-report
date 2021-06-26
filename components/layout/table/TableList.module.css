@@ -1,12 +1,17 @@
 .tableStyle {
   width: 71vw;
   height: 53vh;
-  border: 1px solid gray;
   margin-top: 2rem;
   padding-top: 2rem;
   display: block;
   overflow-y: scroll;
   position: relative;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.tableStyle::-webkit-scrollbar-thumb {
+  background-color: rgba(37, 189, 37, 0.5);
 }
 
 .tableStyle > thead,
@@ -16,7 +21,7 @@
 
 .tableStyle > thead {
   position: sticky;
-  width: 70.1vw;
+  width: 70.5vw;
   top: 0px;
   transform: translateY(-32px);
 }
@@ -37,12 +42,12 @@
 
 .tableStyle > thead > tr:nth-child(2) {
   background-color: rgb(37, 189, 37);
-  width: 70.1vw;
+  width: 70.5vw;
   color: white;
 }
 
 .btn_row {
-  width: 70.1vw;
+  width: 70.5vw;
   background-color: white;
   justify-content: flex-start !important;
   padding-left: 1rem;

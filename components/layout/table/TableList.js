@@ -1,16 +1,47 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useCallback } from "react";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import StockContext from "../../../store/stock-provider";
 import classes from "./TableList.module.css";
 
 const TableList = (props) => {
+  const { stockNumbers, setStockNumbers } = useState([]);
+  const { stockStats, setStockStats } = useState([]);
   const { stocks, stats } = useContext(StockContext);
 
   function highlightHandler(e) {
     e.preventDefault();
     const target = e.target;
     target.classList.toggle(classes.addHighlighting);
+  }
+
+  let tempNumbers = 0;
+
+  const statsCallback = useCallback((stock) => {
+    convertStats(stock);
+  }, []);
+
+  function convertStats(stockObj) {
+    for (let key in stockObj) {
+      if (key !== "5. volume") {
+        let number = (+stockObj[key]).toFixed(2);
+        tempNumbers += +number;
+      }
+    }
+
+    const statObj = {
+      date: props.date,
+      day: "Mon",
+      avg: +(tempNumbers / 4).toFixed(2),
+      gain: 0.0,
+      vol: 0.0,
+    };
+
+    // setStockStats((prev) => [...prev, statObj]);
+
+    // if (setStockStats !== undefined) {
+    //   setStockStats((prev) => [...prev, statObj]);
+    // }
   }
 
   return (
@@ -26,26 +57,26 @@ const TableList = (props) => {
                   onClick={(e) => highlightHandler(e)}
                   key={Math.random() + index}
                 >
-                  <td>{stock[0]}</td>
-                  {Object.entries(stock[1]).map(
-                    (arr, index) =>
-                      (index === 4 && (
-                        <td key={Math.random() + index}>
-                          {(arr[1] / 1000000).toFixed(3)}
-                        </td>
-                      )) || <td key={Math.random() + index}>{arr[1]}</td>
-                  )}
+                  <td key={Math.random() + (index + 1)}>{stock[0]}</td>
+                  {statsCallback(stock[1])}
                 </tr>
               ))}
           </TableBody>
         )}
-        {stats && stats === true && (
+        {/* {stats && stats === true && (
           <TableBody>
-            <tr>
-              <td>Stats!</td>
-            </tr>
+            {stockStats &&
+              stockStats.map((stats) => {
+                <>
+                  <td>{stats.date}</td>
+                  <td>{stats.day}</td>
+                  <td>{stats.avg}</td>
+                  <td>{stats.gain}</td>
+                  <td>{stats.vol}</td>
+                </>;
+              })}
           </TableBody>
-        )}
+        )} */}
       </table>
     </>
   );

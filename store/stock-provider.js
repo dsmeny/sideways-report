@@ -11,7 +11,6 @@ export function StockContextProvider(props) {
   const [showStats, setShowStats] = useState(false);
 
   function activeTbodyHandler(e) {
-    console.log("stock-provider_e:", e);
     const elem = e.target.textContent;
     if (elem === "Overview") {
       setShowStats(false);

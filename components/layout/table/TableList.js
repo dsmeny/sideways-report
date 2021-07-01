@@ -5,8 +5,7 @@ import StockContext from "../../../store/stock-provider";
 import classes from "./TableList.module.css";
 
 const TableList = (props) => {
-  const { stockNumbers, setStockNumbers } = useState([]);
-  const { stockStats, setStockStats } = useState([]);
+  const [stockStats, setStockStats] = useState([]);
   const { stocks, stats } = useContext(StockContext);
 
   function highlightHandler(e) {
@@ -17,9 +16,7 @@ const TableList = (props) => {
 
   let tempNumbers = 0;
 
-  const statsCallback = useCallback((stock) => {
-    convertStats(stock);
-  }, []);
+  const statsCallback = useCallback((stock) => convertStats(stock), [stocks]);
 
   function convertStats(stockObj) {
     for (let key in stockObj) {
@@ -37,33 +34,27 @@ const TableList = (props) => {
       vol: 0.0,
     };
 
-    // setStockStats((prev) => [...prev, statObj]);
-
-    // if (setStockStats !== undefined) {
-    //   setStockStats((prev) => [...prev, statObj]);
-    // }
+    setStockStats((prev) => [...prev, statObj]);
   }
 
   return (
     <>
       <table className={classes.tableStyle}>
         <TableHead />
-        {stocks && stocks === true && (
+        {stocks === true && (
           <TableBody>
-            {props.stockDays
-              .filter((array) => array[0] !== props.date)
-              .map((stock, index) => (
-                <tr
-                  onClick={(e) => highlightHandler(e)}
-                  key={Math.random() + index}
-                >
-                  <td key={Math.random() + (index + 1)}>{stock[0]}</td>
-                  {statsCallback(stock[1])}
-                </tr>
-              ))}
+            {stocks === true &&
+              props.stockDays
+                .filter((array) => array[0] !== props.date)
+                .map((stock, index) => (
+                  <tr onClick={highlightHandler} key={Math.random() + index}>
+                    <td key={Math.random() + (index + 1)}>{stock[0]}</td>
+                    {statsCallback(stock[1])}
+                  </tr>
+                ))}
           </TableBody>
         )}
-        {/* {stats && stats === true && (
+        {stats === true && (
           <TableBody>
             {stockStats &&
               stockStats.map((stats) => {
@@ -76,7 +67,7 @@ const TableList = (props) => {
                 </>;
               })}
           </TableBody>
-        )} */}
+        )}
       </table>
     </>
   );

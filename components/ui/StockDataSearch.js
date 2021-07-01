@@ -38,7 +38,6 @@ const StockDataSearch = ({ date, symbol, timeSeries }) => {
   const series = stockData["Time Series (Daily)"];
 
   const _stockDays = Object.entries(series);
-  // console.log("_stockDays:", _stockDays);
 
   return (
     <>

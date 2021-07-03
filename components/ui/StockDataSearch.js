@@ -22,9 +22,15 @@ const StockDataSearch = ({ date, symbol, timeSeries }) => {
     });
   }, [isClicked]);
 
+  function noScroll() {
+    window.scrollTo(0, 1000);
+  }
+
+  // prevent window scrolling if tablelist is in view
   function clickHandler() {
     setIsClicked(!isClicked);
     window.scrollY = "100vh";
+    window.addEventListener("scroll", noScroll);
   }
 
   if (isLoading)

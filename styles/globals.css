@@ -40,7 +40,7 @@ input:focus {
 
 :root {
   --border-color: rgb(158, 158, 158);
-  --button-font-color: rgb(119, 119, 119);
+  --button-font-color: rgb(97, 97, 97);
   --green-font-color: rgb(37, 189, 37);
   --green-highlight-color: rgb(126, 221, 131);
   --hover-highlight-color: rgb(109, 96, 134);

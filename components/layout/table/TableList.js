@@ -10,8 +10,8 @@ const TableList = (props) => {
   const [count, setCount] = useState(0);
 
   function highlightHandler(e) {
-    e.preventDefault();
-    const target = e.target;
+    e.stopPropagation();
+    const target = e.currentTarget;
     target.classList.toggle(classes.addHighlighting);
   }
 
@@ -29,13 +29,21 @@ const TableList = (props) => {
           }
         }
 
+        function getDayOfTheWeek(daystring) {
+          const dayArr = daystring.split("-");
+          const month = (+dayArr[1] + 1).toString();
+          const date = new Date(`${dayArr[0]}, ${month}, ${dayArr[2]}`);
+          return date.toDateString().split(" ").shift();
+        }
+
         const statObj = {
           date: stock[0],
-          day: "Mon",
+          day: getDayOfTheWeek(stock[0]),
           avg: +(tempNumbers / 4).toFixed(2),
           gain: 0.0,
           vol: 0.0,
         };
+        tempNumbers = 0;
         return [...acc, statObj];
       } else return [];
     }, []);
@@ -55,30 +63,28 @@ const TableList = (props) => {
       <table className={classes.tableStyle}>
         <TableHead />
         <TableBody>
-          {props.stockDays
-            .filter((array) => array[0] !== props.date)
-            .map((stock, index) => (
-              <tr onClick={highlightHandler}>
-                <td key={Math.random() + (index + 1)}>{stock[0]}</td>
-                {stocks === true && (
-                  <>
-                    <td>{stock[1]["1. open"]}</td>
-                    <td>{stock[1]["2. high"]}</td>
-                    <td>{stock[1]["3. low"]}</td>
-                    <td>{stock[1]["4. close"]}</td>
-                    <td>{stock[1]["5. volume"]}</td>
-                  </>
-                )}
-                {stats === true && stockStats[index] !== undefined && (
-                  <>
-                    <td>{stockStats[index].day}</td>
-                    <td>{stockStats[index].avg}</td>
-                    <td>{stockStats[index].gain}</td>
-                    <td>{stockStats[index].vol}</td>
-                  </>
-                )}
-              </tr>
-            ))}
+          {props.stockDays.map((stock, index) => (
+            <tr onClick={highlightHandler}>
+              <td key={Math.random() + (index + 1)}>{stock[0]}</td>
+              {stocks === true && (
+                <>
+                  <td>{stock[1]["1. open"]}</td>
+                  <td>{stock[1]["2. high"]}</td>
+                  <td>{stock[1]["3. low"]}</td>
+                  <td>{stock[1]["4. close"]}</td>
+                  <td>{stock[1]["5. volume"]}</td>
+                </>
+              )}
+              {stats === true && stockStats[index] !== undefined && (
+                <>
+                  <td>{stockStats[index]["day"]}</td>
+                  <td>{stockStats[index]["avg"]}</td>
+                  <td>{stockStats[index]["gain"]}</td>
+                  <td>{stockStats[index]["vol"]}</td>
+                </>
+              )}
+            </tr>
+          ))}
         </TableBody>
       </table>
     </>

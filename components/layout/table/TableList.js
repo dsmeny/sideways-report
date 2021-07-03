@@ -21,7 +21,7 @@ const TableList = (props) => {
     let tempNumbers = 0;
 
     const stockReducer = stockArray.reduce((acc, stock) => {
-      if (stock[0] !== props.date) {
+      if (stock[0] !== undefined) {
         for (let key in stock[1]) {
           if (key !== "5. volume") {
             let number = (+stock[1][key]).toFixed(2);
@@ -31,11 +31,9 @@ const TableList = (props) => {
 
         function getDayOfTheWeek(daystring) {
           const dayArr = daystring.split("-");
-          const month = (+dayArr[1] + 1).toString();
-          const date = new Date(`${dayArr[0]}, ${month}, ${dayArr[2]}`);
+          const date = new Date(`${dayArr[0]}, ${dayArr[1]}, ${dayArr[2]}`);
           return date.toDateString().split(" ").shift();
         }
-
         const statObj = {
           date: stock[0],
           day: getDayOfTheWeek(stock[0]),
@@ -68,17 +66,25 @@ const TableList = (props) => {
               <td key={Math.random() + (index + 1)}>{stock[0]}</td>
               {stocks === true && (
                 <>
-                  <td>{stock[1]["1. open"]}</td>
-                  <td>{stock[1]["2. high"]}</td>
-                  <td>{stock[1]["3. low"]}</td>
-                  <td>{stock[1]["4. close"]}</td>
-                  <td>{stock[1]["5. volume"]}</td>
+                  <td>{(+stock[1]["1. open"]).toFixed(2)}</td>
+                  <td>{(+stock[1]["2. high"]).toFixed(2)}</td>
+                  <td>{(+stock[1]["3. low"]).toFixed(2)}</td>
+                  <td>{(+stock[1]["4. close"]).toFixed(2)}</td>
+                  <td>
+                    {(() => {
+                      // formatting vol #'s xxx,xxx,xxx
+                      let string = stock[1]["5. volume"];
+                      let replaced = string.split(/(\d{3})(\d{3})(?!\d)/);
+                      replaced.pop();
+                      return replaced.join(",");
+                    })()}
+                  </td>
                 </>
               )}
               {stats === true && stockStats[index] !== undefined && (
                 <>
                   <td>{stockStats[index]["day"]}</td>
-                  <td>{stockStats[index]["avg"]}</td>
+                  <td>{(+stockStats[index]["avg"]).toFixed(2)}</td>
                   <td>{stockStats[index]["gain"]}</td>
                   <td>{stockStats[index]["vol"]}</td>
                 </>

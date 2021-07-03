@@ -54,37 +54,32 @@ const TableList = (props) => {
     <>
       <table className={classes.tableStyle}>
         <TableHead />
-        {stocks === true && (
-          <TableBody>
-            {stocks === true &&
-              props.stockDays
-                .filter((array) => array[0] !== props.date)
-                .map((stock, index) => (
-                  <tr onClick={highlightHandler} key={Math.random() + index}>
-                    <td key={Math.random() + (index + 1)}>{stock[0]}</td>
+        <TableBody>
+          {props.stockDays
+            .filter((array) => array[0] !== props.date)
+            .map((stock, index) => (
+              <tr onClick={highlightHandler}>
+                <td key={Math.random() + (index + 1)}>{stock[0]}</td>
+                {stocks === true && (
+                  <>
                     <td>{stock[1]["1. open"]}</td>
                     <td>{stock[1]["2. high"]}</td>
                     <td>{stock[1]["3. low"]}</td>
                     <td>{stock[1]["4. close"]}</td>
                     <td>{stock[1]["5. volume"]}</td>
-                  </tr>
-                ))}
-          </TableBody>
-        )}
-        {stats === true && (
-          <TableBody>
-            {stockStats &&
-              stockStats.map(({ avg, date, day, gain, vol }, index) => (
-                <tr key={Math.random() + index}>
-                  <td>{date}</td>
-                  <td>{day}</td>
-                  <td>{avg}</td>
-                  <td>{gain}</td>
-                  <td>{vol}</td>
-                </tr>
-              ))}
-          </TableBody>
-        )}
+                  </>
+                )}
+                {stats === true && stockStats[index] !== undefined && (
+                  <>
+                    <td>{stockStats[index].day}</td>
+                    <td>{stockStats[index].avg}</td>
+                    <td>{stockStats[index].gain}</td>
+                    <td>{stockStats[index].vol}</td>
+                  </>
+                )}
+              </tr>
+            ))}
+        </TableBody>
       </table>
     </>
   );

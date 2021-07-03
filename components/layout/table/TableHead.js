@@ -22,16 +22,7 @@ const TableHead = () => {
             </Button>
           </th>
         </tr>
-        {stocks && stocks === true && (
-          <TableRow
-            tableHeaders={["Date", "Open", "High", "Low", "Close", "Volume"]}
-          />
-        )}
-        {stats && stats === true && (
-          <TableRow
-            tableHeaders={["Date", "Day", "Average", "Gain%", "Vol -/+"]}
-          />
-        )}
+        <TableRow />
       </thead>
     </>
   );

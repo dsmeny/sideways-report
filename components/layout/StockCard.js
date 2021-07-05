@@ -1,50 +1,28 @@
 import { useRouter } from "next/router";
 import Card from "../ui/Card";
-import { ChevronUp, ChevronDown } from "../ui/icons";
+import { ChevronUp, ChevronDown, Dots } from "../ui/Icons";
+import { toMillions } from "../utility/functions";
+import classes from "./StockCard.module.css";
 
 const StockCard = (props) => {
   const router = useRouter();
-  const addMillions = "(m)";
 
   const stock = Object.entries(props.stockData)[0][1];
   const stockPrices = Object.entries(stock[1]);
 
   // formatting volume data to millions
-  stockPrices[4][0] = stockPrices[4][0].toString().concat(addMillions);
-
-  stockPrices[4][1] = (stockPrices[4][1] / 1000000).toFixed(3);
-
-  const styles = {
-    details: {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      width: "89%",
-    },
-  };
+  stockPrices[4][0] = stockPrices[4][0].toString().concat("(m)");
+  stockPrices[4][1] = toMillions(stockPrices[4][1]);
 
   return (
     <Card symbol={props.symbol}>
       <div
-        style={styles.details}
+        className={classes.details}
         onClick={() => router.push(`/${props.symbol}`)}
       >
         <h3>{props.symbol}</h3>
-        <span style={{ transform: "translate(7px, 3px)" }}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="dots"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1}
-              d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-            />
-          </svg>
+        <span>
+          <Dots />
         </span>
       </div>
       <p>{stock[0]}</p>

@@ -2,7 +2,11 @@ import { useContext, useState, useCallback, useEffect } from "react";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import StockContext from "../../../store/stock-provider";
-import { formatLargeNum, convertVolume } from "../../utility/functions";
+import {
+  formatLargeNum,
+  convertVolume,
+  calcNums,
+} from "../../utility/functions";
 import classes from "./TableList.module.css";
 
 const TableList = (props) => {
@@ -49,6 +53,13 @@ const TableList = (props) => {
 
         tempNumbers = 0;
 
+        if (acc.length > 0) {
+          acc.forEach((obj) => {
+            let calcNum = calcNums(statObj.avg, obj.avg);
+            obj.gain = calcNum.toFixed(2);
+          });
+        }
+
         return [...acc, statObj];
       } else return [];
     }, []);
@@ -60,7 +71,7 @@ const TableList = (props) => {
     statsCallback(props.stockDays);
   }, [stats]);
 
-  // stockStats && console.log("stockStats:", stockStats);
+  // stockStats && console.log("stockStats:", stockStats);s
   // props.stockDays && console.log("props.stockDays:", props.stockDays);
 
   return (
@@ -89,7 +100,13 @@ const TableList = (props) => {
                 <>
                   <td>{stockStats[index]["day"]}</td>
                   <td>{(+stockStats[index]["avg"]).toFixed(2)}</td>
-                  <td>{stockStats[index]["gain"]}</td>
+                  <td
+                    style={{
+                      color: stockStats[index]["gain"] < 0 ? "red" : "green",
+                    }}
+                  >
+                    {stockStats[index]["gain"]}
+                  </td>
                   <td
                     style={{
                       color: stockStats[index]["vol"] < 0 ? "red" : "green",

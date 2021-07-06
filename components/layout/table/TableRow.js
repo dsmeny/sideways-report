@@ -4,7 +4,7 @@ import StockContext from "../../../store/stock-provider";
 const TableRow = () => {
   const { activeTbodyHandler, stocks, stats } = useContext(StockContext);
   const stockHeaders = ["Open", "High", "Low", "Close", "Volume"];
-  const statHeaders = ["Day", "Average", "Gain%", "Vol -/+"];
+  const statHeaders = ["Day", "Average", "Gain %", "Vol %"];
 
   return (
     <tr>

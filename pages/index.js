@@ -16,6 +16,10 @@ export default function Home() {
   const containerRef = useRef();
   const dateRef = useRef();
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [searchTrigger]);
+
   function clickHandler() {
     const enteredSymbol = inputRef.current.value.toUpperCase();
     setTimeSeries("TIME_SERIES_DAILY"); // this will eventually be a filter option
@@ -32,6 +36,7 @@ export default function Home() {
 
   function resetSymbol() {
     inputRef.current.value = "";
+    inputRef.current.focus();
   }
 
   function changeHandler(e) {

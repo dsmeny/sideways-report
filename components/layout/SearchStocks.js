@@ -19,7 +19,6 @@ const SearchStocks = ({
         onKeyPress={(e) => keypressHandler(e)}
         onClick={resetSymbol}
         ref={inputRef}
-        autoFocus
       />
       {!symbol && <Calendar clickHandler={clickHandler} />}
       {symbol && <DatePicker dateRef={dateRef} changeHandler={changeHandler} />}

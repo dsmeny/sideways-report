@@ -2,12 +2,12 @@ import { useContext, useState, useCallback, useEffect } from "react";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import StockContext from "../../../store/stock-provider";
+import { formatLargeNum, convertVolume } from "../../utility/functions";
 import classes from "./TableList.module.css";
 
 const TableList = (props) => {
   const [stockStats, setStockStats] = useState([]);
   const { stocks, stats } = useContext(StockContext);
-  const [count, setCount] = useState(0);
 
   function highlightHandler(e) {
     e.stopPropagation();
@@ -20,7 +20,9 @@ const TableList = (props) => {
   function convertStats(stockArray) {
     let tempNumbers = 0;
 
-    const stockReducer = stockArray.reduce((acc, stock) => {
+    const volumes = convertVolume(stockArray);
+
+    const stockReducer = stockArray.reduce((acc, stock, index) => {
       if (stock[0] !== undefined) {
         for (let key in stock[1]) {
           if (key !== "5. volume") {
@@ -34,14 +36,19 @@ const TableList = (props) => {
           const date = new Date(`${dayArr[0]}, ${dayArr[1]}, ${dayArr[2]}`);
           return date.toDateString().split(" ").shift();
         }
+
+        let volume = volumes.gains[index];
+
         const statObj = {
           date: stock[0],
           day: getDayOfTheWeek(stock[0]),
           avg: +(tempNumbers / 4).toFixed(2),
           gain: 0.0,
-          vol: 0.0,
+          vol: volume === undefined ? 0.0 : +volume.toFixed(2),
         };
+
         tempNumbers = 0;
+
         return [...acc, statObj];
       } else return [];
     }, []);
@@ -72,11 +79,8 @@ const TableList = (props) => {
                   <td>{(+stock[1]["4. close"]).toFixed(2)}</td>
                   <td>
                     {(() => {
-                      // formatting vol #'s xxx,xxx,xxx
                       let string = stock[1]["5. volume"];
-                      let replaced = string.split(/(\d{3})(\d{3})(?!\d)/);
-                      replaced.pop();
-                      return replaced.join(",");
+                      return formatLargeNum(string);
                     })()}
                   </td>
                 </>
@@ -86,7 +90,13 @@ const TableList = (props) => {
                   <td>{stockStats[index]["day"]}</td>
                   <td>{(+stockStats[index]["avg"]).toFixed(2)}</td>
                   <td>{stockStats[index]["gain"]}</td>
-                  <td>{stockStats[index]["vol"]}</td>
+                  <td
+                    style={{
+                      color: stockStats[index]["vol"] < 0 ? "red" : "green",
+                    }}
+                  >
+                    {stockStats[index]["vol"]}
+                  </td>
                 </>
               )}
             </tr>

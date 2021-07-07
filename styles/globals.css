@@ -45,6 +45,7 @@ input:focus {
   --green-highlight-color: rgb(126, 221, 131);
   --hover-highlight-color: rgb(190, 172, 226);
   --row-background-color: rgb(239, 247, 250);
+  --navbar-background-color: rgb(248, 248, 248);
   --row-widths: 70vw;
 }
 

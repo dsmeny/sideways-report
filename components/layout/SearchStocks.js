@@ -1,5 +1,5 @@
 import Search from "../ui/Search";
-import { Calendar } from "../ui/Icons";
+import { SearchIcon } from "../ui/Icons";
 import classes from "./SearchStocks.module.css";
 
 const SearchStocks = ({
@@ -20,7 +20,7 @@ const SearchStocks = ({
         onClick={resetSymbol}
         ref={inputRef}
       />
-      {!symbol && <Calendar clickHandler={clickHandler} />}
+      {!symbol && <SearchIcon clickHandler={clickHandler} />}
       {symbol && <DatePicker dateRef={dateRef} changeHandler={changeHandler} />}
     </Search>
   );

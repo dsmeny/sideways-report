@@ -29,6 +29,7 @@ const TableList = (props) => {
     const stockReducer = stockArray.reduce((acc, stock, index) => {
       if (stock[0] !== undefined) {
         for (let key in stock[1]) {
+          // calculate average
           if (key !== "5. volume") {
             let number = (+stock[1][key]).toFixed(2);
             tempNumbers += +number;
@@ -51,14 +52,11 @@ const TableList = (props) => {
           vol: volume === undefined ? 0.0 : +volume.toFixed(2),
         };
 
-        tempNumbers = 0;
-
         if (acc.length > 0) {
-          acc.forEach((obj) => {
-            let calcNum = calcNums(statObj.avg, obj.avg);
-            obj.gain = calcNum.toFixed(2);
-          });
+          statObj.gain = calcNums(acc[index - 1].avg, statObj.avg).toFixed(2);
         }
+
+        tempNumbers = 0;
 
         return [...acc, statObj];
       } else return [];

@@ -20,16 +20,14 @@
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
-  background-color: aliceblue;
+  background-color: var(--navbar-background-color);
   z-index: 9999;
 }
 
 .nav_bar_filters {
-  outline: 1px solid green;
   width: 100%;
 }
 
 .nav_bar_pages {
-  outline: 1px solid red;
   width: 100%;
 }

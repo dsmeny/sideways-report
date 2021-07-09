@@ -1,37 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import useStockApi from "../../hooks/useStockApi";
 import StockCard from "../../components/layout/StockCard";
 import Spinner from "../../components/ui/Spinner";
 import TableList from "../layout/table/TableList";
+import TriggerContext from "../../store/context-provider";
 
 const StockDataSearch = ({ date, symbol, timeSeries }) => {
-  const [isClicked, setIsClicked] = useState(false);
   const { stockData, isLoading, isError } = useStockApi({ symbol, timeSeries });
+  const { scrollRefresh, clickedTrigger } = useContext(TriggerContext);
 
   const spinnerStyle = {
     position: "relative",
     top: "30rem",
     transform: "translateY(-10rem)",
   };
-
-  useEffect(() => {
-    window.scrollTo({
-      top: 1000,
-      left: 0,
-      behavior: "smooth",
-    });
-  }, [isClicked]);
-
-  function noScroll() {
-    window.scrollTo(0, 1000);
-  }
-
-  // prevent window scrolling if tablelist is in view
-  function clickHandler() {
-    setIsClicked(!isClicked);
-    window.scrollY = "100vh";
-    window.addEventListener("scroll", noScroll);
-  }
 
   if (isLoading)
     return (
@@ -49,15 +31,15 @@ const StockDataSearch = ({ date, symbol, timeSeries }) => {
     <>
       <div>
         <StockCard
-          clickHandler={clickHandler}
+          clickHandler={scrollRefresh}
           stockData={_stockDays.filter((array) => array[0] === date)}
           symbol={symbol}
           date={date}
-          isClicked={isClicked}
+          isClicked={clickedTrigger}
           key={Math.random() * 1}
         />
       </div>
-      {isClicked && (
+      {clickedTrigger && (
         <div>
           <TableList stockDays={_stockDays} date={date} />
         </div>

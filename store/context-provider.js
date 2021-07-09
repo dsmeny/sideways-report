@@ -5,11 +5,14 @@ const TriggerContext = createContext({
   showSearch: function () {},
   getStorage: function () {},
   locStorage: null,
+  scrollRefresh: function () {},
+  clickedTrigger: null,
 });
 
 export function TriggerContextProvider(props) {
   const [isSearch, setIsSearch] = useState(true);
   const [storage, setStorage] = useState(0);
+  const [isClicked, setIsClicked] = useState(false);
 
   function searchHandler() {
     setIsSearch(!isSearch);
@@ -18,6 +21,30 @@ export function TriggerContextProvider(props) {
   function getStorageLength() {
     setStorage(localStorage.length);
   }
+
+  function scrollHandler() {
+    setIsClicked(!isClicked);
+  }
+
+  function noScroll() {
+    window.scrollTo(0, 1000);
+  }
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 1000,
+      left: 0,
+      behavior: "smooth",
+    });
+    if (isClicked) {
+      window.scrollY = "100vh";
+      window.addEventListener("scroll", noScroll);
+
+      if (window.scrollY <= "100vh") {
+        window.removeEventListener("scroll", noScroll);
+      }
+    }
+  }, [isClicked]);
 
   useEffect(() => {
     searchHandler();
@@ -28,6 +55,8 @@ export function TriggerContextProvider(props) {
     showSearch: searchHandler,
     getStorage: getStorageLength,
     locStorage: storage,
+    scrollRefresh: scrollHandler,
+    clickedTrigger: isClicked,
   };
 
   return (

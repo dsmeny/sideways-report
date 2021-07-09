@@ -2,15 +2,15 @@ import { useContext } from "react";
 import StockContext from "../../../store/stock-provider";
 
 const TableRow = () => {
-  const { activeTbodyHandler, stocks, stats } = useContext(StockContext);
-  const stockHeaders = ["Open", "High", "Low", "Close", "Volume"];
-  const statHeaders = ["Day", "Average", "Gain %", "Vol %"];
+  const { activeTbodyHandler, overview, ohlc } = useContext(StockContext);
+  const overviewHeaders = ["Day", "Average", "Gain %", "Volume", "Vol %"];
+  const ohlcHeaders = ["Open", "High", "Low", "Close"];
 
   return (
     <tr>
       <th>Date</th>
-      {stocks && stockHeaders.map((header) => <th>{header}</th>)}
-      {stats && statHeaders.map((header) => <th>{header}</th>)}
+      {overview && overviewHeaders.map((header) => <th>{header}</th>)}
+      {ohlc && ohlcHeaders.map((header) => <th>{header}</th>)}
     </tr>
   );
 };

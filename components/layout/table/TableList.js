@@ -11,7 +11,7 @@ import classes from "./TableList.module.css";
 
 const TableList = (props) => {
   const [stockStats, setStockStats] = useState([]);
-  const { stocks, stats } = useContext(StockContext);
+  const { overview, ohlc } = useContext(StockContext);
 
   function highlightHandler(e) {
     e.stopPropagation();
@@ -67,9 +67,9 @@ const TableList = (props) => {
 
   useEffect(() => {
     statsCallback(props.stockDays);
-  }, [stats]);
+  }, [ohlc]);
 
-  // stockStats && console.log("stockStats:", stockStats);s
+  // stockStats && console.log("stockStats:", stockStats);
   // props.stockDays && console.log("props.stockDays:", props.stockDays);
 
   return (
@@ -80,21 +80,7 @@ const TableList = (props) => {
           {props.stockDays.map((stock, index) => (
             <tr onClick={highlightHandler}>
               <td key={Math.random() + (index + 1)}>{stock[0]}</td>
-              {stocks === true && (
-                <>
-                  <td>{(+stock[1]["1. open"]).toFixed(2)}</td>
-                  <td>{(+stock[1]["2. high"]).toFixed(2)}</td>
-                  <td>{(+stock[1]["3. low"]).toFixed(2)}</td>
-                  <td>{(+stock[1]["4. close"]).toFixed(2)}</td>
-                  <td>
-                    {(() => {
-                      let string = stock[1]["5. volume"];
-                      return formatLargeNum(string);
-                    })()}
-                  </td>
-                </>
-              )}
-              {stats === true && stockStats[index] !== undefined && (
+              {overview === true && stockStats[index] !== undefined && (
                 <>
                   <td>{stockStats[index]["day"]}</td>
                   <td>{(+stockStats[index]["avg"]).toFixed(2)}</td>
@@ -105,6 +91,12 @@ const TableList = (props) => {
                   >
                     {stockStats[index]["gain"]}
                   </td>
+                  <td>
+                    {(() => {
+                      let string = stock[1]["5. volume"];
+                      return formatLargeNum(string);
+                    })()}
+                  </td>
                   <td
                     style={{
                       color: stockStats[index]["vol"] < 0 ? "red" : "green",
@@ -112,6 +104,14 @@ const TableList = (props) => {
                   >
                     {stockStats[index]["vol"]}
                   </td>
+                </>
+              )}
+              {ohlc === true && (
+                <>
+                  <td>{(+stock[1]["1. open"]).toFixed(2)}</td>
+                  <td>{(+stock[1]["2. high"]).toFixed(2)}</td>
+                  <td>{(+stock[1]["3. low"]).toFixed(2)}</td>
+                  <td>{(+stock[1]["4. close"]).toFixed(2)}</td>
                 </>
               )}
             </tr>

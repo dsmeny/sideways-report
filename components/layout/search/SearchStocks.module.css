@@ -36,7 +36,7 @@
   width: 1.8rem;
   height: 1.8rem;
   opacity: 0.5;
-  background-image: url("../../public/calendar.svg");
+  background-image: url("../../../public/calendar.svg");
 }
 
 .datepicker_input {

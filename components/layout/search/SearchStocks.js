@@ -1,5 +1,5 @@
-import Search from "../ui/Search";
-import { SearchIcon } from "../ui/Icons";
+import Search from "../../ui/Search";
+import { SearchIcon } from "../../ui/Icons";
 import classes from "./SearchStocks.module.css";
 
 const SearchStocks = ({

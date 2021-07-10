@@ -1,9 +1,9 @@
-import { useState, useEffect, useContext } from "react";
-import useStockApi from "../../hooks/useStockApi";
-import StockCard from "../../components/layout/StockCard";
-import Spinner from "../../components/ui/Spinner";
-import TableList from "../layout/table/TableList";
-import TriggerContext from "../../store/context-provider";
+import { useContext } from "react";
+import useStockApi from "../../utility/hooks/useStockApi";
+import StockCard from "../../layout/cards/StockCard";
+import Spinner from "../../ui/Spinner";
+import TableList from "../table/TableList";
+import TriggerContext from "../../../store/context-provider";
 
 const StockDataSearch = ({ date, symbol, timeSeries }) => {
   const { stockData, isLoading, isError } = useStockApi({ symbol, timeSeries });

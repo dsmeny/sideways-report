@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import fetcher from "../components/utility/fetcher";
+import fetcher from "../fetcher";
 
 function useStockApi({ symbol, timeSeries }) {
   const { data, error } = useSWR(

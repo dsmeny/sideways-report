@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import Card from "../ui/Card";
-import { ChevronUp, ChevronDown, Dots } from "../ui/Icons";
-import { toMillions } from "../utility/functions";
+import Card from "../../ui/Card";
+import { ChevronUp, ChevronDown, Dots } from "../../ui/Icons";
+import { toMillions } from "../../utility/tableList_functions";
 import classes from "./StockCard.module.css";
 
 const StockCard = (props) => {

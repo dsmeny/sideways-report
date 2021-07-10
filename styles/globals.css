@@ -39,13 +39,25 @@ input:focus {
 }
 
 :root {
-  --border-color: rgb(158, 158, 158);
-  --button-font-color: rgb(97, 97, 97);
-  --green-font-color: rgb(37, 189, 37);
-  --green-highlight-color: rgb(126, 221, 131);
-  --hover-highlight-color: rgb(190, 172, 226);
+  /* background color */
   --row-background-color: rgb(239, 247, 250);
   --navbar-background-color: rgb(248, 248, 248);
+
+  /* box shadow */
+  --box-shadows: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  /* border color */
+  --border-color: rgb(158, 158, 158);
+
+  /* font color */
+  --button-font-color: rgb(97, 97, 97);
+  --green-font-color: rgb(37, 189, 37);
+
+  /* highlighting colors */
+  --green-highlight-color: rgb(126, 221, 131);
+  --hover-highlight-color: rgb(190, 172, 226);
+
+  /* structural formatting */
   --row-widths: 70vw;
 }
 

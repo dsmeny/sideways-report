@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect, useContext, useCallback } from "react";
 import TriggerContext from "../store/context-provider";
-import SearchStocks from "../components/layout/SearchStocks";
+import SearchStocks from "../components/layout/search/SearchStocks";
 import styles from "../styles/Home.module.css";
-import StockDataSearch from "../components/ui/StockDataSearch";
+import StockDataSearch from "../components/layout/search/StockDataSearch";
 
 export default function Home() {
   const [date, setDate] = useState(null);

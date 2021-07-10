@@ -2,11 +2,7 @@ import { useContext, useState, useCallback, useEffect } from "react";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import StockContext from "../../../store/stock-provider";
-import {
-  formatLargeNum,
-  convertVolume,
-  calcNums,
-} from "../../utility/functions";
+import { formatLargeNum, calcNums } from "../../utility/functions";
 import classes from "./TableList.module.css";
 
 const TableList = (props) => {
@@ -22,17 +18,20 @@ const TableList = (props) => {
   const statsCallback = useCallback((stock) => convertStats(stock), []);
 
   function convertStats(stockArray) {
-    let tempNumbers = 0;
-
-    const volumes = convertVolume(stockArray);
+    let gainNumbers = 0;
+    let volNumbers = 0;
 
     const stockReducer = stockArray.reduce((acc, stock, index) => {
+      console.log("stock:", stock);
       if (stock[0] !== undefined) {
         for (let key in stock[1]) {
           // calculate average
           if (key !== "5. volume") {
             let number = (+stock[1][key]).toFixed(2);
-            tempNumbers += +number;
+            gainNumbers += +number;
+          } else if (key === "5. volume") {
+            let number = (+stock[1][key]).toFixed(2);
+            volNumbers += +number;
           }
         }
 
@@ -42,21 +41,24 @@ const TableList = (props) => {
           return date.toDateString().split(" ").shift();
         }
 
-        let volume = volumes.gains[index];
-
         const statObj = {
           date: stock[0],
           day: getDayOfTheWeek(stock[0]),
-          avg: +(tempNumbers / 4).toFixed(2),
+          avg: +(gainNumbers / 4).toFixed(2),
           gain: 0.0,
-          vol: volume === undefined ? 0.0 : +volume.toFixed(2),
+          volAvg: +(volNumbers / 2).toFixed(2),
+          vol: 0.0,
         };
 
         if (acc.length > 0) {
-          statObj.gain = calcNums(acc[index - 1].avg, statObj.avg).toFixed(2);
+          statObj.gain = calcNums(statObj.avg, acc[index - 1].avg).toFixed(2);
+          statObj.vol = calcNums(statObj.volAvg, acc[index - 1].volAvg).toFixed(
+            2
+          );
         }
 
-        tempNumbers = 0;
+        gainNumbers = 0;
+        volNumbers = 0;
 
         return [...acc, statObj];
       } else return [];
@@ -86,10 +88,15 @@ const TableList = (props) => {
                   <td>{(+stockStats[index]["avg"]).toFixed(2)}</td>
                   <td
                     style={{
-                      color: stockStats[index]["gain"] < 0 ? "red" : "green",
+                      color:
+                        stockStats[index + 1] !== undefined &&
+                        stockStats[index + 1]["gain"] < 0
+                          ? "red"
+                          : "green",
                     }}
                   >
-                    {stockStats[index]["gain"]}
+                    {stockStats[index + 1] !== undefined &&
+                      stockStats[index + 1]["gain"]}
                   </td>
                   <td>
                     {(() => {
@@ -99,10 +106,15 @@ const TableList = (props) => {
                   </td>
                   <td
                     style={{
-                      color: stockStats[index]["vol"] < 0 ? "red" : "green",
+                      color:
+                        stockStats[index + 1] !== undefined &&
+                        stockStats[index + 1]["vol"] < 0
+                          ? "red"
+                          : "green",
                     }}
                   >
-                    {stockStats[index]["vol"]}
+                    {stockStats[index + 1] !== undefined &&
+                      stockStats[index + 1]["vol"]}
                   </td>
                 </>
               )}

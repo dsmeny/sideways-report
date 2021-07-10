@@ -6,23 +6,6 @@ export const calcNums = (base, newNum) => {
   return ((newNum - base) / base) * 100;
 };
 
-// this will be refactored for reuse on gains%.
-export const convertVolume = (array) => {
-  const result = array.reduce((acc, stock) => {
-    if (stock[1]["5. volume"]) {
-      let num = +stock[1]["5. volume"];
-      if (acc === null) return num;
-      else if (acc.gains) {
-        return { prev: num, gains: [...acc.gains, calcNums(acc.prev, num)] };
-      } else {
-        return { prev: num, gains: [calcNums(acc, num)] };
-      }
-    }
-  }, null);
-
-  return result;
-};
-
 // formatting vol #'s xxx,xxx,xxx
 export const formatLargeNum = (numString) => {
   let replaced = numString.split(/(\d{3})(\d{3})(?!\d)/);

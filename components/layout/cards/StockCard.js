@@ -7,6 +7,10 @@ import classes from "./StockCard.module.css";
 const StockCard = (props) => {
   const router = useRouter();
 
+  if (props.stockData.length === 0) {
+    return "";
+  }
+
   const stock = Object.entries(props.stockData)[0][1];
   const stockPrices = Object.entries(stock[1]);
 

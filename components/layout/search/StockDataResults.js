@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import useStockApi from "../../utility/hooks/useStockApi";
-import StockCard from "../../layout/cards/StockCard";
+import StockCard from "../cards/StockCard";
 import Spinner from "../../ui/Spinner";
 import TableList from "../table/TableList";
 import TriggerContext from "../../../store/context-provider";

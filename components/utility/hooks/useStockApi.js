@@ -7,6 +7,7 @@ function useStockApi({ symbol, timeSeries }) {
     fetcher
   );
 
+  // console.log("stockData:", data);
   return {
     stockData: data,
     isLoading: !error && !data,

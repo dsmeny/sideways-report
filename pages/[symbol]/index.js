@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import useStockApi from "../../hooks/useStockApi";
+import useStockApi from "../../components/utility/hooks/useStockApi";
 import Spinner from "../../components/ui/Spinner";
 import Overview from "../../components/ui/Overview";
 

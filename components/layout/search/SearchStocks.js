@@ -1,6 +1,6 @@
 import Search from "../../ui/Search";
 import { SearchIcon } from "../../ui/Icons";
-import { getMaxDate } from "../../utility/calendar_functions";
+import { getDate } from "../../utility/calendar_functions";
 import classes from "./SearchStocks.module.css";
 
 const SearchStocks = ({
@@ -28,7 +28,6 @@ const SearchStocks = ({
 };
 
 function DatePicker(props) {
-  const { date, month, year } = getMaxDate();
   return (
     <>
       <span className={classes.datepicker_toggle}>
@@ -37,8 +36,8 @@ function DatePicker(props) {
           type="date"
           className={classes.datepicker_input}
           ref={props.dateRef}
-          max={`${year}-${month}-${date}`}
-          min="2021-03-01"
+          max={getDate(0)}
+          min={getDate(100, "min")}
           onChange={(e) => {
             props.changeHandler(e);
             // searchContext.getStorage();

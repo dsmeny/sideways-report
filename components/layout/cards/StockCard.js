@@ -7,12 +7,9 @@ import classes from "./StockCard.module.css";
 const StockCard = (props) => {
   const router = useRouter();
 
-  if (props.stockData.length === 0) {
-    return "";
-  }
+  console.log("stockData:", props.stockData);
 
-  const stock = Object.entries(props.stockData)[0][1];
-  const stockPrices = Object.entries(stock[1]);
+  const stockPrices = Object.entries(props.stockData[1]);
 
   // formatting volume data to millions
   stockPrices[4][0] = stockPrices[4][0].toString().concat("(m)");
@@ -29,7 +26,7 @@ const StockCard = (props) => {
           <Dots />
         </span>
       </div>
-      <p>{stock[0]}</p>
+      <p>{props.stockData[0]}</p>
       <ul>
         {stockPrices.map((data, index) => (
           <li key={index}>

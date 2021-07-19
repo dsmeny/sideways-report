@@ -1,24 +1,14 @@
-export const getMaxDate = () => {
-  const date = new Date();
-  const daysofweek = [
-    "sunday",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-  ];
+export const getDate = (dataLength, val = "max") => {
+  let date = new Date();
+  date.setDate(dataLength > 0 ? -(dataLength - 2) : date.getDate());
+  let month = date.getMonth() < 10 ? `${date.getMonth()}` : date.getMonth();
+  let dateMonth = date.getDate() < 10 ? `${date.getDate()}` : date.getDate();
+  return `${date.getFullYear()}-${+month < 10 ? "0" : ""}${
+    val === "max" ? +month + 1 : month
+  }-${+dateMonth < 10 ? "0" : ""}${dateMonth}`;
+};
 
-  const dateStr = String(date.getUTCMonth() + 1).padStart(2, "0");
-
-  return {
-    date: date.getUTCDate() - 1,
-    month: dateStr,
-    year: date.getFullYear(),
-    day: {
-      dayofweek: daysofweek[date.getUTCDay() - 1],
-      numerical: date.getUTCDay() - 1,
-    },
-  };
+export const recentTradeDay = (value) => {
+  const date = new Date(value);
+  return date.toString().slice(0, 4).trim().toLowerCase();
 };

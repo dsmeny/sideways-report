@@ -4,6 +4,7 @@ import StockCard from "../cards/StockCard";
 import Spinner from "../../ui/Spinner";
 import TableList from "../table/TableList";
 import TriggerContext from "../../../store/context-provider";
+import { recentTradeDay } from "../../utility/calendar_functions";
 
 const StockDataSearch = ({ date, symbol, timeSeries }) => {
   const { stockData, isLoading, isError } = useStockApi({ symbol, timeSeries });
@@ -26,15 +27,19 @@ const StockDataSearch = ({ date, symbol, timeSeries }) => {
   const series = stockData["Time Series (Daily)"];
 
   const _stockDays = Object.entries(series);
-
   return (
     <>
       <div>
         <StockCard
           clickHandler={scrollRefresh}
-          stockData={_stockDays.filter((array) => array[0] === date)}
+          stockData={_stockDays.find((array, index) => {
+            if (
+              recentTradeDay(date) === "sun" ||
+              recentTradeDay(date) === "sat"
+            ) {
+            }
+          })}
           symbol={symbol}
-          date={date}
           isClicked={clickedTrigger}
           key={Math.random() * 1}
         />

@@ -1,0 +1,96 @@
+.tableStyle {
+  width: 71vw;
+  height: 53vh;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  display: block;
+  overflow-y: scroll;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: var(--box-shadows);
+}
+
+.tableStyle::-webkit-scrollbar-thumb {
+  background-color: var(--green-highlight-color);
+}
+
+.tableStyle > thead,
+.tableStyle > tbody {
+  display: block;
+}
+
+.tableStyle > thead {
+  position: sticky;
+  top: 0px;
+  transform: translateY(-32px);
+}
+
+.tableStyle > thead,
+.tableStyle > tbody {
+  width: var(--row-widths);
+}
+
+.tableStyle > thead > tr,
+.tableStyle > tbody > tr {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  line-height: 3rem;
+  color: var(--button-font-color);
+}
+
+.tableStyle > thead > tr > th,
+.tableStyle > tbody > tr > td {
+  width: 7rem;
+  text-align: center;
+}
+
+.tableStyle > thead > tr:nth-child(2) {
+  background-color: white;
+  width: var(--row-widths);
+  color: var(--button-font-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.btn_row {
+  width: var(--row-widths);
+  background-color: white;
+  justify-content: flex-start !important;
+  padding-left: 1rem;
+}
+
+.btn_row > th {
+  margin-left: 1rem;
+}
+
+.btn_row > th > button {
+  font-size: 1rem;
+  padding: 5px;
+  width: 6.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  background: white;
+  margin-left: 2rem;
+}
+
+.btn_row > th > button:hover {
+  border: 1px solid var(--green-highlight-color);
+}
+
+.isActive {
+  background-color: var(--green-highlight-color) !important;
+  border: none !important;
+  color: white;
+}
+
+.isActive:hover {
+  background-color: var(--green-highlight-color) !important;
+}
+
+.addHighlighting {
+  background-color: var(--hover-highlight-color) !important;
+  color: white !important;
+  transition: all 0.4s linear;
+}

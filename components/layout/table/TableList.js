@@ -1,0 +1,82 @@
+import { useContext, useCallback, useEffect } from "react";
+import TableHead from "./TableHead";
+import TableBody from "./TableBody";
+import StockContext from "../../../store/stock-provider";
+import {
+  formatLargeNum,
+  highlightHandler,
+} from "../../utility/tableList_functions";
+import classes from "./TableList.module.css";
+import useStatSetter from "../../utility/hooks/useStatSetter";
+
+const TableList = (props) => {
+  const { overview, ohlc } = useContext(StockContext);
+  const { stockStats, convertStats } = useStatSetter();
+
+  const statsCallback = useCallback((stock) => convertStats(stock), []);
+
+  useEffect(() => {
+    statsCallback(props.stockDays);
+  }, [ohlc]);
+
+  return (
+    <>
+      <table className={classes.tableStyle}>
+        <TableHead />
+        <TableBody>
+          {props.stockDays.map((stock, index) => (
+            <tr onClick={highlightHandler}>
+              <td key={Math.random() + (index + 1)}>{stock[0]}</td>
+              {overview === true && stockStats[index] !== undefined && (
+                <>
+                  <td>{stockStats[index]["day"]}</td>
+                  <td>{(+stockStats[index]["avg"]).toFixed(2)}</td>
+                  <td
+                    style={{
+                      color:
+                        stockStats[index + 1] !== undefined &&
+                        stockStats[index + 1]["gain"] < 0
+                          ? "red"
+                          : "green",
+                    }}
+                  >
+                    {stockStats[index + 1] !== undefined &&
+                      stockStats[index + 1]["gain"]}
+                  </td>
+                  <td>
+                    {(() => {
+                      let string = stock[1]["5. volume"];
+                      return formatLargeNum(string);
+                    })()}
+                  </td>
+                  <td
+                    style={{
+                      color:
+                        stockStats[index + 1] !== undefined &&
+                        stockStats[index + 1]["vol"] < 0
+                          ? "red"
+                          : "green",
+                    }}
+                  >
+                    {stockStats[index + 1] !== undefined &&
+                      stockStats[index + 1]["vol"]}
+                  </td>
+                </>
+              )}
+              {ohlc === true && (
+                <>
+                  <td>{(+stock[1]["1. open"]).toFixed(2)}</td>
+                  <td>{(+stock[1]["2. high"]).toFixed(2)}</td>
+                  <td>{(+stock[1]["3. low"]).toFixed(2)}</td>
+                  <td>{(+stock[1]["4. close"]).toFixed(2)}</td>
+                </>
+              )}
+            </tr>
+          ))}
+        </TableBody>
+      </table>
+    </>
+  );
+};
+
+export default TableList;

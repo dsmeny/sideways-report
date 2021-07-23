@@ -1,6 +1,5 @@
 const Card = (props) => {
   const cardStyle = {
-    border: "1px solid grey",
     borderRadius: "10px",
     minHeight: "12rem",
     display: "flex",
@@ -8,9 +7,16 @@ const Card = (props) => {
     paddingLeft: "2rem",
     paddingTop: "2rem",
     width: "22rem",
+    boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
   };
 
-  return <div style={cardStyle}>{props.children}</div>;
+  const classes = "card" + props.className;
+
+  return (
+    <div className={classes} style={cardStyle}>
+      {props.children}
+    </div>
+  );
 };
 
 export default Card;

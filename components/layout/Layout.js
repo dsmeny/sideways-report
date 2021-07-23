@@ -1,4 +1,4 @@
-import MenuBar from "./MenuBar";
+import MenuBar from "./menu/MenuBar";
 const Layout = (props) => {
   return (
     <div>

@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import fetcher from "../components/utility/fetcher";
+import fetcher from "../fetcher";
 
 function useStockApi({ symbol, timeSeries }) {
   const { data, error } = useSWR(
@@ -9,7 +9,6 @@ function useStockApi({ symbol, timeSeries }) {
 
   return {
     stockData: data,
-    isLoading: !error && !data,
     isError: error,
   };
 }

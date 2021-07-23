@@ -6,20 +6,39 @@ export const getTarget = (data, dateStr) => {
   let flattenedData = data.flat();
   const dataMap = new Map();
 
+  const monday = recentTradeDay(dateStr) === "mon";
+  const friday = recentTradeDay(dateStr) === "fri";
+  const saturday = recentTradeDay(dateStr) === "sat";
+  const sunday = recentTradeDay(dateStr) === "sun";
+
+  console.log("getTarget_data:", data);
+  console.log("getTarget_dateStr:", dateStr);
+
   if (data[flattenedData.indexOf(dateStr)]) {
     return dataMap.set(
       `${flattenedData[flattenedData.indexOf(dateStr)]}`,
       flattenedData[flattenedData.indexOf(dateStr) + 1]
     );
-  } else if (recentTradeDay(dateStr) === "sat") {
+  } else if (saturday) {
     let newDateStr = newDate(dateStr, 1);
 
     return dataMap.set(
       `${flattenedData[flattenedData.indexOf(newDateStr)]}`,
       flattenedData[flattenedData.indexOf(newDateStr) + 1]
     );
-  } else if (recentTradeDay(dateStr) === "sun") {
+  } else if (sunday) {
     let newDateStr = newDate(dateStr, 2);
+
+    return dataMap.set(
+      `${flattenedData[flattenedData.indexOf(newDateStr)]}`,
+      flattenedData[flattenedData.indexOf(newDateStr) + 1]
+    );
+  } else if ((monday || friday) && flattenedData.indexOf(dateStr) < 0) {
+    let index;
+
+    monday ? (index = 3) : (index = 2);
+
+    let newDateStr = newDate(dateStr, index);
 
     return dataMap.set(
       `${flattenedData[flattenedData.indexOf(newDateStr)]}`,

@@ -6,16 +6,12 @@ export const getTarget = (data, dateStr) => {
   let flattenedData = data.flat();
   const dataMap = new Map();
 
-  //   console.log("getTarget_dateStr:", dateStr);
-  //   console.log("getTarget_data:", flattenedData);
-
   if (data[flattenedData.indexOf(dateStr)]) {
     return dataMap.set(
       `${flattenedData[flattenedData.indexOf(dateStr)]}`,
       flattenedData[flattenedData.indexOf(dateStr) + 1]
     );
   } else if (recentTradeDay(dateStr) === "sat") {
-    console.log("sat");
     let newDateStr = newDate(dateStr, 1);
 
     return dataMap.set(
@@ -23,7 +19,6 @@ export const getTarget = (data, dateStr) => {
       flattenedData[flattenedData.indexOf(newDateStr) + 1]
     );
   } else if (recentTradeDay(dateStr) === "sun") {
-    console.log("sun");
     let newDateStr = newDate(dateStr, 2);
 
     return dataMap.set(
@@ -60,8 +55,7 @@ export const getDate = (dataLength, val = "max") => {
 };
 
 function recentTradeDay(value) {
-  console.log("recentTradeDay_value:", value);
-  const date = new Date(value);
-  console.log("recentTradeDay_date:", date);
+  let dateVal = value.concat("T00:00:00");
+  const date = new Date(dateVal);
   return date.toString().slice(0, 4).trim().toLowerCase();
 }

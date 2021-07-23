@@ -17,18 +17,14 @@ const StockDataSearch = ({ date, symbol, timeSeries }) => {
 
   const data = Object.entries(series);
 
-  // console.log("date:", date);
-  // console.log("data:", data);
-  const targetData = getTarget(data, date);
-  console.log("target_data:", targetData);
+  const mapData = getTarget(data, date);
+  const mapIterator = mapData.entries();
+  const mapArray = mapIterator.next().value;
+  console.log("mapArray:", mapArray);
 
   return (
     <div>
-      <StockCard
-        stockData={Object.entries(series["2021-07-21"])}
-        date={date}
-        symbol={symbol}
-      />
+      <StockCard stockData={mapArray[1]} date={mapArray[0]} symbol={symbol} />
     </div>
   );
 };

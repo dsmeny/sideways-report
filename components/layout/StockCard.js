@@ -39,10 +39,10 @@ const StockCard = (props) => {
       </div>
       <p>{props.date}</p>
       <ul>
-        {props.stockData.map((data, index) => (
+        {Object.entries(props.stockData).map((stock, index) => (
           <li key={index}>
-            <strong>{data[0]}: </strong>
-            {data[1]}
+            <strong>{stock[0]}: </strong>
+            {stock[1]}
           </li>
         ))}
       </ul>

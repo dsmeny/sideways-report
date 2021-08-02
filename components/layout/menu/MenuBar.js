@@ -33,9 +33,9 @@ const MenuBar = () => {
         </span>
       </nav>
       <div className={classes.nav_bar}>
-        <div className={classes.nav_bar_filters}>
+        {/* <div className={classes.nav_bar_filters}>
           <MenuItem />
-        </div>
+        </div> */}
         <div className={classes.nav_bar_pages}>
           <MenuItem
             searchTrigger={searchTrigger}

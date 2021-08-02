@@ -11,10 +11,10 @@ const MenuItem = (props) => {
             props.classTriggerHandler();
           }}
         >
-          p1
+          Search
         </li>
-        <li>p2</li>
-        <li>p3</li>
+        {/* <li>p2</li>
+        <li>p3</li> */}
       </ul>
     </>
   );

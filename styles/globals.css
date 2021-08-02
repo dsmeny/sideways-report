@@ -55,7 +55,7 @@ input:focus {
 
   /* highlighting colors */
   --green-highlight-color: rgb(126, 221, 131);
-  --hover-highlight-color: rgb(190, 172, 226);
+  --hover-highlight-color: rgba(0, 116, 217, 0.4);
 
   /* structural formatting */
   --row-widths: 70vw;

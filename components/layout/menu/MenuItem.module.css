@@ -9,10 +9,12 @@
 }
 
 .list_styles li {
-  width: 3vw;
+  width: 7vw;
   height: 4vh;
+  display: flex;
+  color: var(--border-color);
 }
 
 .active {
-  color: var(--hover-highlight-color);
+  color: var(--hover-highlight-color) !important;
 }

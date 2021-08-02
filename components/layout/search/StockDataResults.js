@@ -33,7 +33,7 @@ const StockDataSearch = ({ date, symbol, timeSeries }) => {
   const mapArray = mapIterator.next().value;
 
   // console.log("date:", date);
-  console.log("mapData:", mapData);
+  // console.log("mapData:", mapData);
   // console.log("mapArray:", mapArray);
 
   return (

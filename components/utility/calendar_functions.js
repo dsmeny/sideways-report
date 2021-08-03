@@ -55,6 +55,9 @@ function newDate(dateStr, increment) {
       if (str <= 10) {
         if (index === 2) return `0${str - increment}`;
         else return `0${str}`;
+      } else if (str === 11) {
+        if (index === 2) return `0${str - increment}`;
+        else return str;
       } else {
         if (index === 2) return str - increment;
         else return str;

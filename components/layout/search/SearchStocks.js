@@ -1,14 +1,16 @@
+import { useContext } from "react";
 import Search from "../../ui/Search";
 import { SearchIcon } from "../../ui/Icons";
 import classes from "./SearchStocks.module.css";
+import TriggerContext from "../../../store/context-provider";
 
 const SearchStocks = ({
   keypressHandler,
   resetSymbol,
   inputRef,
   clickHandler,
-  symbol,
 }) => {
+  const { displayIcon } = useContext(TriggerContext);
   return (
     <Search className={classes.search_buttons}>
       <input
@@ -18,7 +20,7 @@ const SearchStocks = ({
         onClick={resetSymbol}
         ref={inputRef}
       />
-      {<SearchIcon clickHandler={clickHandler} />}
+      {!displayIcon && <SearchIcon clickHandler={clickHandler} />}
     </Search>
   );
 };

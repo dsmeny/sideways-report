@@ -1,14 +1,15 @@
-import { useState, useRef, useEffect, useContext, useCallback } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import TriggerContext from "../store/context-provider";
 import SearchStocks from "../components/layout/search/SearchStocks";
 import styles from "../styles/Home.module.css";
 import StockDataResults from "../components/layout/search/StockDataResults";
+import { symbolHandlers } from "../components/utility/Index_handlers";
 
 export default function Home() {
   const [timeSeries, setTimeSeries] = useState("");
   const [symbol, setSymbol] = useState(null);
-
-  const { searchTrigger } = useContext(TriggerContext);
+  const { searchTrigger, setDisplayIcon, displayIcon } =
+    useContext(TriggerContext);
 
   const inputRef = useRef();
   const searchRef = useRef();
@@ -16,19 +17,17 @@ export default function Home() {
 
   useEffect(() => {
     inputRef.current.focus();
-  }, [searchTrigger]);
+  }, [searchTrigger, displayIcon]);
 
   function clickHandler() {
-    const enteredSymbol = inputRef.current.value.toUpperCase();
-    setTimeSeries("TIME_SERIES_DAILY"); // this will eventually be a filter option
-    setSymbol(enteredSymbol);
+    setDisplayIcon();
+    symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
   }
 
   function keypressHandler(e) {
     if (e.which === 13) {
-      const enteredSymbol = inputRef.current.value.toUpperCase();
-      setTimeSeries("TIME_SERIES_DAILY"); // this will eventually be a filter option
-      setSymbol(enteredSymbol);
+      setDisplayIcon();
+      symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
     }
   }
 
@@ -56,7 +55,6 @@ export default function Home() {
             resetSymbol={resetSymbol}
             keypressHandler={keypressHandler}
             inputRef={inputRef}
-            symbol={symbol}
           />
         </div>
       </div>

@@ -3,23 +3,19 @@ import { createContext, useState, useEffect } from "react";
 const TriggerContext = createContext({
   searchTrigger: null,
   showSearch: function () {},
-  getStorage: function () {},
-  locStorage: null,
+  showIcon: function () {},
   scrollRefresh: function () {},
   clickedTrigger: null,
+  displayIcon: null,
 });
 
 export function TriggerContextProvider(props) {
   const [isSearch, setIsSearch] = useState(true);
-  const [storage, setStorage] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
+  const [hasSymbol, setHasSymbol] = useState(false);
 
   function searchHandler() {
     setIsSearch(!isSearch);
-  }
-
-  function getStorageLength() {
-    setStorage(localStorage.length);
   }
 
   function scrollHandler() {
@@ -28,6 +24,14 @@ export function TriggerContextProvider(props) {
 
   function noScroll() {
     window.scrollTo(0, 1000);
+  }
+
+  function symbolHandler() {
+    if (hasSymbol === true) {
+      setHasSymbol(false);
+    } else {
+      setHasSymbol(true);
+    }
   }
 
   useEffect(() => {
@@ -46,17 +50,13 @@ export function TriggerContextProvider(props) {
     }
   }, [isClicked]);
 
-  useEffect(() => {
-    searchHandler();
-  }, [storage]);
-
   const context = {
     searchTrigger: isSearch,
     showSearch: searchHandler,
-    getStorage: getStorageLength,
-    locStorage: storage,
     scrollRefresh: scrollHandler,
     clickedTrigger: isClicked,
+    setDisplayIcon: symbolHandler,
+    displayIcon: hasSymbol,
   };
 
   return (

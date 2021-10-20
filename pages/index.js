@@ -5,7 +5,6 @@ import styles from "../styles/Home.module.css";
 import StockDataResults from "../components/layout/search/StockDataResults";
 
 export default function Home() {
-  const [date, setDate] = useState(null);
   const [timeSeries, setTimeSeries] = useState("");
   const [symbol, setSymbol] = useState(null);
 
@@ -14,7 +13,6 @@ export default function Home() {
   const inputRef = useRef();
   const searchRef = useRef();
   const containerRef = useRef();
-  const dateRef = useRef();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -39,23 +37,12 @@ export default function Home() {
     inputRef.current.focus();
   }
 
-  function changeHandler(e) {
-    e.preventDefault();
-    // we need to set min/max date values and pass them before setting the date.
-    const targetDate = dateRef.current.value;
-    setDate(targetDate);
-  }
-
   return (
     <>
       <div className={styles.container} ref={containerRef}>
         <div className={styles.data}>
-          {date && (
-            <StockDataResults
-              timeSeries={timeSeries}
-              symbol={symbol}
-              date={date}
-            />
+          {symbol && (
+            <StockDataResults timeSeries={timeSeries} symbol={symbol} />
           )}
         </div>
         <div
@@ -68,9 +55,7 @@ export default function Home() {
             clickHandler={clickHandler}
             resetSymbol={resetSymbol}
             keypressHandler={keypressHandler}
-            changeHandler={changeHandler}
             inputRef={inputRef}
-            dateRef={dateRef}
             symbol={symbol}
           />
         </div>

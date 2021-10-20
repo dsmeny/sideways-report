@@ -2,10 +2,7 @@ import { useContext, useCallback, useEffect } from "react";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import StockContext from "../../../store/stock-provider";
-import {
-  formatLargeNum,
-  highlightHandler,
-} from "../../utility/tableList_functions";
+import { formatLargeNum } from "../../utility/tableList_functions";
 import classes from "./TableList.module.css";
 import useStatSetter from "../../utility/hooks/useStatSetter";
 
@@ -14,6 +11,12 @@ const TableList = (props) => {
   const { stockStats, convertStats } = useStatSetter();
 
   const statsCallback = useCallback((stock) => convertStats(stock), []);
+
+  const highlightHandler = (e) => {
+    e.stopPropagation();
+    const target = e.currentTarget;
+    target.classList.toggle(classes.addHighlighting);
+  };
 
   useEffect(() => {
     statsCallback(props.stockDays);

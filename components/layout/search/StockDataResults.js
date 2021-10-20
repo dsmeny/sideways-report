@@ -4,9 +4,8 @@ import StockCard from "../cards/StockCard";
 import Spinner from "../../ui/Spinner";
 import TableList from "../table/TableList";
 import TriggerContext from "../../../store/context-provider";
-import { getTarget } from "../../utility/calendar_functions";
 
-const StockDataSearch = ({ date, symbol, timeSeries }) => {
+const StockDataSearch = ({ symbol, timeSeries }) => {
   const { stockData, isError } = useStockApi({ symbol, timeSeries });
   const { scrollRefresh, clickedTrigger } = useContext(TriggerContext);
 
@@ -28,21 +27,15 @@ const StockDataSearch = ({ date, symbol, timeSeries }) => {
   const series = stockData["Time Series (Daily)"];
 
   const _stockDays = Object.entries(series);
-  const mapData = getTarget(_stockDays, date);
-  const mapIterator = mapData.entries();
-  const mapArray = mapIterator.next().value;
-
-  // console.log("date:", date);
-  // console.log("mapData:", mapData);
-  // console.log("mapArray:", mapArray);
+  const recentDate = _stockDays.shift();
 
   return (
     <>
       <div>
         <StockCard
           clickHandler={scrollRefresh}
-          stockData={mapArray[1]}
-          date={mapArray[0]}
+          stockData={recentDate[1]}
+          date={recentDate[0]}
           symbol={symbol}
           isClicked={clickedTrigger}
           key={Math.random() * 1}
@@ -50,7 +43,7 @@ const StockDataSearch = ({ date, symbol, timeSeries }) => {
       </div>
       {clickedTrigger && (
         <div>
-          <TableList stockDays={_stockDays} date={date} />
+          <TableList stockDays={_stockDays} />
         </div>
       )}
     </>

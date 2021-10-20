@@ -18,9 +18,3 @@ export const getDayOfTheWeek = (daystring) => {
   const date = new Date(`${dayArr[0]}, ${dayArr[1]}, ${dayArr[2]}`);
   return date.toDateString().split(" ").shift();
 };
-
-export const highlightHandler = (e) => {
-  e.stopPropagation();
-  const target = e.currentTarget;
-  target.classList.toggle(classes.addHighlighting);
-};

@@ -8,12 +8,28 @@ import { symbolHandlers } from "../components/utility/Index_handlers";
 export default function Home() {
   const [timeSeries, setTimeSeries] = useState("");
   const [symbol, setSymbol] = useState(null);
+  const [client, setClient] = useState();
   const { searchTrigger, setDisplayIcon, displayIcon } =
     useContext(TriggerContext);
 
   const inputRef = useRef();
   const searchRef = useRef();
   const containerRef = useRef();
+
+  useEffect(() => {
+    console.log("useEffect fired!!");
+
+    // fetch("/api/upstash_routes", {
+    //   method: "post",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     name: "brad",
+    //     movies: '["movie1", "movie2", "movie3"]',
+    //   }),
+    // });
+  }, []);
 
   useEffect(() => {
     inputRef.current.focus();

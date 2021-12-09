@@ -1,0 +1,5 @@
+.tablelist {
+  resize: both;
+  overflow: scroll;
+  width: 80vw;
+}

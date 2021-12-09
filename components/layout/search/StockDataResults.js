@@ -4,6 +4,7 @@ import StockCard from "../cards/StockCard";
 import Spinner from "../../ui/Spinner";
 import TableList from "../table/TableList";
 import TriggerContext from "../../../store/context-provider";
+import styles from "./StockDataResults.module.css";
 
 const StockDataSearch = ({ symbol, timeSeries }) => {
   const { stockData, isError } = useStockApi({ symbol, timeSeries });
@@ -42,7 +43,7 @@ const StockDataSearch = ({ symbol, timeSeries }) => {
         />
       </div>
       {clickedTrigger && (
-        <div>
+        <div className={styles.TableList}>
           <TableList stockDays={_stockDays} />
         </div>
       )}

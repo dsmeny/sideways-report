@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import classes from "../../components/ui/Overview.module.css";
+import { convertNumber } from "../utility/general";
 
 const Overview = ({ array }) => {
   const listRef = useRef();
@@ -14,7 +15,7 @@ const Overview = ({ array }) => {
         array.map((el, index) => (
           <li className={classes.listItem} key={index}>
             <strong style={{ color: "rgb(87, 87, 87)" }}>{`${el[0]}`}</strong>
-            {`${el[1]}`}
+            {`${convertNumber(el[1])}`}
           </li>
         ))}
     </ul>

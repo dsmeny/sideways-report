@@ -24,7 +24,6 @@ const Details = () => {
   if (isError) return <div>Error</div>;
 
   const stockDataArr = Object.entries(stockData);
-  console.log(stockDataArr.length - 1);
   const row1 = stockDataArr.filter((el, index) => index < 4);
   const row2 = stockDataArr.filter((el, index) => index > 3 && index < 14);
   const row3 = stockDataArr.filter((el, index) => index > 13 && index < 24);

@@ -2,7 +2,7 @@ import { useContext, useCallback, useEffect } from "react";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import StockContext from "../../../store/stock-provider";
-import { formatLargeNum } from "../../utility/tableList_functions";
+import { convertNumber } from "../../utility/general";
 import classes from "./TableList.module.css";
 import useStatSetter from "../../utility/hooks/useStatSetter";
 
@@ -49,7 +49,7 @@ const TableList = (props) => {
                   <td>
                     {(() => {
                       let string = stock[1]["5. volume"];
-                      return formatLargeNum(string);
+                      return convertNumber(string);
                     })()}
                   </td>
                   <td

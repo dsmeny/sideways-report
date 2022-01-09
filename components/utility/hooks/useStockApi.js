@@ -10,18 +10,20 @@ function useStockApi({ symbol, timeSeries }) {
     fetcher
   );
 
-  if (timeSeries && data) {
-    fetch("/api/redis_cloud", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: data["Meta Data"]["2. Symbol"],
-        payload: JSON.stringify(data),
-      }),
-    });
-  }
+  useEffect(() => {
+    if (timeSeries && data) {
+      fetch("/api/redis_cloud", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data["Meta Data"]["2. Symbol"],
+          payload: JSON.stringify(data),
+        }),
+      });
+    }
+  }, [data, timeSeries]);
 
   return {
     stockData: !timeSeries ? JSON.parse(symbol) : data,

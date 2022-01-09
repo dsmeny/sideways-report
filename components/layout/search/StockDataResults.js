@@ -37,7 +37,7 @@ const StockDataSearch = ({ symbol, timeSeries }) => {
           clickHandler={scrollRefresh}
           stockData={recentDate[1]}
           date={recentDate[0]}
-          symbol={symbol}
+          symbol={timeSeries ? symbol : stockData["Meta Data"]["2. Symbol"]}
           isClicked={clickedTrigger}
           key={Math.random() * 1}
         />

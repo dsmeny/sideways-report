@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
     <TriggerContextProvider>
       <Layout>
         <Head>
-          <title>Sidways Report</title>
+          <title>Sideways Report</title>
           <meta name="description" content="stock data reporting" />
           <meta
             name="viewport"

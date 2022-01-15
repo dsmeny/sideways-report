@@ -8,7 +8,7 @@ import { symbolHandlers } from "../components/utility/Index_handlers";
 export default function Home() {
   const [timeSeries, setTimeSeries] = useState("");
   const [symbol, setSymbol] = useState(null);
-  const { searchTrigger, setDisplayIcon, displayIcon } =
+  const { searchTrigger, setDisplayIcon, displayIcon, clickedTrigger } =
     useContext(TriggerContext);
 
   const inputRef = useRef();
@@ -18,6 +18,12 @@ export default function Home() {
   useEffect(() => {
     inputRef.current.focus();
   }, [searchTrigger, displayIcon]);
+
+  useEffect(() => {
+    if (timeSeries && timeSeries.length > 0 && clickedTrigger) {
+      setTimeSeries(null);
+    }
+  }, [timeSeries]);
 
   function clickHandler() {
     setDisplayIcon();

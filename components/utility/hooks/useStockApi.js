@@ -7,7 +7,12 @@ function useStockApi({ symbol, timeSeries }) {
     timeSeries
       ? `https://www.alphavantage.co/query?function=${timeSeries}&symbol=${symbol}&outputsize=full&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
       : null,
-    fetcher
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
   );
 
   useEffect(() => {

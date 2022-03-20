@@ -17,12 +17,12 @@ const StockCard = (props) => {
     <Card symbol={props.symbol}>
       <div
         className={classes.details}
-        // onClick={() => router.push(`/${props.symbol}`)}
+        onClick={() => router.push(`/${props.symbol}`)}
       >
         <h3>{props.symbol}</h3>
-        {/* <span>
+        <span>
           <Dots />
-        </span> */}
+        </span>
       </div>
       <p>{props.date}</p>
       <ul>

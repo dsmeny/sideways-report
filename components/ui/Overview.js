@@ -11,13 +11,12 @@ const Overview = ({ array }) => {
 
   return (
     <ul className={classes.list} ref={listRef}>
-      {array &&
-        array.map((el, index) => (
-          <li className={classes.listItem} key={index}>
-            <strong style={{ color: "rgb(87, 87, 87)" }}>{`${el[0]}`}</strong>
-            {`${convertNumber(el[1])}`}
-          </li>
-        ))}
+      {array.map((elem, index) => (
+        <li className={classes.listItem} key={index}>
+          <strong style={{ color: "rgb(87, 87, 87)" }}>{elem[0]}</strong>
+          {+elem[1] ? `${convertNumber(elem[1])}` : elem[1]}
+        </li>
+      ))}
     </ul>
   );
 };

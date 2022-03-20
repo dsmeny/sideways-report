@@ -2,6 +2,10 @@ import { useEffect } from "react";
 import useSWR from "swr";
 import fetcher from "../fetcher";
 
+// CONSTANTS
+const TIME_SERIES_DAILY = "TIME_SERIES_DAILY";
+const OVERVIEW = "OVERVIEW";
+
 function useStockApi({ symbol, timeSeries }) {
   const { data, error } = useSWR(
     timeSeries
@@ -16,7 +20,7 @@ function useStockApi({ symbol, timeSeries }) {
   );
 
   useEffect(() => {
-    if (timeSeries && data) {
+    if (timeSeries === TIME_SERIES_DAILY && data) {
       fetch("/api/redis_cloud", {
         method: "post",
         headers: {
@@ -24,6 +28,17 @@ function useStockApi({ symbol, timeSeries }) {
         },
         body: JSON.stringify({
           name: data["Meta Data"]["2. Symbol"],
+          payload: JSON.stringify(data),
+        }),
+      });
+    } else if (timeSeries === OVERVIEW && data) {
+      fetch("/api/redis_cloud", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.Name,
           payload: JSON.stringify(data),
         }),
       });

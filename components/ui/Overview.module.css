@@ -1,7 +1,6 @@
 .list {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   align-content: flex-start;
   flex-wrap: wrap;
 }
@@ -10,5 +9,5 @@
   margin: 3rem 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  width: 20rem;
 }

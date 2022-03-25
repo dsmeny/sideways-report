@@ -1,6 +1,8 @@
 import redis from "../../util/redis-cli";
 import { expirationDate } from "../../components/utility/general";
 
+// using upStash
+
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { name, payload } = req.body;

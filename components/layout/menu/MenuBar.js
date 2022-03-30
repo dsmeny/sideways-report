@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useContext, useState } from "react";
 import TriggerContext from "../../../store/context-provider";
 import MenuItem from "./MenuItem";
@@ -12,7 +13,7 @@ const MenuBar = () => {
 
   return (
     <nav className={classes.nav}>
-      <h1>Sideways Report</h1>
+      <h1 className={classes.logo}>Sideways Report</h1>
       <div className={classes.nav_bar_pages}>
         <MenuItem searchTrigger={searchTrigger} searchHandler={searchHandler} />
       </div>

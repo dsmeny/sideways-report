@@ -5,11 +5,45 @@
   width: 100%;
   background-color: rgb(250, 250, 250);
   display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  padding: 0 1vw;
+  align-items: center;
+  padding: 0 2vw;
+  height: 8rem;
 }
 
-.nav h1 {
-  width: 20rem;
+.logo {
+  font-family: "Bebas Neue", cursive;
+  color: rgb(95, 93, 93);
+  letter-spacing: 0.2rem;
+}
+
+.nav_bar_pages {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  font-size: 1.7rem;
+  color: var(--border-color);
+}
+
+@media screen and (max-width: 720px) {
+  .nav {
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  transition: 0.5s all ease;
+}
+
+.title:hover {
+  color: var(--hover-highlight-color) !important;
+}
+
+.active {
+  color: var(--hover-highlight-color) !important;
 }

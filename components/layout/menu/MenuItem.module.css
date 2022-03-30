@@ -1,4 +1,4 @@
-.list_styles {
+/* .list_styles {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -28,4 +28,4 @@
 
 .active {
   color: var(--hover-highlight-color) !important;
-}
+} */

@@ -1,4 +1,4 @@
-import classes from "./MenuItem.module.css";
+import classes from "./MenuBar.module.css";
 import { RiSendPlaneFill } from "react-icons/ri";
 
 const icon = {
@@ -7,17 +7,13 @@ const icon = {
 
 const MenuItem = ({ searchTrigger, searchHandler }) => {
   return (
-    <>
-      <ul className={classes.list_styles}>
-        <li
-          onClick={searchHandler}
-          className={searchTrigger ? classes.active : ""}
-        >
-          <span>which stock do you like ??</span>
-          <RiSendPlaneFill style={icon} />
-        </li>
-      </ul>
-    </>
+    <div
+      onClick={searchHandler}
+      className={`${classes.title} ${searchTrigger ? classes.active : ""}`}
+    >
+      <span>which stock do you like ??</span>
+      <RiSendPlaneFill style={icon} />
+    </div>
   );
 };
 

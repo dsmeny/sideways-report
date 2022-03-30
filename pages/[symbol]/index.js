@@ -33,15 +33,16 @@ const Details = () => {
   const styles = {
     container: {
       position: "relative",
-      top: "15vh",
+      top: "17vh",
     },
     main: {
-      textAlign: "right",
+      textAlign: "center",
     },
     close: {
-      height: "2.1rem",
-      transform: "translate(-45%, 30%)",
-      color: "rgb(87, 87, 87)",
+      height: "2.7rem",
+      color: "rgb(176 176 176)",
+      borderRadius: "365px",
+      boxShadow: "rgb(0 0 0 / 10%) 0px 4px 12px",
     },
   };
 

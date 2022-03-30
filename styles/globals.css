@@ -53,7 +53,7 @@ input:focus {
   /* font color */
   --button-font-color: rgb(97, 97, 97);
   --green-font-color: rgb(37, 189, 37);
-  --primary-font-color: rgb(118 142 170);
+  --primary-font-color: #455c77;
 
   /* highlighting colors */
   --green-highlight-color: rgb(126, 221, 131);

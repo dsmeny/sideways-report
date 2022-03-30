@@ -1,6 +1,6 @@
 .nav {
   position: fixed;
-  z-index: 999;
+  z-index: 9999;
   top: 0;
   width: 100%;
   background-color: rgb(250, 250, 250);

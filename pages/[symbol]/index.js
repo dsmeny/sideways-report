@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Spinner from "../../components/ui/Spinner";
 import Overview from "../../components/ui/Overview";
 import useStockApi from "../../components/utility/hooks/useStockApi";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 // Constants
 const COLUMNS = 4;
@@ -36,39 +36,28 @@ const Details = () => {
       top: "17vh",
     },
     main: {
-      textAlign: "center",
+      top: "2rem",
+      position: "absolute",
+      left: "50%",
+      fontSize: "2.2rem",
+      color: "var(--primary-font-color)",
+      zIndex: "999",
     },
-    close: {
-      height: "2.7rem",
-      color: "rgb(176 176 176)",
-      borderRadius: "365px",
-      boxShadow: "rgb(0 0 0 / 10%) 0px 4px 12px",
+    wrapper: {
+      position: "absolute",
+      top: "2rem",
+      width: "100%",
     },
   };
 
   return (
     <div style={styles.container}>
       <Link href="/">
-        <div style={styles.main}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            style={styles.close}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </div>
+        <AiFillCloseCircle style={styles.main} />
       </Link>
-      <div>
-        {stockOverview(stockData).map((elem) => (
-          <Overview array={elem} />
+      <div style={styles.wrapper}>
+        {stockOverview(stockData).map((elem, index) => (
+          <Overview array={elem} key={index} />
         ))}
       </div>
     </div>

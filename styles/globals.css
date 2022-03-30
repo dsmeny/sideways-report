@@ -53,6 +53,7 @@ input:focus {
   /* font color */
   --button-font-color: rgb(97, 97, 97);
   --green-font-color: rgb(37, 189, 37);
+  --primary-font-color: rgb(118 142 170);
 
   /* highlighting colors */
   --green-highlight-color: rgb(126, 221, 131);
@@ -60,6 +61,9 @@ input:focus {
 
   /* structural formatting */
   --row-widths: 70vw;
+
+  /* widths */
+  --mobile: 720px;
 }
 
 input::-webkit-datetime-edit-year-field:not([aria-valuenow]),

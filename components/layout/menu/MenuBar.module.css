@@ -24,14 +24,6 @@
   color: var(--border-color);
 }
 
-@media screen and (max-width: 720px) {
-  .nav {
-    flex-direction: column;
-    gap: 2rem;
-    padding-bottom: 2rem;
-  }
-}
-
 .title {
   display: flex;
   justify-content: center;
@@ -46,4 +38,14 @@
 
 .active {
   color: var(--hover-highlight-color) !important;
+}
+
+/*mobile screens*/
+@media screen and (max-width: 720px) {
+  .nav {
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 11rem;
+    margin-bottom: 2rem;
+  }
 }

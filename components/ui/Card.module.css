@@ -2,6 +2,21 @@
   border-radius: 10px;
   min-height: 12rem;
   display: flex;
+  justify-content: flex-start;
+  align-items: left;
+  flex-direction: column;
+  width: 28rem;
+  padding: 2rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  resize: both;
+  overflow: scroll;
+  color: var(--primary-font-color);
+}
+
+/* .card {
+  border-radius: 10px;
+  min-height: 12rem;
+  display: flex;
   flex-direction: column;
   padding-left: 2rem;
   padding-top: 2rem;
@@ -9,4 +24,5 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   resize: both;
   overflow: scroll;
-}
+  background-color: antiquewhite;
+} */

@@ -33,10 +33,10 @@ const Details = () => {
   const styles = {
     container: {
       position: "relative",
-      top: "17vh",
+      top: "15vh",
     },
     main: {
-      top: "2rem",
+      top: "5rem",
       position: "absolute",
       left: "50%",
       fontSize: "2.2rem",

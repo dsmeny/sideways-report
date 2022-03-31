@@ -36,7 +36,7 @@ export function TriggerContextProvider(props) {
 
   useEffect(() => {
     window.scrollTo({
-      top: 1000,
+      top: 0,
       left: 0,
       behavior: "smooth",
     });

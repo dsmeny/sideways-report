@@ -10,7 +10,7 @@ const TriggerContext = createContext({
 });
 
 export function TriggerContextProvider(props) {
-  const [isSearch, setIsSearch] = useState(false);
+  const [isSearch, setIsSearch] = useState(true);
   const [isClicked, setIsClicked] = useState(false);
   const [hasSymbol, setHasSymbol] = useState(false);
 

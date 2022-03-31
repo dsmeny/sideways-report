@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { useRouter } from "next/dist/client/router";
 import { useContext, useState } from "react";
 import TriggerContext from "../../../store/context-provider";
 import MenuItem from "./MenuItem";
@@ -6,6 +6,7 @@ import classes from "./MenuBar.module.css";
 
 const MenuBar = () => {
   const { searchTrigger, showSearch } = useContext(TriggerContext);
+  const router = useRouter();
 
   const searchHandler = () => {
     showSearch();
@@ -13,7 +14,9 @@ const MenuBar = () => {
 
   return (
     <nav className={classes.nav}>
-      <h1 className={classes.logo}>Sideways Report</h1>
+      <h1 className={classes.logo} onClick={() => router.push("/")}>
+        Sideways Report
+      </h1>
       <div className={classes.nav_bar_pages}>
         <MenuItem searchTrigger={searchTrigger} searchHandler={searchHandler} />
       </div>

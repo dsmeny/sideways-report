@@ -1,5 +1,5 @@
 .nav {
-  position: fixed;
+  position: sticky;
   z-index: 9999;
   top: 0;
   width: 100%;
@@ -46,6 +46,5 @@
     flex-direction: column;
     gap: 2rem;
     padding-bottom: 11rem;
-    margin-bottom: 2rem;
   }
 }

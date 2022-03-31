@@ -9,6 +9,12 @@
   position: relative;
 }
 
+.tablelist {
+  resize: both;
+  overflow: scroll;
+  width: 80vw;
+}
+
 .tableStyle > thead,
 .tableStyle > tbody {
   display: block;

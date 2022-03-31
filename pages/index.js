@@ -31,7 +31,6 @@ export default function Home() {
   }
 
   function keypressHandler(e) {
-    console.dir(inputRef.current);
     if (e.which === 13) {
       setDisplayIcon();
       symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);

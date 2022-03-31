@@ -11,6 +11,7 @@ const SearchStocks = ({
   clickHandler,
 }) => {
   const { displayIcon } = useContext(TriggerContext);
+
   return (
     <Search className={classes.search_buttons}>
       <input

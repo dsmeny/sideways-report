@@ -4,7 +4,7 @@ import StockCard from "../cards/StockCard";
 import Spinner from "../../ui/Spinner";
 import TableList from "../table/TableList";
 import TriggerContext from "../../../store/context-provider";
-import styles from "./StockDataResults.module.css";
+import styles from "./StockDataSearch.module.css";
 
 const StockDataSearch = ({ symbol, timeSeries }) => {
   const { stockData, isError } = useStockApi({ symbol, timeSeries });

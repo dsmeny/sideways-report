@@ -5,7 +5,6 @@
   height: 90vh;
   max-width: 90vw;
   border-top: 1px solid var(--border-color);
-  position: relative;
 }
 
 .search {
@@ -34,14 +33,6 @@
 }
 
 .data {
-  position: absolute;
-  top: 16%;
-  left: 0vw;
-  width: 65vw;
-  padding: 20px;
-}
-
-.data ul {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 20px;
@@ -52,8 +43,5 @@
 @media screen and (max-width: 1024px) {
   .search {
     width: 84vw;
-  }
-  .data {
-    top: 22%;
   }
 }

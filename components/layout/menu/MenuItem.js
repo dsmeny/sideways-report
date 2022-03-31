@@ -9,11 +9,22 @@ const icon = {
 const MenuItem = ({ searchTrigger, searchHandler }) => {
   const [isMobile, setIsMobile] = useState(null);
 
-  useEffect(() => {
-    setIsMobile(() => window.matchMedia("(max-width: 720px)").matches);
-  });
+  const handleScreenChanges = (mql) => {
+    setIsMobile(mql.matches);
+  };
 
-  console.log("isMobile: ", isMobile);
+  useEffect(() => {
+    const media = (size) => {
+      return window.matchMedia(`screen and (max-width: ${size}px)`);
+    };
+
+    const MOBILE = media(720);
+
+    if (!isMobile) {
+      handleScreenChanges(MOBILE);
+    }
+    MOBILE.addListener(handleScreenChanges);
+  });
 
   return (
     <div

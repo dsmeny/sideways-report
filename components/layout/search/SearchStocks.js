@@ -15,7 +15,7 @@ const SearchStocks = ({
     <Search className={classes.search_buttons}>
       <input
         type="text"
-        placeholder="symbol"
+        placeholder="stock symbol"
         onKeyPress={(e) => keypressHandler(e)}
         onClick={resetSymbol}
         ref={inputRef}

@@ -36,7 +36,6 @@ const Details = () => {
       top: "15vh",
     },
     main: {
-      top: "5rem",
       position: "absolute",
       left: "50%",
       fontSize: "2.2rem",

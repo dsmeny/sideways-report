@@ -12,16 +12,29 @@ const StockDataSearch = ({ symbol, timeSeries }) => {
 
   const spinnerStyle = {
     position: "relative",
-    top: "30rem",
-    transform: "translateY(-10rem)",
+    top: "0rem",
   };
 
-  if (!stockData)
+  if (!stockData) {
     return (
       <div style={spinnerStyle}>
         <Spinner />
       </div>
     );
+  }
+
+  if (typeof stockData === "string") {
+    return (
+      <div style={spinnerStyle} style={{ marginLeft: "2rem" }}>
+        <pre style={{ display: "none" }}>
+          {setTimeout(() => location.reload(), 1800)}
+        </pre>
+        <p style={{ fontSize: "1.2rem" }}>
+          Symbol does not exist in the AlphaVantage API. Try something else.
+        </p>
+      </div>
+    );
+  }
 
   if (isError) return <div>Error</div>;
 

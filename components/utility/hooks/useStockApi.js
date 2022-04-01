@@ -20,7 +20,11 @@ function useStockApi({ symbol, timeSeries }) {
   );
 
   useEffect(() => {
-    if (timeSeries === TIME_SERIES_DAILY && data) {
+    if (
+      timeSeries === TIME_SERIES_DAILY &&
+      data &&
+      Object.keys(data)[0] !== "Error Message"
+    ) {
       fetch("/api/redis_cloud", {
         method: "post",
         headers: {
@@ -44,6 +48,14 @@ function useStockApi({ symbol, timeSeries }) {
       });
     }
   }, [data, timeSeries]);
+
+  if (data && Object.keys(data)[0] === "Error Message") {
+    return {
+      stockData:
+        "Symbol does not exist in the AlphaVantage API. Try something else.",
+      isError: error,
+    };
+  }
 
   return {
     stockData: !timeSeries ? JSON.parse(symbol) : data,

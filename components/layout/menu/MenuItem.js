@@ -31,7 +31,7 @@ const MenuItem = ({ searchTrigger, searchHandler }) => {
       onClick={searchHandler}
       className={`${classes.title} ${searchTrigger ? classes.active : ""}`}
     >
-      {!isMobile && <span>which stock do you like ??</span>}
+      {!isMobile && <span>what stock do you like ??</span>}
       <RiSendPlaneFill style={icon} />
     </div>
   );

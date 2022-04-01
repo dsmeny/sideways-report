@@ -43,6 +43,8 @@ const StockDataSearch = ({ symbol, timeSeries }) => {
   const _stockDays = Object.entries(series);
   const recentDate = _stockDays.shift();
 
+  console.log("StockDataResults _stockDays: ", _stockDays);
+
   return (
     <>
       <div>

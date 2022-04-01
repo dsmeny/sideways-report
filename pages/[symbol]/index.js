@@ -48,6 +48,28 @@ const Details = () => {
     return dataArray;
   }
 
+<<<<<<< HEAD
+  const styles = {
+    container: {
+      position: "relative",
+      top: "15vh",
+    },
+    main: {
+      position: "absolute",
+      left: "50%",
+      fontSize: "2.2rem",
+      color: "var(--primary-font-color)",
+      zIndex: "999",
+    },
+    wrapper: {
+      position: "absolute",
+      top: "2rem",
+      width: "100%",
+    },
+  };
+
+=======
+>>>>>>> 394628057839ac98ccf0bd5f479d6e91b5c15dbf
   return (
     <Container>
       <Link href="/">

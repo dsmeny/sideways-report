@@ -7,7 +7,6 @@ const TIME_SERIES_DAILY = "TIME_SERIES_DAILY";
 const OVERVIEW = "OVERVIEW";
 
 function useStockApi({ symbol, timeSeries }) {
-  console.log("useStockApi symbol: ", symbol);
   const { data, error } = useSWR(
     timeSeries
       ? `https://www.alphavantage.co/query?function=${timeSeries}&symbol=${symbol}&outputsize=full&apikey=${process.env.NEXT_PUBLIC_API_KEY}`

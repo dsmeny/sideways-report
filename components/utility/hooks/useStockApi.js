@@ -6,6 +6,10 @@ import fetcher from "../fetcher";
 const TIME_SERIES_DAILY = "TIME_SERIES_DAILY";
 const OVERVIEW = "OVERVIEW";
 
+const hasErrorMessage = (obj) => {
+  return Object.keys(obj).some((elem) => elem.match(/([E]|[e])rror/g));
+};
+
 function useStockApi({ symbol, timeSeries }) {
   const { data, error } = useSWR(
     timeSeries
@@ -20,11 +24,7 @@ function useStockApi({ symbol, timeSeries }) {
   );
 
   useEffect(() => {
-    if (
-      timeSeries === TIME_SERIES_DAILY &&
-      data &&
-      Object.keys(data)[0] !== "Error Message"
-    ) {
+    if (timeSeries === TIME_SERIES_DAILY && data && !hasErrorMessage(data)) {
       fetch("/api/redis_cloud", {
         method: "post",
         headers: {
@@ -49,7 +49,7 @@ function useStockApi({ symbol, timeSeries }) {
     }
   }, [data, timeSeries]);
 
-  if (data && Object.keys(data)[0] === "Error Message") {
+  if (data && hasErrorMessage(data)) {
     return {
       stockData:
         "Symbol does not exist in the AlphaVantage API. Try something else.",

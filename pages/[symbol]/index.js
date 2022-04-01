@@ -48,7 +48,6 @@ const Details = () => {
     return dataArray;
   }
 
-<<<<<<< HEAD
   const styles = {
     container: {
       position: "relative",
@@ -68,8 +67,6 @@ const Details = () => {
     },
   };
 
-=======
->>>>>>> 394628057839ac98ccf0bd5f479d6e91b5c15dbf
   return (
     <Container>
       <Link href="/">

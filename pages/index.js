@@ -1,3 +1,5 @@
+/* Sideways Report */
+
 import { useState, useRef, useEffect, useContext } from "react";
 import TriggerContext from "../store/context-provider";
 import SearchStocks from "../components/layout/search/SearchStocks";

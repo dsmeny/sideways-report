@@ -43,8 +43,6 @@ const StockDataSearch = ({ symbol, timeSeries }) => {
   const _stockDays = Object.entries(series);
   const recentDate = _stockDays.shift();
 
-  console.log("StockDataResults _stockDays: ", _stockDays);
-
   return (
     <>
       <div>
@@ -57,11 +55,11 @@ const StockDataSearch = ({ symbol, timeSeries }) => {
           key={Math.random() * 1}
         />
       </div>
-      {clickedTrigger && (
+      {/* {clickedTrigger && (
         <div className={styles.TableList}>
           <TableList stockDays={_stockDays} />
         </div>
-      )}
+      )} */}
     </>
   );
 };

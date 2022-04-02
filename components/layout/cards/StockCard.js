@@ -38,12 +38,12 @@ const StockCard = (props) => {
           </li>
         ))}
       </ul>
-      <div>
+      {/* <div>
         <span onClick={props.clickHandler}>
           {props.isClicked === false && <ChevronDown />}
           {props.isClicked === true && <ChevronUp />}
         </span>
-      </div>
+      </div> */}
     </Card>
   );
 };

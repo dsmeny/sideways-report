@@ -1,30 +1,30 @@
 import { createContext, useState } from "react";
 
-const StockContext = createContext({
-  activeTbodyHandler: () => {},
-  overview: null,
-  ohlc: null,
-});
+const STATS = "Overview";
+const DAILY = "OHLC";
+
+const StockContext = createContext();
 
 export function StockContextProvider(props) {
-  const [showOverview, setShowOverview] = useState(true);
-  const [showOhlc, setShowOhlc] = useState(false);
+  const [showSTATS, setShowSTATS] = useState(true);
+  const [showDaily, setShowDAILY] = useState(false);
 
   function activeTbodyHandler(e) {
     const elem = e.target.textContent;
-    if (elem === "Overview") {
-      setShowOhlc(false);
-      if (showOverview === false) setShowOverview(true);
-    } else if (elem === "OHLC") {
-      setShowOverview(false);
-      setShowOhlc(true);
+    if (elem === STATS) {
+      setShowDAILY(false);
+      if (showSTATS === false) setShowSTATS(true);
+    } else if (elem === DAILY) {
+      setShowSTATS(false);
+      setShowDAILY(true);
     }
   }
 
   const context = {
     activeTbodyHandler,
-    overview: showOverview,
-    ohlc: showOhlc,
+    stats: showSTATS,
+    daily: showDaily,
+    labels: { STATS, DAILY },
   };
 
   return (

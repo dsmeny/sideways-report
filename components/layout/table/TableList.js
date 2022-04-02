@@ -7,8 +7,10 @@ import classes from "./TableList.module.css";
 import useStatSetter from "../../utility/hooks/useStatSetter";
 
 const TableList = (props) => {
-  const { overview, ohlc } = useContext(StockContext);
+  const { labels } = useContext(StockContext);
   const { stockStats, convertStats } = useStatSetter();
+
+  console.log("TableList _stockDays: ", props.stockDays);
 
   const statsCallback = useCallback((stock) => convertStats(stock), []);
 
@@ -20,7 +22,7 @@ const TableList = (props) => {
 
   useEffect(() => {
     statsCallback(props.stockDays);
-  }, [ohlc]);
+  }, [labels.DAILY]);
 
   return (
     <>
@@ -30,7 +32,7 @@ const TableList = (props) => {
           {props.stockDays.map((stock, index) => (
             <tr onClick={highlightHandler}>
               <td key={Math.random() + (index + 1)}>{stock[0]}</td>
-              {overview === true && stockStats[index] !== undefined && (
+              {labels.STATS === true && stockStats[index] !== undefined && (
                 <>
                   <td>{stockStats[index]["day"]}</td>
                   <td>{(+stockStats[index]["avg"]).toFixed(2)}</td>
@@ -66,7 +68,7 @@ const TableList = (props) => {
                   </td>
                 </>
               )}
-              {ohlc === true && (
+              {labels.DAILY === true && (
                 <>
                   <td>{(+stock[1]["1. open"]).toFixed(2)}</td>
                   <td>{(+stock[1]["2. high"]).toFixed(2)}</td>

@@ -1,3 +1,11 @@
+.data {
+  padding: 5rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 2rem;
+  list-style-type: none;
+}
+
 .tableStyle {
   width: 71vw;
   height: 53vh;

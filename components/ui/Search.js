@@ -1,7 +1,6 @@
 const Search = (props) => {
   const styles = {
     search_btn: {
-      width: "23rem",
       height: "5rem",
       color: "var(--button-font-color)",
       display: "flex",

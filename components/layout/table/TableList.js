@@ -10,7 +10,7 @@ const TableList = (props) => {
   const { labels } = useContext(StockContext);
   const { stockStats, convertStats } = useStatSetter();
 
-  console.log("TableList _stockDays: ", props.stockDays);
+  // console.log("TableList _stockDays: ", props.stockDays);
 
   const statsCallback = useCallback((stock) => convertStats(stock), []);
 
@@ -25,62 +25,60 @@ const TableList = (props) => {
   }, [labels.DAILY]);
 
   return (
-    <>
-      <table className={classes.tableStyle}>
-        <TableHead />
-        <TableBody>
-          {props.stockDays.map((stock, index) => (
-            <tr onClick={highlightHandler}>
-              <td key={Math.random() + (index + 1)}>{stock[0]}</td>
-              {labels.STATS === true && stockStats[index] !== undefined && (
-                <>
-                  <td>{stockStats[index]["day"]}</td>
-                  <td>{(+stockStats[index]["avg"]).toFixed(2)}</td>
-                  <td
-                    style={{
-                      color:
-                        stockStats[index + 1] !== undefined &&
-                        stockStats[index + 1]["gain"] < 0
-                          ? "red"
-                          : "green",
-                    }}
-                  >
-                    {stockStats[index + 1] !== undefined &&
-                      stockStats[index + 1]["gain"]}
-                  </td>
-                  <td>
-                    {(() => {
-                      let string = stock[1]["5. volume"];
-                      return convertNumber(string);
-                    })()}
-                  </td>
-                  <td
-                    style={{
-                      color:
-                        stockStats[index + 1] !== undefined &&
-                        stockStats[index + 1]["vol"] < 0
-                          ? "red"
-                          : "green",
-                    }}
-                  >
-                    {stockStats[index + 1] !== undefined &&
-                      stockStats[index + 1]["vol"]}
-                  </td>
-                </>
-              )}
-              {labels.DAILY === true && (
-                <>
-                  <td>{(+stock[1]["1. open"]).toFixed(2)}</td>
-                  <td>{(+stock[1]["2. high"]).toFixed(2)}</td>
-                  <td>{(+stock[1]["3. low"]).toFixed(2)}</td>
-                  <td>{(+stock[1]["4. close"]).toFixed(2)}</td>
-                </>
-              )}
-            </tr>
-          ))}
-        </TableBody>
-      </table>
-    </>
+    <table className={classes.tableStyle}>
+      <TableHead />
+      <TableBody>
+        {props.stockDays.map((stock, index) => (
+          <tr onClick={highlightHandler}>
+            <td key={Math.random() + (index + 1)}>{stock[0]}</td>
+            {labels.STATS === true && stockStats[index] !== undefined && (
+              <>
+                <td>{stockStats[index]["day"]}</td>
+                <td>{(+stockStats[index]["avg"]).toFixed(2)}</td>
+                <td
+                  style={{
+                    color:
+                      stockStats[index + 1] !== undefined &&
+                      stockStats[index + 1]["gain"] < 0
+                        ? "red"
+                        : "green",
+                  }}
+                >
+                  {stockStats[index + 1] !== undefined &&
+                    stockStats[index + 1]["gain"]}
+                </td>
+                <td>
+                  {(() => {
+                    let string = stock[1]["5. volume"];
+                    return convertNumber(string);
+                  })()}
+                </td>
+                <td
+                  style={{
+                    color:
+                      stockStats[index + 1] !== undefined &&
+                      stockStats[index + 1]["vol"] < 0
+                        ? "red"
+                        : "green",
+                  }}
+                >
+                  {stockStats[index + 1] !== undefined &&
+                    stockStats[index + 1]["vol"]}
+                </td>
+              </>
+            )}
+            {labels.DAILY === true && (
+              <>
+                <td>{(+stock[1]["1. open"]).toFixed(2)}</td>
+                <td>{(+stock[1]["2. high"]).toFixed(2)}</td>
+                <td>{(+stock[1]["3. low"]).toFixed(2)}</td>
+                <td>{(+stock[1]["4. close"]).toFixed(2)}</td>
+              </>
+            )}
+          </tr>
+        ))}
+      </TableBody>
+    </table>
   );
 };
 

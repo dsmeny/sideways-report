@@ -13,7 +13,7 @@ const SearchStocks = ({
   const { displayIcon } = useContext(TriggerContext);
 
   return (
-    <Search className={classes.search_buttons}>
+    <Search className={`${classes.search_buttons} `}>
       <input
         type="text"
         placeholder="stock symbol"

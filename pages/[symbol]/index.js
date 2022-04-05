@@ -10,10 +10,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 const COLUMNS = 4;
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-grow: 2;
 `;
 
 const Wrapper = styled.div`
@@ -21,9 +18,10 @@ const Wrapper = styled.div`
 `;
 
 const Icon = styled.div`
-  font-size: 2rem;
+  font-size: 2.4rem;
   color: var(--button-font-color);
   margin-top: 1rem;
+  text-align: center;
 `;
 
 const Details = () => {

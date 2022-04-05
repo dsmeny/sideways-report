@@ -33,16 +33,14 @@ export default function Home() {
   }, [timeSeries]);
 
   function clickHandler() {
-    setDisplayIcon();
     symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
-    showSearch();
+    inputRef.current.value !== "" && showSearch() && setDisplayIcon();
   }
 
   function keypressHandler(e) {
     if (e.which === 13) {
-      setDisplayIcon();
       symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
-      showSearch();
+      inputRef.current.value !== "" && showSearch() && setDisplayIcon();
     }
   }
 

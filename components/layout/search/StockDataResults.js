@@ -20,7 +20,7 @@ const StockDataSearch = ({ symbol, timeSeries }) => {
 
   if (typeof stockData === "string") {
     return (
-      <div style={spinnerStyle} style={{ marginLeft: "2rem" }}>
+      <div className={styles.notification}>
         <pre style={{ display: "none" }}>
           {setTimeout(() => location.reload(), 1800)}
         </pre>

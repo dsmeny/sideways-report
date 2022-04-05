@@ -10,12 +10,17 @@ import { symbolHandlers } from "../components/utility/Index_handlers";
 export default function Home() {
   const [timeSeries, setTimeSeries] = useState("");
   const [symbol, setSymbol] = useState(null);
-  const { searchTrigger, setDisplayIcon, displayIcon, clickedTrigger } =
-    useContext(TriggerContext);
+  const {
+    searchTrigger,
+    showSearch,
+    setDisplayIcon,
+    displayIcon,
+    clickedTrigger,
+  } = useContext(TriggerContext);
 
   const inputRef = useRef();
+  const resultsRef = useRef();
   const searchRef = useRef();
-  const containerRef = useRef();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -30,12 +35,14 @@ export default function Home() {
   function clickHandler() {
     setDisplayIcon();
     symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
+    showSearch();
   }
 
   function keypressHandler(e) {
     if (e.which === 13) {
       setDisplayIcon();
       symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
+      showSearch();
     }
   }
 
@@ -46,25 +53,22 @@ export default function Home() {
 
   return (
     <>
-      <div className={styles.container} ref={containerRef}>
-        <div className={styles.data}>
-          {symbol && (
-            <StockDataResults timeSeries={timeSeries} symbol={symbol} />
-          )}
-        </div>
-        <div
-          className={`${searchTrigger ? "show_view" : "hide_view"} ${
-            styles.search
-          } `}
-          ref={searchRef}
-        >
-          <SearchStocks
-            clickHandler={clickHandler}
-            resetSymbol={resetSymbol}
-            keypressHandler={keypressHandler}
-            inputRef={inputRef}
-          />
-        </div>
+      <div
+        className={`${styles.dataResults} ${searchTrigger ? "shrink" : "grow"}`}
+        ref={resultsRef}
+      >
+        {symbol && <StockDataResults timeSeries={timeSeries} symbol={symbol} />}
+      </div>
+      <div
+        className={`${styles.search} ${searchTrigger ? "grow" : "shrink"}`}
+        ref={searchRef}
+      >
+        <SearchStocks
+          clickHandler={clickHandler}
+          resetSymbol={resetSymbol}
+          keypressHandler={keypressHandler}
+          inputRef={inputRef}
+        />
       </div>
     </>
   );

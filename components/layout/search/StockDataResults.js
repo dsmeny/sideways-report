@@ -10,14 +10,9 @@ const StockDataSearch = ({ symbol, timeSeries }) => {
   const { stockData, isError } = useStockApi({ symbol, timeSeries });
   const { scrollRefresh, clickedTrigger } = useContext(TriggerContext);
 
-  const spinnerStyle = {
-    position: "relative",
-    top: "0rem",
-  };
-
   if (!stockData) {
     return (
-      <div style={spinnerStyle}>
+      <div>
         <Spinner />
       </div>
     );
@@ -45,7 +40,7 @@ const StockDataSearch = ({ symbol, timeSeries }) => {
 
   return (
     <>
-      <div>
+      <div className={styles.data}>
         <StockCard
           clickHandler={scrollRefresh}
           stockData={recentDate[1]}

@@ -4,19 +4,20 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  gap: 2rem;
+  overflow-x: hidden;
 `;
 
-const Main = styled.main`
-  height: 92rem;
-`;
+const styles = {
+  display: "flex",
+  justifyContent: "space-between",
+  height: "calc(100vh - var(--nav-height))",
+};
 
 const Layout = (props) => {
   return (
     <Container>
       <MenuBar />
-      <Main>{props.children}</Main>
+      <main style={styles}>{props.children}</main>
     </Container>
   );
 };

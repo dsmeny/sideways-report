@@ -34,13 +34,19 @@ export default function Home() {
 
   function clickHandler() {
     symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
-    inputRef.current.value !== "" && showSearch() && setDisplayIcon();
+    if (inputRef.current.value !== "") {
+      showSearch();
+      setDisplayIcon();
+    }
   }
 
   function keypressHandler(e) {
     if (e.which === 13) {
       symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
-      inputRef.current.value !== "" && showSearch() && setDisplayIcon();
+      if (inputRef.current.value !== "") {
+        showSearch();
+        setDisplayIcon();
+      }
     }
   }
 

@@ -110,11 +110,37 @@ ul li {
 .shrink {
   flex-grow: 0 !important;
   opacity: 0;
-  transition: transform 1s ease;
+  animation-name: shrinkAnimation;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes shrinkAnimation {
+  from {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    display: flex;
+  }
 }
 
 .grow {
   flex-grow: 2 !important;
   opacity: 1;
-  transition: transform 1s ease;
+  animation-name: growAnimation;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes growAnimation {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  to {
+    display: none;
+  }
 }

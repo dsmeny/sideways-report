@@ -29,7 +29,7 @@ const MenuItem = ({ searchTrigger, searchHandler }) => {
   return (
     <div
       onClick={searchHandler}
-      className={`${classes.title} ${searchTrigger ? classes.active : ""}`}
+      className={`${classes.title} ${searchTrigger ? "" : classes.active}`}
     >
       {!isMobile && <span>what stock do you like ??</span>}
       <RiSendPlaneFill style={icon} />

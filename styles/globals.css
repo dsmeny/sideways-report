@@ -109,31 +109,13 @@ ul li {
 
 .shrink {
   flex-grow: 0 !important;
-  opacity: 0;
+  opacity: 1;
   animation-name: shrinkAnimation;
   animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
 }
 
 @keyframes shrinkAnimation {
-  from {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  to {
-    display: flex;
-  }
-}
-
-.grow {
-  flex-grow: 2 !important;
-  opacity: 1;
-  animation-name: growAnimation;
-  animation-timing-function: ease-in-out;
-}
-
-@keyframes growAnimation {
   from {
     opacity: 1;
   }
@@ -142,5 +124,25 @@ ul li {
   }
   to {
     display: none;
+  }
+}
+
+.grow {
+  flex-grow: 2 !important;
+  opacity: 0;
+  animation-name: growAnimation;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}
+
+@keyframes growAnimation {
+  from {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    display: flex;
   }
 }

@@ -67,6 +67,7 @@ export default function Home() {
         className={`${styles.search} ${searchTrigger ? "grow" : "shrink"}`}
         ref={searchRef}
       >
+        <p className={styles["search-title"]}>what stock do you like ??</p>
         <SearchStocks
           clickHandler={clickHandler}
           resetSymbol={resetSymbol}

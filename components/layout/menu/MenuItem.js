@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import classes from "./MenuBar.module.css";
 import { RiSendPlaneFill } from "react-icons/ri";
 
@@ -7,10 +7,10 @@ const icon = {
 };
 
 const MenuItem = ({ searchTrigger, searchHandler }) => {
-  const [isMobile, setIsMobile] = useState(null);
+  const [isMatch, setIsMatch] = useState(false);
 
   const handleScreenChanges = (mql) => {
-    setIsMobile(mql.matches);
+    setIsMatch(mql.matches);
   };
 
   useEffect(() => {
@@ -20,10 +20,10 @@ const MenuItem = ({ searchTrigger, searchHandler }) => {
 
     const MOBILE = media(720);
 
-    if (!isMobile) {
+    if (!isMatch) {
       handleScreenChanges(MOBILE);
     }
-    MOBILE.addListener(handleScreenChanges);
+    MOBILE.addEventListener("change", handleScreenChanges);
   });
 
   return (
@@ -31,8 +31,7 @@ const MenuItem = ({ searchTrigger, searchHandler }) => {
       onClick={searchHandler}
       className={`${classes.title} ${searchTrigger ? classes.active : ""}`}
     >
-      {!isMobile && <span>what stock do you like ??</span>}
-      <RiSendPlaneFill style={icon} />
+      {isMatch && <RiSendPlaneFill style={icon} />}
     </div>
   );
 };

@@ -12,7 +12,6 @@ const TriggerContext = createContext({
 export function TriggerContextProvider(props) {
   const [isSearch, setIsSearch] = useState(true);
   const [isClicked, setIsClicked] = useState(false);
-  const [hasSymbol, setHasSymbol] = useState(false);
 
   function searchHandler() {
     setIsSearch(!isSearch);
@@ -24,14 +23,6 @@ export function TriggerContextProvider(props) {
 
   function noScroll() {
     window.scrollTo(0, 1000);
-  }
-
-  function symbolHandler() {
-    if (hasSymbol === true) {
-      setHasSymbol(false);
-    } else {
-      setHasSymbol(true);
-    }
   }
 
   useEffect(() => {
@@ -55,8 +46,6 @@ export function TriggerContextProvider(props) {
     showSearch: searchHandler,
     scrollRefresh: scrollHandler,
     clickedTrigger: isClicked,
-    setDisplayIcon: symbolHandler,
-    displayIcon: hasSymbol,
   };
 
   return (

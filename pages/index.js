@@ -10,13 +10,8 @@ import { symbolHandlers } from "../components/utility/Index_handlers";
 export default function Home() {
   const [timeSeries, setTimeSeries] = useState("");
   const [symbol, setSymbol] = useState(null);
-  const {
-    searchTrigger,
-    showSearch,
-    setDisplayIcon,
-    displayIcon,
-    clickedTrigger,
-  } = useContext(TriggerContext);
+  const { searchTrigger, showSearch, clickedTrigger } =
+    useContext(TriggerContext);
 
   const inputRef = useRef();
   const resultsRef = useRef();
@@ -24,7 +19,8 @@ export default function Home() {
 
   useEffect(() => {
     inputRef.current.focus();
-  }, [searchTrigger, displayIcon]);
+    inputRef.current.value = "";
+  }, [searchTrigger]);
 
   useEffect(() => {
     if (timeSeries && timeSeries.length > 0 && clickedTrigger) {
@@ -34,25 +30,14 @@ export default function Home() {
 
   function clickHandler() {
     symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
-    if (inputRef.current.value !== "") {
-      showSearch();
-      setDisplayIcon();
-    }
+    showSearch();
   }
 
   function keypressHandler(e) {
     if (e.which === 13) {
       symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
-      if (inputRef.current.value !== "") {
-        showSearch();
-        setDisplayIcon();
-      }
+      showSearch();
     }
-  }
-
-  function resetSymbol() {
-    inputRef.current.value = "";
-    inputRef.current.focus();
   }
 
   return (
@@ -70,7 +55,6 @@ export default function Home() {
         <p className={styles["search-title"]}>what stock do you like ??</p>
         <SearchStocks
           clickHandler={clickHandler}
-          resetSymbol={resetSymbol}
           keypressHandler={keypressHandler}
           inputRef={inputRef}
         />

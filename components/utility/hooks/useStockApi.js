@@ -7,6 +7,7 @@ const TIME_SERIES_DAILY = "TIME_SERIES_DAILY";
 const OVERVIEW = "OVERVIEW";
 
 const hasErrorMessage = (obj) => {
+  console.log("obj: ", obj);
   return Object.keys(obj).some((elem) => elem.match(/([E]|[e])rror/g));
 };
 
@@ -56,6 +57,8 @@ function useStockApi({ symbol, timeSeries }) {
       isError: error,
     };
   }
+
+  // console.log("symbol: ", symbol);
 
   return {
     stockData: !timeSeries ? JSON.parse(symbol) : data,

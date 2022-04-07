@@ -46,7 +46,9 @@ export default function Home() {
         className={`${styles.dataResults} ${searchTrigger ? "shrink" : "grow"}`}
         ref={resultsRef}
       >
-        {symbol && <StockDataResults timeSeries={timeSeries} symbol={symbol} />}
+        {symbol && symbol !== "" && (
+          <StockDataResults timeSeries={timeSeries} symbol={symbol} />
+        )}
       </div>
       <div
         className={`${styles.search} ${searchTrigger ? "grow" : "shrink"}`}
@@ -57,6 +59,7 @@ export default function Home() {
           clickHandler={clickHandler}
           keypressHandler={keypressHandler}
           inputRef={inputRef}
+          symbol={symbol}
         />
       </div>
     </>

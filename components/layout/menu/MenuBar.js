@@ -17,7 +17,6 @@ const MenuBar = () => {
       <h1
         className={classes.logo}
         onClick={() => {
-          console.log(router);
           if (router.pathname === "/") {
             location.reload();
             return;

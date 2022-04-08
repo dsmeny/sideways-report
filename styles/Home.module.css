@@ -1,7 +1,6 @@
 .dataResults {
   align-self: stretch;
   overflow-y: scroll;
-  position: relative;
   transition: all 1s ease;
 }
 

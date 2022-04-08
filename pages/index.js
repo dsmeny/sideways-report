@@ -6,10 +6,10 @@ import SearchStocks from "../components/layout/search/SearchStocks";
 import styles from "../styles/Home.module.css";
 import StockDataResults from "../components/layout/search/StockDataResults";
 import { symbolHandlers } from "../components/utility/Index_handlers";
-import { trigger } from "swr";
 
 export default function Home() {
   const [timeSeries, setTimeSeries] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
   const [symbol, setSymbol] = useState(null);
   const { searchTrigger, showSearch, clickedTrigger } =
     useContext(TriggerContext);
@@ -17,6 +17,23 @@ export default function Home() {
   const inputRef = useRef();
   const resultsRef = useRef();
   const searchRef = useRef();
+
+  const handleScreenChanges = (mql) => {
+    setIsMobile(mql.matches);
+  };
+
+  useEffect(() => {
+    const media = (size) => {
+      return window.matchMedia(`screen and (max-width: ${size}px)`);
+    };
+
+    const MOBILE = media(720);
+
+    if (!isMobile) {
+      handleScreenChanges(MOBILE);
+    }
+    MOBILE.addEventListener("change", handleScreenChanges);
+  }, []);
 
   useEffect(() => {
     inputRef.current.focus();
@@ -54,6 +71,7 @@ export default function Home() {
   return (
     <>
       <div
+        style={{ position: isMobile ? "absolute" : "relative" }}
         className={`${styles.dataResults} ${searchTrigger ? "shrink" : "grow"}`}
         ref={resultsRef}
       >

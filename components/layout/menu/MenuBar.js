@@ -25,7 +25,7 @@ const MenuBar = () => {
           router.push("/");
         }}
       >
-        Sideways Report
+        <i>Sideways</i>.report
       </h1>
       <div className={classes.nav_bar_pages}>
         <MenuItem searchTrigger={searchTrigger} searchHandler={searchHandler} />

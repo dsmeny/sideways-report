@@ -31,7 +31,7 @@
 
   /* highlighting colors */
   --green-highlight-color: rgb(126, 221, 131);
-  --hover-highlight-color: rgba(0, 116, 217, 0.4);
+  --coral-highlight-color: rgb(255, 127, 80);
 
   /* structural formatting */
   --row-widths: 70vw;

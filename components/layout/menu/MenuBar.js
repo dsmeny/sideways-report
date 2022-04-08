@@ -14,7 +14,17 @@ const MenuBar = () => {
 
   return (
     <nav className={classes.nav}>
-      <h1 className={classes.logo} onClick={() => router.push("/")}>
+      <h1
+        className={classes.logo}
+        onClick={() => {
+          console.log(router);
+          if (router.pathname === "/") {
+            location.reload();
+            return;
+          }
+          router.push("/");
+        }}
+      >
         Sideways Report
       </h1>
       <div className={classes.nav_bar_pages}>

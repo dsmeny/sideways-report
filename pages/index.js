@@ -6,6 +6,7 @@ import SearchStocks from "../components/layout/search/SearchStocks";
 import styles from "../styles/Home.module.css";
 import StockDataResults from "../components/layout/search/StockDataResults";
 import { symbolHandlers } from "../components/utility/Index_handlers";
+import { trigger } from "swr";
 
 export default function Home() {
   const [timeSeries, setTimeSeries] = useState("");
@@ -29,12 +30,22 @@ export default function Home() {
   }, [timeSeries]);
 
   function clickHandler() {
+    if (typeof symbol === "string" && symbol.length) {
+      return;
+    }
+
+    if (!inputRef.current.value && !symbol) {
+      return;
+    }
     symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
     showSearch();
   }
 
   function keypressHandler(e) {
     if (e.which === 13) {
+      if (!inputRef.current.value && !symbol) {
+        return;
+      }
       symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
       showSearch();
     }
@@ -46,9 +57,7 @@ export default function Home() {
         className={`${styles.dataResults} ${searchTrigger ? "shrink" : "grow"}`}
         ref={resultsRef}
       >
-        {symbol && symbol !== "" && (
-          <StockDataResults timeSeries={timeSeries} symbol={symbol} />
-        )}
+        {symbol && <StockDataResults timeSeries={timeSeries} symbol={symbol} />}
       </div>
       <div
         className={`${styles.search} ${searchTrigger ? "grow" : "shrink"}`}

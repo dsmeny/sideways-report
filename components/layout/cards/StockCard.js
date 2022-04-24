@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useRouter } from "next/router";
 import Card from "../../ui/Card";
-import { ChevronUp, ChevronDown, Dots } from "../../ui/Icons";
+import { ChevronUp, ChevronDown, Info } from "../../ui/Icons";
 import { toMillions } from "../../utility/tableList_functions";
 import classes from "./StockCard.module.css";
 import TriggerContext from "../../../store/context-provider";
@@ -26,7 +26,7 @@ const StockCard = (props) => {
       <div className={classes.details} onClick={clickHandler}>
         <h3>{props.symbol}</h3>
         <span>
-          <Dots />
+          <Info />
         </span>
       </div>
       <p>{props.date}</p>

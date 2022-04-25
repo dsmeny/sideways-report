@@ -36,9 +36,11 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    inputRef.current.focus();
-    inputRef.current.value = "";
-  }, [searchTrigger]);
+    if (!symbol) {
+      inputRef.current.focus();
+      inputRef.current.value = "";
+    }
+  }, [searchTrigger, symbol]);
 
   useEffect(() => {
     if (timeSeries && timeSeries.length > 0 && clickedTrigger) {
@@ -71,17 +73,22 @@ export default function Home() {
   return (
     <>
       <div
-        style={{ position: isMobile ? "absolute" : "relative" }}
+        style={{
+          position: isMobile ? "absolute" : "relative",
+          zIndex: isMobile && "9999",
+        }}
         className={`${styles.dataResults} ${searchTrigger ? "shrink" : "grow"}`}
         ref={resultsRef}
       >
         {symbol && <StockDataResults timeSeries={timeSeries} symbol={symbol} />}
       </div>
+
       <div
         className={`${styles.search} ${searchTrigger ? "grow" : "shrink"}`}
         ref={searchRef}
       >
         <p className={styles["search-title"]}>which stock do you like ??</p>
+
         <SearchStocks
           clickHandler={clickHandler}
           keypressHandler={keypressHandler}

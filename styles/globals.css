@@ -28,6 +28,7 @@
   --primary-font-color: #455c77;
   --table-primary-font-color: rgb(112, 112, 112);
   --table-secondary-font-color: rgb(193, 193, 193);
+  --hover-background-color: rgb(168, 192, 255);
 
   /* highlighting colors */
   --green-highlight-color: rgb(126, 221, 131);

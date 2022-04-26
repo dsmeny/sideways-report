@@ -12,6 +12,8 @@ const MenuBar = () => {
     showSearch();
   };
 
+  console.log("router: ", router);
+
   return (
     <nav className={classes.nav}>
       <h1
@@ -27,7 +29,12 @@ const MenuBar = () => {
         <i>Sideways</i>.report
       </h1>
       <div className={classes.nav_bar_pages}>
-        <MenuItem searchTrigger={searchTrigger} searchHandler={searchHandler} />
+        {router.route !== "/[symbol]" && (
+          <MenuItem
+            searchTrigger={searchTrigger}
+            searchHandler={searchHandler}
+          />
+        )}
       </div>
     </nav>
   );

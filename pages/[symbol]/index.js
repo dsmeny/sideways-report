@@ -61,7 +61,7 @@ const Details = () => {
     wrapper: {
       position: "absolute",
       top: "2rem",
-      width: "100%",
+      width: "98%",
     },
   };
 

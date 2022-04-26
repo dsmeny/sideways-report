@@ -32,12 +32,8 @@
   transition: 0.5s all ease;
 }
 
-.title:hover {
-  color: var(--hover-highlight-color) !important;
-}
-
 .active {
-  color: var(--hover-highlight-color) !important;
+  color: var(--hover-background-color) !important;
 }
 
 /*mobile screens*/

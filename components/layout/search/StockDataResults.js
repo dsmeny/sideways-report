@@ -33,28 +33,21 @@ const StockDataSearch = ({ symbol, timeSeries }) => {
 
   if (isError) return <div>Error</div>;
 
-  const series = stockData["Time Series (Daily)"];
-
-  const _stockDays = Object.entries(series);
-  const recentDate = _stockDays.shift();
-
   return (
     <>
       <div className={styles.data}>
         <StockCard
           clickHandler={scrollRefresh}
-          stockData={recentDate[1]}
-          date={recentDate[0]}
-          symbol={timeSeries ? symbol : stockData["Meta Data"]["2. Symbol"]}
+          stockData={stockData}
           isClicked={clickedTrigger}
           key={Math.random() * 1}
         />
       </div>
-      {/* {clickedTrigger && (
+      {clickedTrigger && (
         <div className={styles.TableList}>
-          <TableList stockDays={_stockDays} />
+          <TableList symbol={symbol} timeSeries={"Time Series (Daily)"} />
         </div>
-      )} */}
+      )}
     </>
   );
 };

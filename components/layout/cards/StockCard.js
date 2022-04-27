@@ -10,26 +10,40 @@ const StockCard = (props) => {
   const { showSearch } = useContext(TriggerContext);
   const router = useRouter();
 
-  const stockPrices = Object.entries(props.stockData);
+  const stockPrices = Object.entries(props.stockData["Global Quote"]).map(
+    (entry) => {
+      if (entry[0].match(/^1/g)) {
+        return [entry[0].replace(/^\w+/g, (str) => +str - 1), entry[1]];
+      }
+      return [
+        entry[0].slice(1).replace(/^[1-9]/g, (str) => +str - 1),
+        entry[1],
+      ];
+    }
+  );
 
   // formatting volume data to millions
-  stockPrices[4][0] = stockPrices[4][0].toString().concat("(m)");
-  stockPrices[4][1] = toMillions(stockPrices[4][1]);
+  stockPrices[5][0] = stockPrices[5][0].toString().concat("(m)");
+  stockPrices[5][1] = toMillions(stockPrices[5][1]);
+  stockPrices.shift();
+
+  const symbol = props.stockData["Global Quote"]["01. symbol"];
+  const date = props.stockData["Global Quote"]["07. latest trading day"];
 
   const clickHandler = () => {
     showSearch();
-    router.push(`/${props.symbol}`);
+    router.push(`/${props.stockData["Global Quote"]["01. symbol"]}`);
   };
 
   return (
-    <Card symbol={props.symbol}>
+    <Card symbol={symbol}>
       <div className={classes.details} onClick={clickHandler}>
-        <h3>{props.symbol}</h3>
+        <h3>{symbol}</h3>
         <span>
           <Info />
         </span>
       </div>
-      <p>{props.date}</p>
+      <p>{date}</p>
       <ul>
         {stockPrices.map((data, index) => (
           <li key={index}>

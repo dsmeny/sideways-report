@@ -17,9 +17,6 @@
 }
 
 .nav_bar_pages {
-  flex: 2;
-  display: flex;
-  justify-content: center;
   font-size: 1.4rem;
   color: var(--border-color);
 }
@@ -39,8 +36,8 @@
 /*mobile screens*/
 @media screen and (max-width: 720px) {
   .nav {
-    flex-direction: column;
     gap: 2rem;
-    padding-bottom: 11rem;
+    padding: 0 1rem;
+    justify-content: space-between;
   }
 }

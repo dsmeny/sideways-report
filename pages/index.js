@@ -6,6 +6,7 @@ import SearchStocks from "../components/layout/search/SearchStocks";
 import styles from "../styles/Home.module.css";
 import StockDataResults from "../components/layout/search/StockDataResults";
 import { symbolHandlers } from "../components/utility/Index_handlers";
+import { API_PARAMS, MEDIA_SIZES } from "../util/constants";
 
 export default function Home() {
   const [timeSeries, setTimeSeries] = useState("");
@@ -27,12 +28,12 @@ export default function Home() {
       return window.matchMedia(`screen and (max-width: ${size}px)`);
     };
 
-    const MOBILE = media(720);
+    const mediaMatch = media(MEDIA_SIZES.MOBILE);
 
     if (!isMobile) {
-      handleScreenChanges(MOBILE);
+      handleScreenChanges(mediaMatch);
     }
-    MOBILE.addEventListener("change", handleScreenChanges);
+    mediaMatch.addEventListener("change", handleScreenChanges);
   }, []);
 
   useEffect(() => {
@@ -56,7 +57,8 @@ export default function Home() {
     if (!inputRef.current.value && !symbol) {
       return;
     }
-    symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
+
+    symbolHandlers(inputRef, setTimeSeries, API_PARAMS.GLOBAL_QUOTE, setSymbol);
     showSearch();
   }
 
@@ -65,7 +67,12 @@ export default function Home() {
       if (!inputRef.current.value && !symbol) {
         return;
       }
-      symbolHandlers(inputRef, setTimeSeries, "TIME_SERIES_DAILY", setSymbol);
+      symbolHandlers(
+        inputRef,
+        setTimeSeries,
+        API_PARAMS.GLOBAL_QUOTE,
+        setSymbol
+      );
       showSearch();
     }
   }
@@ -76,6 +83,7 @@ export default function Home() {
         style={{
           position: isMobile ? "absolute" : "relative",
           zIndex: isMobile && "9999",
+          maxWidth: "100vw",
         }}
         className={`${styles.dataResults} ${searchTrigger ? "shrink" : "grow"}`}
         ref={resultsRef}

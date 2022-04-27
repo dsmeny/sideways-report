@@ -1,24 +1,22 @@
 import MenuBar from "./menu/MenuBar";
-import styled from "styled-components";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-`;
+const containerStyle = {
+  display: "flex",
+  flexDirection: "column",
+  overflowX: "hidden",
+};
 
 const styles = {
   display: "flex",
-  justifyContent: "space-between",
   height: "calc(100vh - var(--nav-height))",
 };
 
 const Layout = (props) => {
   return (
-    <Container>
+    <div style={containerStyle}>
       <MenuBar />
       <main style={styles}>{props.children}</main>
-    </Container>
+    </div>
   );
 };
 

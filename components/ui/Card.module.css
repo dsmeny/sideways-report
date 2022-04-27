@@ -1,7 +1,5 @@
 .card {
   border-radius: 10px;
-  width: 98%;
-  height: 36rem;
   display: flex;
   justify-content: flex-start;
   align-items: left;

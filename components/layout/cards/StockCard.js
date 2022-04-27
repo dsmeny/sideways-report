@@ -11,20 +11,22 @@ const StockCard = ({ stockData, clickHandler, isClicked }) => {
   const [data, setData] = useState(null);
   const router = useRouter();
 
+  const STOCK = stockData["Global Quote"];
+
   const dataModel = [
     {
-      symbol: stockData["Global Quote"]["01. symbol"],
-      date: stockData["Global Quote"]["07. latest trading day"],
+      symbol: STOCK["01. symbol"],
+      date: STOCK["07. latest trading day"],
     },
     {
-      ["1. open"]: stockData["Global Quote"]["02. open"],
-      ["2. high"]: stockData["Global Quote"]["03. high"],
-      ["3. low"]: stockData["Global Quote"]["04. low"],
-      ["4. close"]: stockData["Global Quote"]["05. price"],
-      ["5. volume (m)"]: toMillions(stockData["Global Quote"]["06. volume"]),
-      ["6. previous close"]: stockData["Global Quote"]["08. previous close"],
-      ["7. change"]: stockData["Global Quote"]["09. change"],
-      ["8. change percent"]: stockData["Global Quote"]["10. change percent"],
+      ["1. open"]: STOCK["02. open"],
+      ["2. high"]: STOCK["03. high"],
+      ["3. low"]: STOCK["04. low"],
+      ["4. close"]: STOCK["05. price"],
+      ["5. volume (m)"]: toMillions(STOCK["06. volume"]),
+      ["6. previous close"]: STOCK["08. previous close"],
+      ["7. change"]: STOCK["09. change"],
+      ["8. change percent"]: STOCK["10. change percent"],
     },
   ];
 

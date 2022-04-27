@@ -1,13 +1,23 @@
 import { useEffect } from "react";
 import useSWR from "swr";
 import fetcher from "../fetcher";
-
-// CONSTANTS
-const TIME_SERIES_DAILY = "TIME_SERIES_DAILY";
-const OVERVIEW = "OVERVIEW";
+import { API_PARAMS } from "../../../util/constants";
 
 const hasErrorMessage = (obj) => {
   return Object.keys(obj).some((elem) => elem.match(/([E]|[e])rror/g));
+};
+
+const postToRedis = (series, data) => {
+  fetch("/api/redis_cloud", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: series,
+      payload: JSON.stringify(data),
+    }),
+  });
 };
 
 function useStockApi({ symbol, timeSeries }) {
@@ -24,28 +34,21 @@ function useStockApi({ symbol, timeSeries }) {
   );
 
   useEffect(() => {
-    if (timeSeries === TIME_SERIES_DAILY && data && !hasErrorMessage(data)) {
-      fetch("/api/redis_cloud", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: data["Meta Data"]["2. Symbol"],
-          payload: JSON.stringify(data),
-        }),
-      });
-    } else if (timeSeries === OVERVIEW && data) {
-      fetch("/api/redis_cloud", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: data.Name,
-          payload: JSON.stringify(data),
-        }),
-      });
+    if (data && !hasErrorMessage(data)) {
+      switch (timeSeries) {
+        case API_PARAMS.TIME_SERIES_DAILY:
+          postToRedis(data["Meta Data"]["2. Symbol"], data);
+          return;
+        case API_PARAMS.OVERVIEW:
+          postToRedis(data.Name, data);
+          return;
+        case API_PARAMS.GLOBAL_QUOTE:
+          postToRedis(`${data["Global Quote"]["01. symbol"]}_global`, data);
+          return;
+        default:
+          console.log(new Error("No matching timeSeries."));
+          return;
+      }
     }
   }, [data, timeSeries]);
 

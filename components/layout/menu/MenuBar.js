@@ -12,8 +12,6 @@ const MenuBar = () => {
     showSearch();
   };
 
-  console.log("router: ", router);
-
   return (
     <nav className={classes.nav}>
       <h1

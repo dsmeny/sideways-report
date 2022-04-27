@@ -5,12 +5,22 @@ import StockContext from "../../../store/stock-provider";
 import { convertNumber } from "../../utility/general";
 import classes from "./TableList.module.css";
 import useStatSetter from "../../utility/hooks/useStatSetter";
+import useStockApi from "../../utility/hooks/useStockApi";
 
-const TableList = (props) => {
+const TableList = ({ symbol, timeSeries }) => {
+  const { stockData, isError } = useStockApi({ symbol, timeSeries });
   const { labels } = useContext(StockContext);
   const { stockStats, convertStats } = useStatSetter();
 
-  // console.log("TableList _stockDays: ", props.stockDays);
+  if (!stockData) {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  }
+
+  if (isError) return <div>Error</div>;
 
   const statsCallback = useCallback((stock) => convertStats(stock), []);
 
@@ -21,14 +31,14 @@ const TableList = (props) => {
   };
 
   useEffect(() => {
-    statsCallback(props.stockDays);
+    statsCallback(stockData);
   }, [labels.DAILY]);
 
   return (
     <table className={classes.tableStyle}>
       <TableHead />
       <TableBody>
-        {props.stockDays.map((stock, index) => (
+        {stockData.map((stock, index) => (
           <tr onClick={highlightHandler}>
             <td key={Math.random() + (index + 1)}>{stock[0]}</td>
             {labels.STATS === true && stockStats[index] !== undefined && (

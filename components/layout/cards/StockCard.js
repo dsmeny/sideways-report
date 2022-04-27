@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Card from "../../ui/Card";
 import { ChevronUp, ChevronDown, Info } from "../../ui/Icons";
@@ -6,51 +6,62 @@ import { toMillions } from "../../utility/tableList_functions";
 import classes from "./StockCard.module.css";
 import TriggerContext from "../../../store/context-provider";
 
-const StockCard = (props) => {
+const StockCard = ({ stockData, clickHandler, isClicked }) => {
   const { showSearch } = useContext(TriggerContext);
+  const [data, setData] = useState(null);
   const router = useRouter();
 
-  const stockPrices = Object.entries(props.stockData["Global Quote"]).map(
-    (entry) => {
-      if (entry[0].match(/^1/g)) {
-        return [entry[0].replace(/^\w+/g, (str) => +str - 1), entry[1]];
-      }
-      return [
-        entry[0].slice(1).replace(/^[1-9]/g, (str) => +str - 1),
-        entry[1],
-      ];
-    }
-  );
+  const dataModel = [
+    {
+      symbol: stockData["Global Quote"]["01. symbol"],
+      date: stockData["Global Quote"]["07. latest trading day"],
+    },
+    {
+      ["1. open"]: stockData["Global Quote"]["02. open"],
+      ["2. high"]: stockData["Global Quote"]["03. high"],
+      ["3. low"]: stockData["Global Quote"]["04. low"],
+      ["4. close"]: stockData["Global Quote"]["05. price"],
+      ["5. volume (m)"]: toMillions(stockData["Global Quote"]["06. volume"]),
+      ["6. previous close"]: stockData["Global Quote"]["08. previous close"],
+      ["7. change"]: stockData["Global Quote"]["09. change"],
+      ["8. change percent"]: stockData["Global Quote"]["10. change percent"],
+    },
+  ];
 
-  // formatting volume data to millions
-  stockPrices[5][0] = stockPrices[5][0].toString().concat("(m)");
-  stockPrices[5][1] = toMillions(stockPrices[5][1]);
-  stockPrices.shift();
+  useEffect(() => {
+    setData(dataModel);
+  }, []);
 
-  const symbol = props.stockData["Global Quote"]["01. symbol"];
-  const date = props.stockData["Global Quote"]["07. latest trading day"];
-
-  const clickHandler = () => {
+  const _clickHandler = () => {
     showSearch();
-    router.push(`/${props.stockData["Global Quote"]["01. symbol"]}`);
+    router.push(`/${data[0].symbol}`);
   };
 
   return (
-    <Card symbol={symbol}>
-      <div className={classes.details} onClick={clickHandler}>
-        <h3>{symbol}</h3>
+    <Card symbol={data && data[0].symbol}>
+      <div className={classes.details} onClick={_clickHandler}>
+        <h3>{data && data[0].symbol}</h3>
         <span>
           <Info />
         </span>
       </div>
-      <p>{date}</p>
+      <p>{data && data[0].date}</p>
       <ul>
-        {stockPrices.map((data, index) => (
-          <li key={index}>
-            <strong>{data[0]}: </strong>
-            {data[1]}
-          </li>
-        ))}
+        {data &&
+          Object.entries(data[1]).map((data, index) => (
+            <li key={index}>
+              <strong>{data[0]}: </strong>
+              <span
+                style={{
+                  color:
+                    (data[1].includes("-") && index > 5 && "red") ||
+                    (index > 5 && "green"),
+                }}
+              >
+                {data[1]}
+              </span>
+            </li>
+          ))}
       </ul>
       {/* <div>
         <span onClick={props.clickHandler}>

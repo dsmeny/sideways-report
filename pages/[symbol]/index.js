@@ -4,7 +4,9 @@ import styled from "styled-components";
 import Spinner from "../../components/ui/Spinner";
 import Overview from "../../components/ui/Overview";
 import useStockApi from "../../components/utility/hooks/useStockApi";
+import { convertNumber } from "../../components/utility/general";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { dataModel } from "../../models/overview_model";
 
 // Constants
 const COLUMNS = 4;
@@ -36,16 +38,6 @@ const Details = () => {
       </div>
     );
 
-  function stockOverview(data) {
-    let dataArray = [];
-    let overview = Object.entries(data);
-    while (overview.length) {
-      dataArray.push(overview.splice(0, COLUMNS));
-    }
-
-    return dataArray;
-  }
-
   const styles = {
     container: {
       position: "relative",
@@ -73,9 +65,11 @@ const Details = () => {
         </Icon>
       </Link>
       <Wrapper>
-        {stockOverview(stockData).map((elem, index) => (
-          <Overview array={elem} key={index} />
-        ))}
+        {Object.values(dataModel(stockData, convertNumber)).map(
+          (elem, index) => (
+            <Overview obj={elem} key={index} />
+          )
+        )}
       </Wrapper>
     </Container>
   );

@@ -5,6 +5,7 @@ import { ChevronUp, ChevronDown, Info } from "../../ui/Icons";
 import { toMillions } from "../../utility/tableList_functions";
 import classes from "./StockCard.module.css";
 import TriggerContext from "../../../store/context-provider";
+import { cardModel } from "../../../models/card_model";
 
 const StockCard = ({ stockData, clickHandler, isClicked }) => {
   const { showSearch } = useContext(TriggerContext);
@@ -13,54 +14,37 @@ const StockCard = ({ stockData, clickHandler, isClicked }) => {
 
   const STOCK = stockData["Global Quote"];
 
-  const dataModel = [
-    {
-      symbol: STOCK["01. symbol"],
-      date: STOCK["07. latest trading day"],
-    },
-    {
-      ["1. open"]: STOCK["02. open"],
-      ["2. high"]: STOCK["03. high"],
-      ["3. low"]: STOCK["04. low"],
-      ["4. close"]: STOCK["05. price"],
-      ["5. volume (m)"]: toMillions(STOCK["06. volume"]),
-      ["6. previous close"]: STOCK["08. previous close"],
-      ["7. change"]: STOCK["09. change"],
-      ["8. change percent"]: STOCK["10. change percent"],
-    },
-  ];
-
   useEffect(() => {
-    setData(dataModel);
+    setData(cardModel(STOCK, toMillions));
   }, []);
 
   const _clickHandler = () => {
     showSearch();
-    router.push(`/${data[0].symbol}`);
+    router.push(`/${data.meta.symbol}`);
   };
 
   return (
-    <Card symbol={data && data[0].symbol}>
+    <Card symbol={data && data.meta.symbol}>
       <div className={classes.details} onClick={_clickHandler}>
-        <h3>{data && data[0].symbol}</h3>
+        <h3>{data && data.meta.symbol}</h3>
         <span>
           <Info />
         </span>
       </div>
-      <p>{data && data[0].date}</p>
+      <p>{data && data.meta.date}</p>
       <ul>
         {data &&
-          Object.entries(data[1]).map((data, index) => (
+          Object.entries(data.stocks).map((elements, index) => (
             <li key={index}>
-              <strong>{data[0]}: </strong>
+              <strong>{elements[0]}: </strong>
               <span
                 style={{
                   color:
-                    (data[1].includes("-") && index > 5 && "red") ||
+                    (elements[1].includes("-") && index > 5 && "red") ||
                     (index > 5 && "green"),
                 }}
               >
-                {data[1]}
+                {elements[1]}
               </span>
             </li>
           ))}

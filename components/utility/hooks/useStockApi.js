@@ -52,7 +52,11 @@ function useStockApi({ symbol, timeSeries }) {
     }
   }, [data, timeSeries]);
 
-  if (data && !!data["Global Quote"]) {
+  if (
+    data &&
+    timeSeries === "GLOBAL_QUOTE" &&
+    Object.keys(data["Global Quote"]).length === 0
+  ) {
     return {
       stockData:
         "Symbol does not exist in the AlphaVantage API. Try something else.",

@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import TriggerContext from "../store/context-provider";
 import SearchStocks from "../components/layout/search/SearchStocks";
 import styles from "../styles/Home.module.css";
-import StockDataResults from "../components/layout/search/StockDataResults";
+import StockSearchResults from "../components/layout/search/StockSearchResults";
 import { symbolHandlers } from "../components/utility/Index_handlers";
 import { API_PARAMS, MEDIA_SIZES } from "../util/constants";
 
@@ -88,7 +88,9 @@ export default function Home() {
         className={`${styles.dataResults} ${searchTrigger ? "shrink" : "grow"}`}
         ref={resultsRef}
       >
-        {symbol && <StockDataResults timeSeries={timeSeries} symbol={symbol} />}
+        {symbol && (
+          <StockSearchResults timeSeries={timeSeries} symbol={symbol} />
+        )}
       </div>
 
       <div
@@ -101,7 +103,6 @@ export default function Home() {
           clickHandler={clickHandler}
           keypressHandler={keypressHandler}
           inputRef={inputRef}
-          symbol={symbol}
         />
       </div>
     </>

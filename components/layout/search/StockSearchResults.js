@@ -4,9 +4,9 @@ import StockCard from "../cards/StockCard";
 import Spinner from "../../ui/Spinner";
 import TableList from "../table/TableList";
 import TriggerContext from "../../../store/context-provider";
-import styles from "./StockDataSearch.module.css";
+import styles from "./StockSearchResults.module.css";
 
-const StockDataSearch = ({ symbol, timeSeries }) => {
+const StockSearchResults = ({ symbol, timeSeries }) => {
   const { stockData, isError } = useStockApi({ symbol, timeSeries });
   const { scrollRefresh, clickedTrigger } = useContext(TriggerContext);
 
@@ -52,4 +52,4 @@ const StockDataSearch = ({ symbol, timeSeries }) => {
   );
 };
 
-export default StockDataSearch;
+export default StockSearchResults;

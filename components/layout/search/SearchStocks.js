@@ -3,7 +3,7 @@ import Search from "../../ui/Search";
 import { SearchIcon } from "../../ui/Icons";
 import classes from "./SearchStocks.module.css";
 
-const SearchStocks = ({ keypressHandler, inputRef, clickHandler, symbol }) => {
+const SearchStocks = ({ keypressHandler, inputRef, clickHandler }) => {
   return (
     <Search className={`${classes.search_buttons} `}>
       <input

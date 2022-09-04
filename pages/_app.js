@@ -1,8 +1,7 @@
 import Head from "next/head";
-
-import Layout from "../components/layout/Layout";
-import { TriggerContextProvider } from "../store/context-provider";
-import { StockContextProvider } from "../store/stock-provider";
+import Layout from "../base/components/layouts/Layouts.container";
+import { TriggerContextProvider } from "../contexts/context-provider";
+import { StockContextProvider } from "../contexts/stock-provider";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {

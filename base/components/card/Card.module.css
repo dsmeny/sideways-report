@@ -1,0 +1,12 @@
+.card {
+  border-radius: 44px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: left;
+  flex-direction: column;
+  padding: 1.5rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  color: var(--primary-font-color);
+  background: white;
+  max-width: 22rem;
+}

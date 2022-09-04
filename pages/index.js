@@ -1,12 +1,11 @@
 /* Sideways Report */
-
 import { useState, useRef, useEffect, useContext } from "react";
-import TriggerContext from "../store/context-provider";
-import SearchStocks from "../components/layout/search/SearchStocks";
+import TriggerContext from "../contexts/context-provider";
+import SearchStocks from "../features/search/SearchStocks";
 import styles from "../styles/Home.module.css";
-import StockSearchResults from "../components/layout/search/StockSearchResults";
-import { symbolHandlers } from "../components/utility/Index_handlers";
-import { API_PARAMS, MEDIA_SIZES } from "../util/constants";
+import SearchStockResults from "../features/search/SearchStockResults";
+import { symbolHandlers } from "../base/helpers/homePage.helpers";
+import { API_PARAMS, MEDIA_SIZES } from "../constants";
 
 export default function Home() {
   const [timeSeries, setTimeSeries] = useState("");
@@ -24,6 +23,8 @@ export default function Home() {
   };
 
   useEffect(() => {
+    showSearch(true);
+
     const media = (size) => {
       return window.matchMedia(`screen and (max-width: ${size}px)`);
     };
@@ -89,22 +90,23 @@ export default function Home() {
         ref={resultsRef}
       >
         {symbol && (
-          <StockSearchResults timeSeries={timeSeries} symbol={symbol} />
+          <SearchStockResults timeSeries={timeSeries} symbol={symbol} />
         )}
       </div>
+      {!symbol && (
+        <div
+          className={`${styles.search} ${searchTrigger ? "grow" : "shrink"}`}
+          ref={searchRef}
+        >
+          <p className={styles["search-title"]}>which stock do you like ??</p>
 
-      <div
-        className={`${styles.search} ${searchTrigger ? "grow" : "shrink"}`}
-        ref={searchRef}
-      >
-        <p className={styles["search-title"]}>which stock do you like ??</p>
-
-        <SearchStocks
-          clickHandler={clickHandler}
-          keypressHandler={keypressHandler}
-          inputRef={inputRef}
-        />
-      </div>
+          <SearchStocks
+            clickHandler={clickHandler}
+            keypressHandler={keypressHandler}
+            inputRef={inputRef}
+          />
+        </div>
+      )}
     </>
   );
 }

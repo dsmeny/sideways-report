@@ -1,0 +1,47 @@
+.select-container {
+  border: 1px solid var(--hover-background-color);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
+  display: grid;
+  grid-template-areas: "select";
+  position: relative;
+  max-width: 7rem;
+}
+
+.select-container::after {
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: #727272;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  grid-area: select;
+  justify-self: end;
+}
+
+.select-container select {
+  appearance: none;
+
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  grid-area: select;
+  outline: none;
+}
+
+.select-container select:focus {
+  outline: none;
+}

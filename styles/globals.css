@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 * {
   box-sizing: border-box;
@@ -8,13 +8,12 @@
 
 :root {
   /* background color */
-  --row-background-color: rgb(239, 247, 250);
-  --navbar-background-color: rgb(248, 248, 248);
-  --table-background-color: rgb(64, 74, 147);
-  --table-alt-background-color: rgb(99, 99, 129);
-  --table-md-background-color: rgb(83, 91, 145);
-  --table-lt-background-color: rgb(116, 122, 160);
-  --table-row-background-color: rgb(250, 250, 250);
+  --background-color: rgb(252, 252, 253);
+  --alt-bg-color: rgb(250, 250, 250, 252);
+  --nav-bg-color: rgb(4, 175, 230);
+  --nav-bg-dark: rgb(4, 180, 236);
+  --nav-bg-backer: rgba(246, 247, 255, 0.1);
+  --header-bg-color: rgb(176 194 199);
 
   /* box shadow */
   --box-shadows: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -25,8 +24,7 @@
   /* font color */
   --button-font-color: rgb(97, 97, 97);
   --green-font-color: rgb(37, 189, 37);
-  --primary-font-color: #455c77;
-  --table-primary-font-color: rgb(112, 112, 112);
+  --primary-font-color: rgb(69, 92, 119);
   --table-secondary-font-color: rgb(193, 193, 193);
   --hover-background-color: rgb(168, 192, 255);
 
@@ -36,19 +34,25 @@
 
   /* structural formatting */
   --row-widths: 70vw;
+  --row-padding: 0 2vw;
 
   /* widths */
   --mobile: 720px;
 
   /* heights */
   --nav-height: 11vh;
+  --search: 1.6rem;
+
+  /* select styles */
+  --select-border: #777;
+  --select-arrow: var(--select-border);
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Roboto", sans-serif;
   height: 100%;
 }
 
@@ -86,11 +90,16 @@ input::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
 
 ul {
   list-style-type: none;
-  margin: 1rem;
+  padding-inline-start: 0px;
 }
 
 ul li {
-  line-height: 2rem;
+  line-height: 2.4rem;
+}
+
+h3 {
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 /*For the stock details overview page*/
@@ -105,6 +114,10 @@ ul li {
 
 .icons {
   width: 2rem;
+}
+
+.fade {
+  animation: fadein 1s ease both;
 }
 
 .shrink {
@@ -147,4 +160,14 @@ ul li {
     width: 100vw;
     opacity: 1;
   }
+}
+
+select:focus + .focus {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 2px solid var(--hover-background-color);
+  border-radius: inherit;
 }

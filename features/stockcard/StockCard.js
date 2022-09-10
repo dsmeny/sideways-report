@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { views } from "../../constants";
 import Card from "../../base/components/card";
-import { GoLightBulb, GoListUnordered } from "react-icons/go";
+import PageLink from "./PageLink";
+import { GoLightBulb, GoListUnordered, GoInfo } from "react-icons/go";
+import { ImNewspaper } from "react-icons/im";
 import { toMillions } from "../table/Table.helpers";
 import classes from "./StockCard.module.css";
 import { cardModel } from "../../constants";
 
 const StockCard = ({ stockData }) => {
   const [data, setData] = useState(null);
+  const { OVERVIEW, HISTORY, NEWS } = views;
 
   const STOCK = stockData["Global Quote"];
 
@@ -31,32 +34,17 @@ const StockCard = ({ stockData }) => {
         <h3>{data && data.meta.symbol}</h3>
         {data && (
           <div>
-            <Link
-              href={`/${encodeURIComponent(data.meta.symbol)}?pageType=history`}
-              passHref
-            >
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                className={classes.icon}
-              >
-                <GoListUnordered />
-              </a>
-            </Link>
-            <Link
-              href={`/${encodeURIComponent(
-                data.meta.symbol
-              )}?pageType=overview`}
-              passHref
-            >
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                className={classes.icon}
-              >
-                <GoLightBulb />
-              </a>
-            </Link>
+            <PageLink symbol={data.meta.symbol} type={OVERVIEW} Icon={GoInfo} />
+            <PageLink
+              symbol={data.meta.symbol}
+              type={HISTORY}
+              Icon={GoListUnordered}
+            />
+            <PageLink
+              symbol={data.meta.symbol}
+              type={NEWS}
+              Icon={ImNewspaper}
+            />
           </div>
         )}
       </div>

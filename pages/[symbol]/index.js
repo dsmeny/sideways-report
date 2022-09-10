@@ -1,31 +1,27 @@
-import { useState } from "react";
 import { useRouter } from "next/router";
 import CompanyOverview from "../../base/components/views/Views.overview";
 import TimeSeriesOverview from "../../base/components/views/Views.timeseries";
+import NewsOverview from "../../base/components/views/Views.news";
+import { views } from "../../constants";
 import { TimeseriesProvider } from "../../contexts/timeseries-context";
-
-// Constants
-const COLUMNS = 4;
 
 const containerStyle = {
   flexGrow: "2",
   minHeight: "100vh",
+  marginTop: "4rem",
 };
 
 const Details = () => {
   const router = useRouter();
   const { symbol, pageType } = router.query;
-  const [showSidebar, setShowSidebar] = useState(false);
-
-  const sidebarHandler = () => {
-    setShowSidebar(() => !showSidebar);
-  };
+  const { OVERVIEW, HISTORY, NEWS } = views;
 
   return (
     <TimeseriesProvider>
       <div style={containerStyle}>
-        {pageType === "overview" && <CompanyOverview symbol={symbol} />}
-        {pageType === "history" && <TimeSeriesOverview symbol={symbol} />}
+        {pageType === OVERVIEW && <CompanyOverview symbol={symbol} />}
+        {pageType === HISTORY && <TimeSeriesOverview symbol={symbol} />}
+        {pageType === NEWS && <NewsOverview />}
       </div>
     </TimeseriesProvider>
   );

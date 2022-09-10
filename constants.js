@@ -13,6 +13,12 @@ const MEDIA_SIZES = {
 
 export { API_PARAMS, MEDIA_SIZES };
 
+export const views = {
+  OVERVIEW: "overview",
+  HISTORY: "history",
+  NEWS: "news",
+};
+
 export const overviewModel = (stockData, convertNumber) => {
   return {
     row1: {
@@ -105,6 +111,10 @@ export const cardModel = (STOCK, toMillions) => {
       ["Change percent"]: STOCK["10. change percent"],
     },
   };
+};
+
+export const newsModel = (stockData) => {
+  return {};
 };
 
 export const MONTHS = [

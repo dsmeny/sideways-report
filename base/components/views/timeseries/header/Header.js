@@ -1,4 +1,4 @@
-import { DataViewList } from "../../Views.structure";
+import { useEffect } from "react";
 import { API_PARAMS } from "../../../../../constants";
 import Options from "./Header.options";
 import HeaderYear from "./filters/Header.year";

@@ -16,6 +16,7 @@
   font-family: "Bebas Neue";
   color: white;
   letter-spacing: 0.2rem;
+  flex: 1;
 }
 
 .logo::after {
@@ -30,6 +31,8 @@
   color: white;
   z-index: 99999;
   width: 2rem;
+  flex: 2;
+  text-align: left;
 }
 
 .nav-icon {

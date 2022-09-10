@@ -35,14 +35,14 @@ const TimeSeries = ({ symbol }) => {
   }
 
   return (
-    <>
+    <div style={{ marginTop: "-4rem" }}>
       {data && (
         <>
           <StockHeader years={years} meta={meta} />
           <StockList stocks={data} />
         </>
       )}
-    </>
+    </div>
   );
 };
 

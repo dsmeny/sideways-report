@@ -28,16 +28,16 @@ export const overviewModel = (stockData, convertNumber) => {
       Description: stockData.Description,
     },
     row2: {
-      ["Shares Outstanding"]: convertNumber(stockData.SharesOutstanding),
-      ["Market Cap (m)"]: convertNumber(stockData.MarketCapitalization),
-      ["Book Value"]: stockData.BookValue,
-      EBITDA: stockData.EBITDA,
-    },
-    row3: {
       ["52 Week High"]: stockData["52WeekHigh"],
       ["52 Week Low"]: stockData["52WeekLow"],
       ["50 Day Moving Avg"]: stockData["50DayMovingAverage"],
       ["200 Day Moving Avg"]: stockData["200DayMovingAverage"],
+    },
+    row3: {
+      ["Shares Outstanding"]: convertNumber(stockData.SharesOutstanding),
+      ["Market Cap (m)"]: convertNumber(stockData.MarketCapitalization),
+      ["Book Value"]: stockData.BookValue,
+      Beta: stockData.Beta,
     },
     row4: {
       ["Analyst Target Price"]: stockData["AnalystTargetPrice"],
@@ -73,7 +73,7 @@ export const overviewModel = (stockData, convertNumber) => {
       ["Profit Margin"]: stockData.ProfitMargin,
       ["EV To Revenue"]: stockData.EVToRevenue,
       ["EV To EBITDA"]: stockData.EVToEBITDA,
-      Beta: stockData.Beta,
+      EBITDA: stockData.EBITDA,
     },
     row10: {
       ["Operating Margin TTM"]: stockData.OperatingMarginTTM,

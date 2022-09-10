@@ -1,15 +1,24 @@
 import Head from "next/head";
 import Layout from "../base/components/layouts/Layouts.container";
+import { useRouter } from "next/dist/client/router";
 import { TriggerContextProvider } from "../contexts/context-provider";
 import { StockContextProvider } from "../contexts/stock-provider";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const { pageType, symbol } = router.query;
+
   return (
     <TriggerContextProvider>
       <Layout>
         <Head>
-          <title>Sideways Report</title>
+          {pageType ? (
+            <title>{`${symbol} | ${pageType}`}</title>
+          ) : (
+            "Sideways Report"
+          )}
+
           <meta name="description" content="stock data reporting" />
           <meta
             name="viewport"

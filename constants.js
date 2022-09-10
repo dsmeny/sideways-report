@@ -41,12 +41,12 @@ export const overviewModel = (stockData, convertNumber) => {
     },
     row4: {
       ["Analyst Target Price"]: stockData["AnalystTargetPrice"],
-      ["GrossProfitTTM"]: convertNumber(stockData.GrossProfitTTM),
+      EPS: stockData.EPS,
       Industry: stockData.Industry,
       Sector: stockData.Sector,
     },
     row5: {
-      EPS: stockData.EPS,
+      ["GrossProfitTTM"]: convertNumber(stockData.GrossProfitTTM),
       PERatio: stockData.PERatio,
       PEGRatio: stockData.PEGRatio,
       ["Asset Type"]: stockData.AssetType,

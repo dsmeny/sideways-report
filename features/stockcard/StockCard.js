@@ -40,11 +40,11 @@ const StockCard = ({ stockData }) => {
               type={HISTORY}
               Icon={GoListUnordered}
             />
-            <PageLink
+            {/* <PageLink
               symbol={data.meta.symbol}
               type={NEWS}
               Icon={ImNewspaper}
-            />
+            /> */}
           </div>
         )}
       </div>

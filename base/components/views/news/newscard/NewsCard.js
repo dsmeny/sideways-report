@@ -1,10 +1,32 @@
-import Card from "../../../card";
+import { DataViewItem, DataViewList } from "../../Views.structure";
+import { newsModel } from "../../../../../constants";
 
-const NewsCard = () => {
+const NewsCard = ({ news }) => {
+  const {
+    authors,
+    image,
+    overall_sentiment,
+    source,
+    summary,
+    ticker_sentiment,
+    time,
+    title,
+    url,
+  } = newsModel(news);
+
   return (
-    <div>
-      <Card>News</Card>
-    </div>
+    <DataViewList>
+      news
+      {/* <DataViewItem>{authors.join(", ")}</DataViewItem>
+      <DataViewItem>{image}</DataViewItem>
+      <DataViewItem>{overall_sentiment}</DataViewItem>
+      <DataViewItem>{source}</DataViewItem>
+      <DataViewItem>{summary}</DataViewItem>
+      <DataViewItem>{ticker_sentiment.join(", ")}</DataViewItem>
+      <DataViewItem>{time}</DataViewItem>
+      <DataViewItem>{title}</DataViewItem>
+      <DataViewItem>{url}</DataViewItem> */}
+    </DataViewList>
   );
 };
 

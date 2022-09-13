@@ -7,9 +7,10 @@ const useNewsApi = ({ symbol, topic }) => {
     fetcher
   );
 
-  console.log("data: ", data);
-
-  return {};
+  return {
+    data,
+    error,
+  };
 };
 
 export default useNewsApi;

@@ -13,12 +13,9 @@ function MyApp({ Component, pageProps }) {
     <TriggerContextProvider>
       <Layout>
         <Head>
-          {pageType ? (
-            <title>{`${symbol} | ${pageType}`}</title>
-          ) : (
-            "Sideways Report"
-          )}
-
+          <title>
+            {pageType ? `${symbol} | ${pageType}` : "sideways.report"}
+          </title>
           <meta name="description" content="stock data reporting" />
           <meta
             name="viewport"

@@ -46,7 +46,7 @@ export const overviewModel = (stockData, convertNumber) => {
       Sector: stockData.Sector,
     },
     row5: {
-      ["GrossProfitTTM"]: convertNumber(stockData.GrossProfitTTM),
+      GrossProfitTTM: convertNumber(stockData.GrossProfitTTM),
       PERatio: stockData.PERatio,
       PEGRatio: stockData.PEGRatio,
       ["Asset Type"]: stockData.AssetType,
@@ -85,7 +85,7 @@ export const overviewModel = (stockData, convertNumber) => {
       ["Fiscal Year End"]: stockData.FiscalYearEnd,
       Currency: stockData.Currency,
       Country: stockData.Country,
-      ["Exchange"]: stockData.Exchange,
+      Exchange: stockData.Exchange,
     },
     row12: {
       CIK: stockData.CIK,
@@ -101,20 +101,30 @@ export const cardModel = (STOCK, toMillions) => {
       date: STOCK["07. latest trading day"],
     },
     stocks: {
-      ["Open"]: STOCK["02. open"],
-      ["High"]: STOCK["03. high"],
-      ["Low"]: STOCK["04. low"],
-      ["Close"]: STOCK["05. price"],
+      Open: STOCK["02. open"],
+      High: STOCK["03. high"],
+      Low: STOCK["04. low"],
+      Close: STOCK["05. price"],
       ["Volume (m)"]: toMillions(STOCK["06. volume"]),
       ["Previous close"]: STOCK["08. previous close"],
-      ["Change"]: STOCK["09. change"],
+      Change: STOCK["09. change"],
       ["Change percent"]: STOCK["10. change percent"],
     },
   };
 };
 
 export const newsModel = (stockData) => {
-  return {};
+  return {
+    authors: stockData.authors,
+    image: stockData.banner_image,
+    overall_sentiment: stockData.overall_sentiment_label,
+    source: stockData.source,
+    summary: stockData.summary,
+    ticker_sentiment: stockData.ticker_sentiment,
+    time: stockData.time_published,
+    title: stockData.title,
+    url: stockData.url,
+  };
 };
 
 export const MONTHS = [

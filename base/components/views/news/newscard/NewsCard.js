@@ -1,5 +1,11 @@
-import { DataViewItem, DataViewList } from "../../Views.structure";
+import Links from "../../../link/Links";
+import NewsCardSidebar from "./NewsCard.sidebar";
+import Sentiment from "./NewsCard.sentiment";
 import { newsModel } from "../../../../../constants";
+import { formatNewsDate } from "./NewsCard.helpers";
+import { FaExternalLinkAlt } from "react-icons/fa";
+
+import classes from "../News.module.css";
 
 const NewsCard = ({ news }) => {
   const {
@@ -15,18 +21,27 @@ const NewsCard = ({ news }) => {
   } = newsModel(news);
 
   return (
-    <DataViewList>
-      news
-      {/* <DataViewItem>{authors.join(", ")}</DataViewItem>
-      <DataViewItem>{image}</DataViewItem>
-      <DataViewItem>{overall_sentiment}</DataViewItem>
-      <DataViewItem>{source}</DataViewItem>
-      <DataViewItem>{summary}</DataViewItem>
-      <DataViewItem>{ticker_sentiment.join(", ")}</DataViewItem>
-      <DataViewItem>{time}</DataViewItem>
-      <DataViewItem>{title}</DataViewItem>
-      <DataViewItem>{url}</DataViewItem> */}
-    </DataViewList>
+    <div className={classes["news-card"]}>
+      <Sentiment image={image} overall={overall_sentiment} />
+      <div className={classes["news-container"]}>
+        <div className={classes["news-headline"]}>
+          <p>{formatNewsDate(time)}</p>
+          <h2>Ticker Sentiment</h2>
+        </div>
+        <div className={classes["news-content"]}>
+          <div className={classes["news-content-summary"]}>
+            <h3>{title}</h3>
+            <hr />
+            <p>{summary}</p>
+            <div className={classes["news-content-links"]}>
+              <p>{authors.join(", ")}</p> | <p>{source}</p> |
+              <Links url={url} Icon={FaExternalLinkAlt} />
+            </div>
+          </div>
+          <NewsCardSidebar ticker_label={ticker_sentiment} />
+        </div>
+      </div>
+    </div>
   );
 };
 

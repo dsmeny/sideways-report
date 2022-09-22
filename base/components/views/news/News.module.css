@@ -1,8 +1,159 @@
 .news {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  margin-top: 2rem;
+  justify-content: space-evenly;
+  padding: var(--row-padding);
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  padding: var(--row-padding);
+}
+
+.news > h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.news-card {
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 95vw;
+  padding: 2rem 0;
+}
+
+.news-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.news-headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.news-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7rem;
+}
+
+.news-content-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.news-content-summary hr {
+  width: 20rem;
+  margin-left: 0;
+}
+
+.news-sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.news-sidebar-list {
+  position: relative;
+}
+
+.news-sidebar-items {
+  position: relative;
+  overflow: hidden;
+  height: 188px;
+  width: 15rem;
+}
+
+.news-sidebar-list ul {
+  flex-direction: column;
+}
+
+.news-sidebar-list ul li {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 1rem !important;
+}
+
+.news-sentiment {
+  display: flex;
+  flex-direction: column;
+  height: 17rem;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.news-sentiment img {
+  width: 20rem;
+  object-fit: scale-down;
+}
+
+.news-icons {
+  font-size: 2.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.news-bullish {
+  color: green;
+}
+
+.news-bearish {
+  color: red;
+}
+
+.news-neutral {
+  color: rgba(69, 92, 119, 0.3);
+}
+
+.news-neutral-translate {
+  translate: 0 15px;
+}
+
+.news-content-links {
+  display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 100vh;
-  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.arrows {
+  text-align: center;
+  font-size: 1.9rem;
+  color: var(--nav-bg-color);
+}
+
+/* up */
+.arrows:nth-child(1) {
+  position: absolute;
+  top: -36px;
+  left: 50%;
+  translate: -50% 0;
+}
+
+/* down */
+.arrows:nth-child(2) {
+  position: absolute;
+  top: 181px;
+  left: 50%;
+  translate: -50% 0;
+}
+
+.counter {
+  translate: -10px -19px;
+  font-weight: 600;
 }

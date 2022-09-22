@@ -1,12 +1,21 @@
+import Links from "../../base/components/link/Links";
 import { useState, useEffect } from "react";
 import { views } from "../../constants";
 import Card from "../../base/components/card";
-import PageLink from "./PageLink";
 import { GoLightBulb, GoListUnordered, GoInfo } from "react-icons/go";
 import { ImNewspaper } from "react-icons/im";
 import { toMillions } from "../table/Table.helpers";
 import classes from "./StockCard.module.css";
 import { cardModel } from "../../constants";
+
+const PageLink = ({ symbol, type, Icon }) => {
+  const URL = `/${encodeURIComponent(symbol)}?pageType=${type}`;
+  return (
+    <div>
+      <Links url={URL} Icon={Icon} />
+    </div>
+  );
+};
 
 const StockCard = ({ stockData }) => {
   const [data, setData] = useState(null);
@@ -40,11 +49,11 @@ const StockCard = ({ stockData }) => {
               type={HISTORY}
               Icon={GoListUnordered}
             />
-            {/* <PageLink
+            <PageLink
               symbol={data.meta.symbol}
               type={NEWS}
               Icon={ImNewspaper}
-            /> */}
+            />
           </div>
         )}
       </div>

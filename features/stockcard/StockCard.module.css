@@ -10,13 +10,3 @@
   align-items: center;
   gap: 1rem;
 }
-
-.icon {
-  font-size: var(--search);
-  opacity: 0.7;
-  transition: all 1s ease;
-}
-
-.icon:hover {
-  color: var(--coral-highlight-color);
-}

@@ -71,7 +71,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 288px;
+  height: 298px;
 }
 
 .news-sidebar-items {
@@ -146,15 +146,15 @@
 /* up */
 .arrows:nth-child(1) {
   position: absolute;
-  top: 0px;
+  top: -9px;
   left: 50%;
   translate: -50% 0;
 }
 
 /* down */
-.arrows:nth-child(2) {
+.arrows:nth-child(3) {
   position: absolute;
-  bottom: 0px;
+  bottom: 15px;
   left: 50%;
   translate: -50% 0;
 }

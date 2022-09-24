@@ -9,16 +9,17 @@ const INCREMENT_BY = 50;
 const Sidebar = ({ ticker_label }) => {
   const [tickerSentiment, setTickerSentiment] = useState([]);
   const [counter, setCounter] = useState({
-    count: 4,
     count_length: ticker_label.length,
     upper_bound: 1,
     lower_bound: 4,
   });
 
-  const { count, count_length, upper_bound, lower_bound } = counter;
+  const { count_length, upper_bound, lower_bound } = counter;
 
   const listRef = useRef([]);
   const countRef = useRef(0);
+
+  // console.log(upper_bound, lower_bound);
 
   function countHandler(direction) {
     const listRefNode = listRef.current;

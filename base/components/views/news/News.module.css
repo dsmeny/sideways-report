@@ -67,18 +67,23 @@
 }
 
 .news-sidebar-list {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
   position: relative;
+  height: 288px;
 }
 
 .news-sidebar-items {
-  position: relative;
   overflow: hidden;
-  height: 188px;
   width: 15rem;
+  padding: 1rem 0;
+  margin: 2rem 0;
 }
 
 .news-sidebar-list ul {
   flex-direction: column;
+  height: 159px;
 }
 
 .news-sidebar-list ul li {
@@ -92,9 +97,9 @@
 .news-sentiment {
   display: flex;
   flex-direction: column;
-  height: 17rem;
   align-items: center;
   justify-content: space-evenly;
+  gap: 2rem;
 }
 
 .news-sentiment img {
@@ -141,7 +146,7 @@
 /* up */
 .arrows:nth-child(1) {
   position: absolute;
-  top: -36px;
+  top: 0px;
   left: 50%;
   translate: -50% 0;
 }
@@ -149,7 +154,7 @@
 /* down */
 .arrows:nth-child(2) {
   position: absolute;
-  top: 181px;
+  bottom: 0px;
   left: 50%;
   translate: -50% 0;
 }

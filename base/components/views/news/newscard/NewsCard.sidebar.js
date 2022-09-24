@@ -4,6 +4,8 @@ import { DataViewItem, DataViewList } from "../../Views.structure";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import classes from "../News.module.css";
 
+const INCREMENT_BY = 50;
+
 const Sidebar = ({ ticker_label }) => {
   const [tickerSentiment, setTickerSentiment] = useState([]);
   const [counter, setCounter] = useState({
@@ -22,7 +24,7 @@ const Sidebar = ({ ticker_label }) => {
     const listRefNode = listRef.current;
     switch (direction) {
       case "up":
-        countRef.current = countRef.current + 50;
+        countRef.current = countRef.current + INCREMENT_BY;
         listRefNode.style.translate = `0 ${countRef.current}px`;
         setCounter((prop) => {
           return {
@@ -33,7 +35,7 @@ const Sidebar = ({ ticker_label }) => {
         });
         break;
       case "down":
-        countRef.current = countRef.current - 50;
+        countRef.current = countRef.current - INCREMENT_BY;
         listRefNode.style.translate = `0 ${countRef.current}px`;
 
         setCounter((prop) => {

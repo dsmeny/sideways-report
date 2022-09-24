@@ -141,6 +141,24 @@
   text-align: center;
   font-size: 1.9rem;
   color: var(--nav-bg-color);
+  animation-name: animateArrows;
+  animation-fill-mode: both;
+  animation-duration: 1.5s;
+  transition: color 0.7s ease;
+}
+
+.arrows:hover {
+  color: var(--coral-highlight-color);
+}
+
+@keyframes animateArrows {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* up */

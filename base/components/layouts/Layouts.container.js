@@ -3,7 +3,7 @@ import MenuBar from "../../../features/MenuBar";
 const containerStyle = {
   display: "flex",
   flexDirection: "column",
-  height: "100vh",
+  height: "100%",
 };
 
 const styles = {

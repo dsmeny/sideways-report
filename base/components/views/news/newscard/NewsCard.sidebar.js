@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { validateSentiment } from "./NewsCard.helpers";
-import { DataViewItem, DataViewList } from "../../Views.structure";
+import { DataViewItem } from "../../Views.structure";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import classes from "../News.module.css";
 
@@ -18,8 +18,6 @@ const Sidebar = ({ ticker_label }) => {
 
   const listRef = useRef([]);
   const countRef = useRef(0);
-
-  // console.log(upper_bound, lower_bound);
 
   function countHandler(direction) {
     const listRefNode = listRef.current;
@@ -58,57 +56,63 @@ const Sidebar = ({ ticker_label }) => {
 
   return (
     <div className={classes["news-sidebar"]}>
-      {count_length > 4 && (
-        <div className={classes.counter}>
-          <p>{`${lower_bound}/${count_length}`}</p>
-        </div>
-      )}
-      <div className={classes["news-sidebar-list"]}>
-        {count_length > 4 && upper_bound > 1 && (
-          <div className={classes.arrows} onClick={() => countHandler("up")}>
-            <FiChevronUp />
+      <h2>Ticker Sentiment</h2>
+      <div className={classes["news-sidebar-items"]}>
+        {count_length > 4 && (
+          <div className={classes.counter}>
+            <p>{`${lower_bound}/${count_length}`}</p>
           </div>
         )}
-        <div className={classes["news-sidebar-items"]}>
-          <ul ref={listRef}>
-            {tickerSentiment.map(
-              ({ ticker, ticker_sentiment_label: label }) => (
-                <DataViewItem
-                  key={ticker.toLowerCase()}
-                  className={classes["news-sidebar-item"]}
-                >
-                  <p>{ticker}</p>
-                  <>
-                    {validateSentiment(label) === "bull" && (
-                      <p style={{ color: "green" }}>
-                        {/Somewhat/.test(label) ? (
-                          label
-                        ) : (
-                          <strong>{label}</strong>
-                        )}
-                      </p>
-                    )}
-                    {validateSentiment(label) === "bear" && (
-                      <p style={{ color: "red" }}>
-                        {/Somewhat/.test(label) ? (
-                          label
-                        ) : (
-                          <strong>{label}</strong>
-                        )}
-                      </p>
-                    )}
-                    {validateSentiment(label) === "neutral" && <p>{label}</p>}
-                  </>
-                </DataViewItem>
-              )
-            )}
-          </ul>
-        </div>
-        {count_length > 4 && lower_bound !== count_length && (
-          <div className={classes.arrows} onClick={() => countHandler("down")}>
-            <FiChevronDown />
+        <div className={classes["news-sidebar-container"]}>
+          {count_length > 4 && upper_bound > 1 && (
+            <div className={classes.arrows} onClick={() => countHandler("up")}>
+              <FiChevronUp />
+            </div>
+          )}
+          <div className={classes["news-sidebar-list"]}>
+            <ul ref={listRef}>
+              {tickerSentiment.map(
+                ({ ticker, ticker_sentiment_label: label }) => (
+                  <DataViewItem
+                    key={ticker.toLowerCase()}
+                    className={classes["news-sidebar-item"]}
+                  >
+                    <p>{ticker}</p>
+                    <>
+                      {validateSentiment(label) === "bull" && (
+                        <p style={{ color: "green" }}>
+                          {/Somewhat/.test(label) ? (
+                            label
+                          ) : (
+                            <strong>{label}</strong>
+                          )}
+                        </p>
+                      )}
+                      {validateSentiment(label) === "bear" && (
+                        <p style={{ color: "red" }}>
+                          {/Somewhat/.test(label) ? (
+                            label
+                          ) : (
+                            <strong>{label}</strong>
+                          )}
+                        </p>
+                      )}
+                      {validateSentiment(label) === "neutral" && <p>{label}</p>}
+                    </>
+                  </DataViewItem>
+                )
+              )}
+            </ul>
           </div>
-        )}
+          {count_length > 4 && lower_bound !== count_length && (
+            <div
+              className={classes.arrows}
+              onClick={() => countHandler("down")}
+            >
+              <FiChevronDown />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

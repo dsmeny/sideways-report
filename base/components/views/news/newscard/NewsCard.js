@@ -24,21 +24,17 @@ const NewsCard = ({ news }) => {
     <div className={classes["news-card"]}>
       <Sentiment image={image} overall={overall_sentiment} />
       <div className={classes["news-container"]}>
-        <div className={classes["news-content"]}>
-          <div>
-            <p>{formatNewsDate(time)}</p>
-            <div className={classes["news-content-summary"]}>
-              <h3>{title}</h3>
-              <hr />
-              <p>{summary}</p>
-              <div className={classes["news-content-links"]}>
-                <p>{authors.join(", ")}</p> | <p>{source}</p> |
-                <Links url={url} Icon={FaExternalLinkAlt} />
-              </div>
-            </div>
+        <div className={classes["news-content-summary"]}>
+          <p>{formatNewsDate(time)}</p>
+          <h3>{title}</h3>
+          <hr />
+          <p>{summary}</p>
+          <div className={classes["news-content-links"]}>
+            <p>{authors.join(", ")}</p> | <p>{source}</p> |
+            <Links url={url} Icon={FaExternalLinkAlt} />
           </div>
-          <NewsCardSidebar ticker_label={ticker_sentiment} time={time} />
         </div>
+        <NewsCardSidebar ticker_label={ticker_sentiment} time={time} />
       </div>
     </div>
   );

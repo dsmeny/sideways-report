@@ -29,7 +29,9 @@ const StockNews = () => {
         <DataViewList className={classes["news-list"]}>
           {data &&
             data.feed.map((news) => (
-              <DataViewItem key={`${news.time_published}`}>
+              <DataViewItem
+                key={`${news.time_published.charCodeAt() * Math.random()}`}
+              >
                 <NewsCard news={news} />
               </DataViewItem>
             ))}

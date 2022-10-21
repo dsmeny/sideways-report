@@ -26,3 +26,66 @@ export const formatNewsDate = (dateStr) => {
     new Date(formattedDate)
   );
 };
+
+export const changeHandler = (
+  e,
+  { container, radio, hasChanged, currentID },
+  offsets
+) => {
+  const target = e.target;
+
+  if (currentID !== target.id) {
+    currentID = target.id;
+    hasChanged = true;
+  }
+
+  const radioButtons = [...radio.firstChild.childNodes];
+
+  const getter = {
+    get widths() {
+      return offsets.rWidth / 2 + offsets.cWidth / 2;
+    },
+  };
+
+  const altNode = radioButtons.find((node) => node.id !== target.id);
+  altNode.checked = false;
+  target.checked = true;
+
+  const animationLeft = [
+    { translate: "0 0", opacity: "0" },
+    {
+      translate: `-${
+        offsets.sentiWidth
+          ? getter.widths - offsets.rWidthChild - offsets.sentiWidth
+          : getter.widths - offsets.rWidthChild
+      }px 0`,
+      opacity: "1",
+    },
+  ];
+  const animationRight = [
+    {
+      translate: `-${
+        offsets.sentiWidth
+          ? getter.widths + offsets.rWidthChild + offsets.sentiWidth
+          : getter.widths + offsets.rWidthChild
+      }px 0`,
+      opacity: "0",
+    },
+    { translate: "0 0", opacity: "1" },
+  ];
+
+  const animationTiming = {
+    duration: 800,
+    fill: "both",
+    easing: "ease-in-out",
+  };
+
+  if (hasChanged && currentID !== undefined) {
+    hasChanged = false;
+    if (target.id === "sentiment") {
+      container.animate(animationLeft, animationTiming);
+    } else {
+      container.animate(animationRight, animationTiming);
+    }
+  }
+};

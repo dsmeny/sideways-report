@@ -6,7 +6,7 @@ import classes from "../News.module.css";
 
 const INCREMENT_BY = 50;
 
-const Sidebar = ({ ticker_label }) => {
+const Sidebar = ({ ticker_label, sentimentRef }) => {
   const [tickerSentiment, setTickerSentiment] = useState([]);
   const [counter, setCounter] = useState({
     count_length: ticker_label.length,
@@ -59,7 +59,7 @@ const Sidebar = ({ ticker_label }) => {
       <h2>Ticker Sentiment</h2>
       <div className={classes["news-sidebar-items"]}>
         {count_length > 4 && (
-          <div className={classes.counter}>
+          <div className={classes.counter} ref={sentimentRef}>
             <p>{`${lower_bound}/${count_length}`}</p>
           </div>
         )}

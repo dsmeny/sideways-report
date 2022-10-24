@@ -1,13 +1,12 @@
-import useStockApi from "../../hooks/useStockApi";
-import { API_PARAMS } from "../../../constants";
-import { MONTHS } from "../../../constants";
-import { useTimeSeries } from "../../../contexts/timeseries-context";
-import { findStockYears, getIpoMonth } from "./Views.helpers";
-import Spinner from "../spinner";
-import StockList from "./timeseries/table/Table.list";
-import StockHeader from "./timeseries/header/Header";
+import useStockApi from "../../../hooks/useStockApi";
+import { API_PARAMS, MONTHS } from "../../../../constants";
+import { useTimeSeries } from "../../../../contexts/timeseries-context";
+import { findStockYears, getIpoMonth } from "./history.helpers";
+import Spinner from "../../spinner";
+import StockList from "./table/Table.list";
+import StockHeader from "./header/Header";
 
-const TimeSeries = ({ symbol }) => {
+const History = ({ symbol }) => {
   const { stockData } = useStockApi({
     symbol,
     timeSeries: API_PARAMS.TIME_SERIES_DAILY,
@@ -46,4 +45,4 @@ const TimeSeries = ({ symbol }) => {
   );
 };
 
-export default TimeSeries;
+export default History;

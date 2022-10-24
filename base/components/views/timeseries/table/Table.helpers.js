@@ -1,4 +1,4 @@
-import { getStockYear, getStockMonth } from "../../Views.helpers";
+import { getStockYear, getStockMonth } from "../history.helpers";
 
 export const filterByDate = async (
   setStockData,

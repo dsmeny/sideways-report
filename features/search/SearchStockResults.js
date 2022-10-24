@@ -1,6 +1,7 @@
 import useStockApi from "../../base/hooks/useStockApi";
 import StockCard from "../stockcard";
 import Spinner from "../../base/components/spinner";
+import { generateId } from "../../base/helpers/general.helpers";
 import styles from "./StockSearchResults.module.css";
 
 const SearchStockResults = ({ symbol, timeSeries }) => {
@@ -30,7 +31,7 @@ const SearchStockResults = ({ symbol, timeSeries }) => {
   return (
     <>
       <div className={styles.data}>
-        <StockCard stockData={stockData} key={Math.random() * 1} />
+        <StockCard stockData={stockData} key={generateId()} />
       </div>
     </>
   );

@@ -3,7 +3,7 @@ import StockItem from "./Table.list.item";
 import { DataViewItem, DataViewList } from "../../Views.structure";
 import Spinner from "../../../spinner/Spinner";
 import { useTimeSeries } from "../../../../../contexts/timeseries-context";
-import { getStockYear } from "../../Views.helpers";
+import { getStockYear } from "../history.helpers";
 import { filterByDate, getFilteredOption } from "./Table.helpers";
 import classes from "./Timeseries.module.css";
 

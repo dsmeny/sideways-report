@@ -81,8 +81,12 @@
   font-size: 1rem;
 }
 
-.news-content-summary p:nth-child(2) {
+.news-content-title {
   font-size: 1.1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 91vw;
 }
 
 .news-content-summary hr {
@@ -96,6 +100,11 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+}
+
+.news-sidebar h2 {
+  font-weight: 400;
+  font-size: 1.3rem;
 }
 
 .news-sidebar-items {
@@ -223,6 +232,14 @@
 @media (min-width: 768px) {
   .news-container {
     font-size: 1.4rem;
+  }
+
+  .news-content-title {
+    font-size: 1.1rem;
+    white-space: break-spaces !important;
+    text-overflow: initial;
+    overflow: initial !important;
+    width: 40vw;
   }
 }
 

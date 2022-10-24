@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 const DataViewItem = ({ children, ...delegated }) => {
   return <li {...delegated}>{children}</li>;
 };

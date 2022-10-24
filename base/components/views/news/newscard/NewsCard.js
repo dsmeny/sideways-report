@@ -1,13 +1,15 @@
-import { useRef } from "react";
+import useNewsRefs from "./useNewsRefs";
 import Links from "../../../link/Links";
 import NewsCardSidebar from "./NewsCard.sidebar";
 import Sentiment from "./NewsCard.sentiment";
 import { newsModel } from "../../../../../constants";
-import { formatNewsDate, changeHandler } from "./NewsCard.helpers";
+import { formatNewsDate } from "./NewsCard.helpers";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import classes from "../News.module.css";
 
 const NewsCard = ({ news }) => {
+  const [{ containerRef, radioRef, sentimentRef }, radioHandlers] =
+    useNewsRefs();
   const {
     authors,
     image,
@@ -19,31 +21,6 @@ const NewsCard = ({ news }) => {
     title,
     url,
   } = newsModel(news);
-
-  const containerRef = useRef();
-  const radioRef = useRef();
-  const hasChangedRef = useRef(false);
-  const currentIDRef = useRef();
-  const sentimentRef = useRef();
-
-  const radioHandlers = (e) => {
-    const refs = {
-      container: containerRef.current,
-      radio: radioRef.current,
-      hasChanged: hasChangedRef.current,
-      currentID: currentIDRef.current,
-      sentiment: sentimentRef.current,
-    };
-
-    const offsets = {
-      cWidth: refs.container.clientWidth,
-      rWidth: refs.radio.clientWidth,
-      rWidthChild: refs.radio.firstChild.clientWidth,
-      sentiWidth: refs.sentiment?.clientWidth,
-    };
-
-    changeHandler(e, refs, offsets);
-  };
 
   return (
     <div className={classes["news-card"]}>
@@ -68,7 +45,7 @@ const NewsCard = ({ news }) => {
       <div className={classes["news-container"]} ref={containerRef}>
         <div className={classes["news-content-summary"]}>
           <p>{formatNewsDate(time)}</p>
-          <p>
+          <p className={classes["news-content-title"]}>
             <strong>{title}</strong>
           </p>
           <hr />

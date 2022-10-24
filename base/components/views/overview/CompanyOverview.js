@@ -1,10 +1,9 @@
-import { DataViewItem, DataViewList } from "./Views.structure";
-import Spinner from "../spinner";
-import { overviewModel } from "../../../constants";
-import { convertNumber } from "../../helpers/general.helpers";
-import useStockApi from "../../hooks/useStockApi";
-import { API_PARAMS } from "../../../constants";
-import classes from "./overview/Overview.module.css";
+import { DataViewItem, DataViewList } from "../Views.structure";
+import Spinner from "../../spinner/Spinner";
+import { overviewModel, API_PARAMS } from "../../../../constants";
+import { convertNumber } from "../../../helpers/general.helpers";
+import useStockApi from "../../../hooks/useStockApi";
+import classes from "./Overview.module.css";
 
 const Overview = ({ symbol }) => {
   const { stockData } = useStockApi({

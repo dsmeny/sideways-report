@@ -21,3 +21,7 @@ export const expirationDate = () => {
   const expiration = 86400 - hour * 3600;
   return expiration;
 };
+
+export const generateId = () => {
+  return Date.now() + 2;
+};

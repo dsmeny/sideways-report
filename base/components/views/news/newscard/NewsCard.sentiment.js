@@ -3,12 +3,16 @@ import classes from "../News.module.css";
 
 // constants
 const NEWS_IMAGE = "https://picsum.photos/250";
+const BULLISH = "Bullish";
+const BEARISH = "Bearish";
+const SOMEWHAT_BULLISH = /Somewhat-Bullish/;
+const SOMEWHAT_BEARISH = /Somewhat-Bearish/;
 
 const Sentiment = ({ image, overall }) => {
   return (
     <div className={classes["news-sentiment"]}>
-      {overall === "Bullish" ||
-        (/Somewhat-Bullish/.test(overall) && (
+      {overall === BULLISH ||
+        (SOMEWHAT_BULLISH.test(overall) && (
           <div className={classes["news-icons"]}>
             <VscTriangleUp
               className={`${classes["news-bullish"]} ${classes["news-neutral-translate"]}`}
@@ -16,8 +20,8 @@ const Sentiment = ({ image, overall }) => {
             <VscTriangleDown className={classes["news-neutral"]} />
           </div>
         ))}
-      {overall === "Bearish" ||
-        (/Somewhat-Bearish/.test(overall) && (
+      {overall === BEARISH ||
+        (SOMEWHAT_BEARISH.test(overall) && (
           <div className={classes["news-icons"]}>
             <VscTriangleUp
               className={`${classes["news-neutral"]} ${classes["news-neutral-translate"]}`}

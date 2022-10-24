@@ -3,6 +3,7 @@ import Spinner from "../../spinner";
 import NewsCard from "./newscard/NewsCard";
 import useNewsApi from "../../../hooks/useNewsApi";
 import { DataViewItem, DataViewList } from "../Views.structure";
+import { generateId } from "../../../helpers/general.helpers";
 import classes from "./News.module.css";
 
 const StockNews = () => {
@@ -29,9 +30,7 @@ const StockNews = () => {
         <DataViewList className={classes["news-list"]}>
           {data &&
             data.feed.map((news) => (
-              <DataViewItem
-                key={`${news.time_published.charCodeAt() * Math.random()}`}
-              >
+              <DataViewItem key={`${generateId()}`}>
                 <NewsCard news={news} />
               </DataViewItem>
             ))}

@@ -1,4 +1,4 @@
-import { MONTHS } from "../../../constants";
+import { MONTHS } from "../../../../constants";
 
 export const getStockYear = (year, stocks) => {
   const obj = {};

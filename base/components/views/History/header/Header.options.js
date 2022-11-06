@@ -1,7 +1,6 @@
-import { DataViewItem, DataViewList } from "../../Views.structure";
 import { useTimeSeries } from "../../../../../contexts/timeseries-context";
 import Select from "../../../select/Select";
-import classes from "./Header.module.css";
+import classes from "../History.module.css";
 
 const Options = ({ symbol }) => {
   const [{ setDate }, timeseries] = useTimeSeries();
@@ -16,6 +15,7 @@ const Options = ({ symbol }) => {
 
   return (
     <div className={classes["header-options"]}>
+      <div className={classes["header-options-symbol"]}>{symbol}</div>
       <Select
         name="dates"
         id="dates"
@@ -34,7 +34,6 @@ const Options = ({ symbol }) => {
         <option value="1y">1 yr</option>
         <option value="3y">3 yr</option>
       </Select>
-      <div className={classes["header-options-symbol"]}>{symbol}</div>
     </div>
   );
 };

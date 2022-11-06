@@ -1,13 +1,8 @@
-import { useEffect, useState } from "react";
-import StockItem from "./Table.list.item";
-import { DataViewItem, DataViewList } from "../../Views.structure";
-import Spinner from "../../../spinner/Spinner";
-import { useTimeSeries } from "../../../../../contexts/timeseries-context";
-import { getStockYear } from "../history.helpers";
+import { useState, useEffect } from "react";
 import { filterByDate, getFilteredOption } from "./Table.helpers";
-import classes from "./Timeseries.module.css";
+import { useTimeSeries } from "../../../../../contexts/timeseries-context";
 
-const StockList = ({ stocks }) => {
+const useTableFilter = (stocks) => {
   const [stockData, setStockData] = useState(null);
   const [{}, timeseries] = useTimeSeries();
   const { date, selectedYear, activeMonth } = timeseries;
@@ -51,34 +46,7 @@ const StockList = ({ stocks }) => {
     }
   }, [date, selectedYear, activeMonth]);
 
-  if (!stockData) {
-    return (
-      <div>
-        <Spinner />
-      </div>
-    );
-  }
-
-  return (
-    <div className={`fade ${classes.list} ${classes["list-col"]}`}>
-      {stockData.map((entry, index) => (
-        <DataViewItem
-          className={`${classes["list-item-row"]} ${classes["row-styling"]}`}
-          key={index}
-        >
-          <div
-            style={{ width: "10rem", whiteSpace: "nowrap", textAlign: "left" }}
-          >
-            {entry[0]}
-          </div>
-          <StockItem
-            items={Object.values(entry[1])}
-            className={`${classes["list-item-row"]} ${classes["list-header-width"]}`}
-          />
-        </DataViewItem>
-      ))}
-    </div>
-  );
+  return stockData;
 };
 
-export default StockList;
+export default useTableFilter;

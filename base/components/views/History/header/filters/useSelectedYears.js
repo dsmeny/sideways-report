@@ -1,11 +1,8 @@
-import Select from "../../../../select/Select";
-import Pagination from "../../../../../../features/Pagination";
-import { MONTHS } from "../../../../../../constants";
 import { useTimeSeries } from "../../../../../../contexts/timeseries-context";
-import classes from "../Header.module.css";
+import { MONTHS } from "../../../../../../constants";
 
-const Year = ({ years }) => {
-  const [{ setSelectedYear, setMonth }, timeseries] = useTimeSeries();
+const useSelectedYears = () => {
+  const { setMonth, setSelectedYear, timeseries } = useTimeSeries;
   const { selectedYear, activeMonth, ipoDate } = timeseries;
 
   const selectYears = (e) => {
@@ -31,24 +28,7 @@ const Year = ({ years }) => {
     }
     setSelectedYear(option);
   };
-
-  return (
-    <div className={classes["header-options"]}>
-      <Select
-        name="years"
-        id="years"
-        defaultValue={selectedYear}
-        onChange={selectYears}
-      >
-        {years.map((year, index) => (
-          <option value={year} key={index}>
-            {year}
-          </option>
-        ))}
-      </Select>
-      <Pagination />
-    </div>
-  );
+  return { selectYears, selectedYear };
 };
 
-export default Year;
+export default useSelectedYears;

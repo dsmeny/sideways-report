@@ -1,8 +1,6 @@
 .list {
-  justify-content: space-between;
-  align-content: flex-start;
-  flex-wrap: wrap;
-  border-bottom: 1px solid var(--table-lt-background-color);
+  margin-top: 3rem;
+  font-size: 1.5rem;
 }
 
 .list-col {
@@ -60,10 +58,15 @@
   background-color: var(--background-color);
 }
 
-/*mobile screens*/
-@media screen and (max-width: 1170px) {
+@media (min-width: 768px) {
+  /* adsfj */
+}
+
+@media screen and (min-width: 1200px) {
   .list {
-    margin-top: 3rem;
-    font-size: 1.5rem;
+    justify-content: space-between;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--table-lt-background-color);
   }
 }

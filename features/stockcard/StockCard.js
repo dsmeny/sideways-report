@@ -44,11 +44,11 @@ const StockCard = ({ stockData }) => {
         {data && (
           <div>
             <PageLink symbol={data.meta.symbol} type={OVERVIEW} Icon={GoInfo} />
-            <PageLink
+            {/* <PageLink
               symbol={data.meta.symbol}
               type={HISTORY}
               Icon={GoListUnordered}
-            />
+            /> */}
             <PageLink
               symbol={data.meta.symbol}
               type={NEWS}

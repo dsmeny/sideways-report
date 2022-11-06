@@ -35,9 +35,11 @@
   /* structural formatting */
   --row-widths: 70vw;
   --row-padding: 0 2vw;
+  --padding: 10px;
 
   /* widths */
-  --mobile: 720px;
+  --mobile: 768px;
+  --desktop: 1200px;
 
   /* heights */
   --nav-height: 11vh;

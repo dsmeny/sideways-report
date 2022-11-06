@@ -8,7 +8,7 @@ const containerStyle = {
 
 const styles = {
   display: "flex",
-  minHeight: "calc(100vh - var(--nav-height))",
+  height: "calc(100vh - var(--nav-height))",
   background: "var(--background-color)",
 };
 

@@ -18,6 +18,7 @@ const Overview = ({ symbol }) => {
       </div>
     );
   }
+
   return (
     <div className={classes.overview}>
       {Object.values(overviewModel(stockData, convertNumber)).map(

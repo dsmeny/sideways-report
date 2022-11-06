@@ -16,8 +16,6 @@ function useStockApi({ symbol, timeSeries }) {
     }
   );
 
-  // console.log("useStockApi: ", data);
-
   const hasErrorMessage = (obj) => {
     return Object.keys(obj).some((elem) => elem.match(/([E]|[e])rror/g));
   };

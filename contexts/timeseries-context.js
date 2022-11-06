@@ -2,7 +2,7 @@ import { createContext, useContext, useMemo, useReducer } from "react";
 import {
   timeSeriesReducer,
   initialState,
-} from "../base/components/views/Timeseries/historyReducer";
+} from "../base/components/views/History/historyReducer";
 
 const TimeseriesContext = createContext();
 

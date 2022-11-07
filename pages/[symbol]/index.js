@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import CompanyOverview from "../../base/components/views/Overview";
-import TimeSeriesOverview from "../../base/components/views/History";
-import NewsOverview from "../../base/components/views/News";
+import CompanyOverview from "../../base/components/views/overview";
+import TimeSeriesOverview from "../../base/components/views/history";
+import NewsOverview from "../../base/components/views/news";
 import { views } from "../../constants";
 import { TimeseriesProvider } from "../../contexts/timeseries-context";
 

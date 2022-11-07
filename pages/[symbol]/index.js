@@ -20,7 +20,7 @@ const Details = () => {
     <TimeseriesProvider>
       <div style={containerStyle}>
         {pageType === OVERVIEW && <CompanyOverview symbol={symbol} />}
-        {/* {pageType === HISTORY && <TimeSeriesOverview symbol={symbol} />} */}
+        {pageType === HISTORY && <TimeSeriesOverview symbol={symbol} />}
         {pageType === NEWS && <NewsOverview />}
       </div>
     </TimeseriesProvider>

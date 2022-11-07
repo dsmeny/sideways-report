@@ -11,7 +11,7 @@ import { cardModel } from "../../constants";
 const PageLink = ({ symbol, type, Icon }) => {
   const URL = `/${encodeURIComponent(symbol)}?pageType=${type}`;
   return (
-    <div>
+    <div style={{ opacity: "0.2" }}>
       <Links url={URL} Icon={Icon} />
     </div>
   );
@@ -44,11 +44,11 @@ const StockCard = ({ stockData }) => {
         {data && (
           <div>
             <PageLink symbol={data.meta.symbol} type={OVERVIEW} Icon={GoInfo} />
-            {/* <PageLink
+            <PageLink
               symbol={data.meta.symbol}
               type={HISTORY}
               Icon={GoListUnordered}
-            /> */}
+            />
             <PageLink
               symbol={data.meta.symbol}
               type={NEWS}

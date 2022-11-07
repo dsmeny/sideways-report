@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 // import CompanyOverview from "../../base/components/views/Overview";
 // import TimeSeriesOverview from "../../base/components/views/History";
-import NewsOverview from "../../base/components/views/News";
+// import NewsOverview from "../../base/components/views/News";
 import { views } from "../../constants";
 import { TimeseriesProvider } from "../../contexts/timeseries-context";
 
@@ -21,7 +21,7 @@ const Details = () => {
       <div style={containerStyle}>
         {/* {pageType === OVERVIEW && <CompanyOverview symbol={symbol} />}
         {pageType === HISTORY && <TimeSeriesOverview symbol={symbol} />} */}
-        {pageType === NEWS && <NewsOverview />}
+        {/* {pageType === NEWS && <NewsOverview />} */}
       </div>
     </TimeseriesProvider>
   );

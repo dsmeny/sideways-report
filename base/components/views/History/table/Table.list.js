@@ -1,9 +1,28 @@
 import useTableFilter from "./useTableFilter";
-import StockItem from "./Table.list.item";
 import { DataViewItem, DataViewList } from "../../Views.structure";
 import Spinner from "../../../spinner/Spinner";
 import Header from "../header/Timeseries.header";
+import { convertNumber } from "../../../../helpers/general.helpers";
+import { timeseriesModel } from "../../../../../constants";
 import classes from "../History.module.css";
+
+const StockItem = ({ items }) => {
+  const { date, prices } = items;
+  const keys = Object.values(timeseriesModel(prices));
+
+  return (
+    <DataViewList
+      className={`${classes["tablelist-wrapper-options"]} ${classes["row-styling"]}`}
+    >
+      <DataViewItem>{date}</DataViewItem>
+      {keys.map((el, index) => (
+        <DataViewItem key={index}>
+          {index === 4 ? convertNumber(el) : el}
+        </DataViewItem>
+      ))}
+    </DataViewList>
+  );
+};
 
 const StockList = ({ stocks }) => {
   const stockData = useTableFilter(stocks);

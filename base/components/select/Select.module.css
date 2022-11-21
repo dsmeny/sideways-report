@@ -14,6 +14,7 @@
   grid-template-areas: "select";
   position: relative;
   max-width: 7rem;
+  height: 2rem;
 }
 
 .select-container::after {

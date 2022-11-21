@@ -1,15 +1,18 @@
 import { DataViewItem, DataViewList } from "../../Views.structure";
 import { convertNumber } from "../../../../helpers/general.helpers";
+import { timeseriesModel } from "../../../../../constants";
 import classes from "../History.module.css";
 
 const StockItem = ({ items }) => {
-  const itemValues = Object.values(items);
-  const prices = Object.values(itemValues[1]);
+  const { date, prices } = items;
+  const keys = Object.values(timeseriesModel(prices));
 
   return (
-    <DataViewList className={classes["tableheader-wrapper-options"]}>
-      <DataViewItem>{itemValues[0]}</DataViewItem>
-      {prices.map((el, index) => (
+    <DataViewList
+      className={`${classes["tablelist-wrapper-options"]} ${classes["row-styling"]}`}
+    >
+      <DataViewItem>{date}</DataViewItem>
+      {keys.map((el, index) => (
         <DataViewItem key={index}>
           {index === 4 ? convertNumber(el) : el}
         </DataViewItem>

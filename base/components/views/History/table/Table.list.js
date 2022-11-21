@@ -2,15 +2,12 @@ import useTableFilter from "./useTableFilter";
 import StockItem from "./Table.list.item";
 import { DataViewItem, DataViewList } from "../../Views.structure";
 import Spinner from "../../../spinner/Spinner";
-import Header from "../header/Header";
+import Header from "../header/Timeseries.header";
 import classes from "../History.module.css";
-
-const HEADERS = ["date", "open", "high", "low", "close", "volume"];
 
 const StockList = ({ stocks }) => {
   const stockData = useTableFilter(stocks);
 
-  // const dataWithHeaders = stockData.unshift(HEADERS);
   if (!stockData) {
     return (
       <div>
@@ -19,40 +16,28 @@ const StockList = ({ stocks }) => {
     );
   }
 
-  const styles = {
-    header: {
-      position: "fixed",
-      left: "10px",
-      top: "148px",
-      zIndex: 9999,
-    },
-    lists: {
-      position: "fixed",
-      left: "81px",
-      top: "148px",
-      zIndex: 1,
-      overflowX: "hidden",
-    },
+  const containerStyle = {
+    width: "91vw",
+    overflow: "hidden",
   };
 
   return (
-    <DataViewList>
-      <DataViewItem style={styles.header}>
+    <DataViewList className={classes["table-list-container"]}>
+      <DataViewItem>
         <Header />
       </DataViewItem>
-      <DataViewItem style={styles.lists}>
-        <div className={classes["list-cols"]}>
-          {stockData.map((entry, index) => (
-            <DataViewItem
-              className={`${classes["list-item-row"]} ${classes["row-styling"]}`}
-              key={index}
-            >
-              <StockItem
-                items={{ date: entry[0], prices: entry[1] }}
-                className={`${classes["list-item-row"]} ${classes["list-header-width"]}`}
-              />
-            </DataViewItem>
-          ))}
+      <DataViewItem
+        style={containerStyle}
+        className={classes["table-list-desktop"]}
+      >
+        <div className={classes["scrolling"]}>
+          <div className={classes["table-list-items"]}>
+            {stockData.map((entry, index) => (
+              <DataViewItem key={index} className={classes.backgrounds}>
+                <StockItem items={{ date: entry[0], prices: entry[1] }} />
+              </DataViewItem>
+            ))}
+          </div>
         </div>
       </DataViewItem>
     </DataViewList>

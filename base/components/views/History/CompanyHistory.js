@@ -3,12 +3,12 @@ import { API_PARAMS, MONTHS } from "../../../../constants";
 import { useTimeSeries } from "../../../../contexts/timeseries-context";
 import { findStockYears, getIpoMonth } from "./history.helpers";
 import Options from "./header/Header.options";
-import HeaderYear from "./header/filters/Header.year";
+import HeaderYear from "./header/filters/Timeseries.header.year";
 import Spinner from "../../spinner";
 import StockList from "./table/Table.list";
 import classes from "./History.module.css";
 
-const History = ({ symbol }) => {
+const CompanyHistory = ({ symbol }) => {
   const { stockData } = useStockApi({
     symbol,
     timeSeries: API_PARAMS.TIME_SERIES_DAILY,
@@ -18,7 +18,7 @@ const History = ({ symbol }) => {
     useTimeSeries();
   const { date, selectedYear } = timeseries;
 
-  if (!stockData) {
+  if (!stockData || stockData === undefined) {
     return (
       <div>
         <Spinner />
@@ -39,10 +39,7 @@ const History = ({ symbol }) => {
   return (
     <>
       {data && (
-        <div
-          style={{ marginTop: "-4rem" }}
-          className={classes["history-container"]}
-        >
+        <div className={classes["history-container"]}>
           <Options symbol={symbol} />
           {date === "byDate" && (
             <>
@@ -58,4 +55,4 @@ const History = ({ symbol }) => {
   );
 };
 
-export default History;
+export default CompanyHistory;

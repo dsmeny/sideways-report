@@ -1,29 +1,31 @@
 import { useEffect } from "react";
+import useSWR from "swr";
+import { API_PARAMS } from "../constants";
+import fetcher from "../base/helpers/fetch.helpers";
 
-const styles = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  width: "100%",
+const obj = {
+  symbol: "NIO",
+  timeSeries: API_PARAMS.TIME_SERIES_DAILY,
 };
 
-async function fetchYahooData() {
-  const response = await fetch("/api/finance_api");
-  const data = await response.json();
+const { symbol, timeSeries } = obj;
 
-  console.log(data);
-}
-
-const test = () => {
-  useEffect(() => {
-    fetchYahooData();
-  }, []);
-
-  return (
-    <div style={styles}>
-      <h1>Test</h1>
-    </div>
+const Test = () => {
+  const { data, error } = useSWR(
+    timeSeries
+      ? `https://www.alphavantage.co/query?function=${timeSeries}&symbol=${symbol}&outputsize=full&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
+      : null,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
   );
+
+  console.log("TEST: ", data);
+
+  return <div>hola</div>;
 };
 
-export default test;
+export default Test;

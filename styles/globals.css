@@ -119,10 +119,6 @@ h3 {
   width: 2rem;
 }
 
-.fade {
-  animation: fadein 1s ease both;
-}
-
 .shrink {
   opacity: 1;
   flex-grow: 1 !important;

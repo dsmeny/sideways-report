@@ -10,6 +10,7 @@ const Options = ({ symbol }) => {
     const option = [...e.currentTarget.options].find(
       (option) => option.selected
     );
+
     setDate(option.value);
   };
 

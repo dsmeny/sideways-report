@@ -14,7 +14,6 @@ export const postToRedis = (series, data) => {
 };
 
 export const hasErrorMessage = (obj) => {
-  console.log("obj: ", obj);
   return Object.keys(obj).some((elem) => elem.match(/([E]|[e])rror/g));
 };
 

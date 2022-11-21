@@ -12,17 +12,3 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.fade {
-  animation: fadein 1s ease both;
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}

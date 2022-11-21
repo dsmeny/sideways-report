@@ -19,6 +19,16 @@ export const views = {
   NEWS: "news",
 };
 
+export const timeseriesModel = (obj) => {
+  return {
+    OPEN: obj["1. open"],
+    HIGH: obj["2. high"],
+    LOW: obj["3. low"],
+    CLOSE: obj["4. close"],
+    VOLUME: obj["6. volume"],
+  };
+};
+
 export const overviewModel = (stockData, convertNumber) => {
   return {
     row1: {

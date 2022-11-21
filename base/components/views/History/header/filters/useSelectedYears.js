@@ -2,19 +2,19 @@ import { useTimeSeries } from "../../../../../../contexts/timeseries-context";
 import { MONTHS } from "../../../../../../constants";
 
 const useSelectedYears = () => {
-  const { setMonth, setSelectedYear, timeseries } = useTimeSeries;
+  const [{ setMonth, setSelectedYear }, timeseries] = useTimeSeries();
   const { selectedYear, activeMonth, ipoDate } = timeseries;
+
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
+  const currentMonthIndex = MONTHS.indexOf(currentMonth);
+  const activeMonthIndex = MONTHS.indexOf(activeMonth);
 
   const selectYears = (e) => {
     const option = +[...e.currentTarget.options].find(
       (option) => option.selected
     ).value;
-
-    const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth();
-    const currentMonthIndex = MONTHS.indexOf(currentMonth);
-    const activeMonthIndex = MONTHS.indexOf(activeMonth);
 
     if (option === currentYear && activeMonthIndex > currentMonthIndex) {
       setMonth(MONTHS[currentMonth]);
@@ -28,7 +28,10 @@ const useSelectedYears = () => {
     }
     setSelectedYear(option);
   };
-  return { selectYears, selectedYear };
+  return {
+    selectYears,
+    selectedYear,
+  };
 };
 
 export default useSelectedYears;

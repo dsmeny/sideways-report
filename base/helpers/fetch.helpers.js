@@ -7,7 +7,9 @@ const fetcher = async (...args) => {
     error.status = res.status;
     return error;
   }
-  return res.json();
+
+  const data = await res.json();
+  return data;
 };
 
 export default fetcher;

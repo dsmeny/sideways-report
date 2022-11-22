@@ -1,9 +1,9 @@
-import Select from "../../../../select/Select";
-import Pagination from "../../../../../../features/Pagination";
-import useSelectedYears from "./useSelectedYears";
-import classes from "../../History.module.css";
+import Select from "../../../select/Select";
+import Pagination from "../../../../../features/Pagination";
+import useSelectedYears from "./filters/useByYears";
+import classes from "../History.module.css";
 
-const Year = ({ years }) => {
+const SelectByYear = ({ years }) => {
   const { selectYears, selectedYear } = useSelectedYears();
 
   return (
@@ -25,4 +25,4 @@ const Year = ({ years }) => {
   );
 };
 
-export default Year;
+export default SelectByYear;

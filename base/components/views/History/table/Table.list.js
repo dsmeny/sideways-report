@@ -1,7 +1,7 @@
-import useTableFilter from "./useTableFilter";
+import useByDate from "../header/filters/useByDate";
 import { DataViewItem, DataViewList } from "../../Views.structure";
 import Spinner from "../../../spinner/Spinner";
-import Header from "../header/Timeseries.header";
+import Header from "../header/Header.headers";
 import { convertNumber } from "../../../../helpers/general.helpers";
 import { timeseriesModel } from "../../../../../constants";
 import classes from "../History.module.css";
@@ -25,7 +25,7 @@ const StockItem = ({ items }) => {
 };
 
 const StockList = ({ stocks }) => {
-  const stockData = useTableFilter(stocks);
+  const stockData = useByDate(stocks);
 
   if (!stockData) {
     return (

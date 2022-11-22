@@ -2,7 +2,7 @@ import { useTimeSeries } from "../../../../../contexts/timeseries-context";
 import Select from "../../../select/Select";
 import classes from "../History.module.css";
 
-const Options = ({ symbol }) => {
+const SelectDate = ({ symbol }) => {
   const [{ setDate }, timeseries] = useTimeSeries();
   const { date } = timeseries;
 
@@ -39,4 +39,4 @@ const Options = ({ symbol }) => {
   );
 };
 
-export default Options;
+export default SelectDate;

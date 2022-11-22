@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { filterByDate, getFilteredOption } from "./Table.helpers";
-import { useTimeSeries } from "../../../../../contexts/timeseries-context";
+import { filterByDate, getLessThan } from "./filter.helpers";
+import { useTimeSeries } from "../../../../../../contexts/timeseries-context";
 
-const useTableFilter = (stocks) => {
+const useByDate = (stocks) => {
   const [stockData, setStockData] = useState(null);
   const [{}, timeseries] = useTimeSeries();
   const { date, selectedYear, activeMonth } = timeseries;
@@ -13,32 +13,32 @@ const useTableFilter = (stocks) => {
         filterByDate(setStockData, selectedYear, stocks, activeMonth);
         break;
       case "3d":
-        getFilteredOption(setStockData, 3, stocks);
+        getLessThan(setStockData, 3, stocks);
         break;
       case "1w":
-        getFilteredOption(setStockData, 5, stocks);
+        getLessThan(setStockData, 5, stocks);
         break;
       case "2w":
-        getFilteredOption(setStockData, 10, stocks);
+        getLessThan(setStockData, 10, stocks);
         break;
       case "1m":
-        getFilteredOption(setStockData, 20, stocks);
+        getLessThan(setStockData, 20, stocks);
         break;
       case "3m":
-        getFilteredOption(setStockData, 60, stocks);
+        getLessThan(setStockData, 60, stocks);
         break;
       case "6m":
-        getFilteredOption(setStockData, 120, stocks);
+        getLessThan(setStockData, 120, stocks);
         break;
       case "YTD":
         const stockYTD = Object.entries(getStockYear(selectedYear, stocks));
         setStockData(stockYTD);
         break;
       case "1y":
-        getFilteredOption(setStockData, 253, stocks);
+        getLessThan(setStockData, 253, stocks);
         break;
       case "3y":
-        getFilteredOption(setStockData, 759, stocks);
+        getLessThan(setStockData, 759, stocks);
         break;
       default:
         const stockArray = Object.entries(stocks);
@@ -49,4 +49,4 @@ const useTableFilter = (stocks) => {
   return stockData;
 };
 
-export default useTableFilter;
+export default useByDate;

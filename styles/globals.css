@@ -31,6 +31,7 @@
   /* highlighting colors */
   --green-highlight-color: rgb(126, 221, 131);
   --coral-highlight-color: rgb(255, 127, 80);
+  --vol-filter: #ffd35b;
 
   /* structural formatting */
   --row-widths: 70vw;

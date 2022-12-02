@@ -23,6 +23,11 @@ export const timeSeriesReducer = (state, action) => {
           month: action.payload.month,
         },
       };
+    case "setVolume":
+      return {
+        ...state,
+        volume: action.payload,
+      };
     default:
       return state;
   }
@@ -36,4 +41,5 @@ export const initialState = {
     year: Number(),
     month: "",
   },
+  volume: "all",
 };

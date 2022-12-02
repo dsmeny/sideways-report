@@ -10,7 +10,6 @@ const containerStyle = {
 const styles = {
   display: "flex",
   height: "calc(100vh - var(--nav-height))",
-  background: "var(--background-color)",
 };
 
 const Layout = (props) => {

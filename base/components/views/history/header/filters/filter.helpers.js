@@ -15,32 +15,14 @@ export const filterByDate = async (
   }
 };
 
-async function filteredOptions(stocks) {
-  let stockEntries = await {
-    get info() {
-      let obj = {};
-
-      for (let key in stocks) {
-        obj[key] = stocks[key];
-      }
-      return Object.entries(obj);
-    },
-  };
-
-  return await ((selection, symbol = "ltn") =>
-    stockEntries.info.filter((el, index) =>
-      symbol === "ltn" ? index < selection : index >= selection
-    ));
-}
-
 export const getLessThan = async (setStockData, selection, stocks) => {
-  const entries = await filteredOptions(stocks);
-  const ltnData = entries(selection);
+  const ltnData = Object.entries(stocks).filter(
+    (_, index) => index < selection
+  );
   setStockData(ltnData);
 };
 
-export const getGreaterThan = async (setStockData, selection, stocks) => {
-  const entries = await filteredOptions(stocks);
-  const gtnData = entries(selection, "gtn");
-  setStockData(gtnData);
+export const getGreaterThan = async (setFilteredData, selection, stocks) => {
+  const entries = stocks.filter((el) => +el[1]["6. volume"] >= selection);
+  setFilteredData(entries);
 };

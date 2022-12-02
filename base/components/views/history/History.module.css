@@ -3,6 +3,11 @@
   flex-direction: column;
 }
 
+.history-container-filters {
+  background: var(--nav-bg-color);
+  position: relative;
+}
+
 .history-table {
   width: 100%;
   overflow: hidden;
@@ -66,6 +71,8 @@
   color: var(--background-color);
   gap: 1rem;
   background: var(--nav-bg-color);
+  border-bottom: 1px solid #ffffff36;
+  padding-bottom: 1rem;
 }
 
 .header-options-symbol {
@@ -75,12 +82,69 @@
   font-weight: 400;
 }
 
+.header-radio {
+  background: var(--nav-bg-color);
+  position: absolute;
+  z-index: 99999;
+  right: 4rem;
+  top: 0;
+  animation: fadein 1s ease both;
+}
+
+.header-filter {
+  position: absolute;
+  z-index: 99999;
+  right: 4rem;
+  top: 0;
+  color: #fff;
+  font-size: 2rem;
+  transition: all 1s ease;
+  animation: fadein 1s ease both;
+}
+
+.header-filter:hover {
+  color: var(--vol-filter);
+}
+
+.header-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 410px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.byVol-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.byVol {
+  color: var(--vol-filter);
+  font-size: 1.6rem;
+}
+
+.header-radio-group > div {
+  display: flex;
+  gap: 2rem;
+}
+
+.header-radio-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .addSticky {
   position: fixed;
   width: 100%;
   background-color: var(--nav-bg-color);
   z-index: 9999;
-  height: 3rem;
+  height: 4.4rem;
   top: 0px;
   animation: fadein 0.3s ease both;
 }

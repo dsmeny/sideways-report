@@ -10,19 +10,13 @@ const SelectDate = ({ symbol }) => {
     const option = [...e.currentTarget.options].find(
       (option) => option.selected
     );
-
     setDate(option.value);
   };
 
   return (
     <div className={classes["header-options"]}>
       <div className={classes["header-options-symbol"]}>{symbol}</div>
-      <Select
-        name="dates"
-        id="dates"
-        defaultValue={date}
-        onChange={selectDates}
-      >
+      <Select name="dates" id="date" defaultValue={date} onChange={selectDates}>
         <option value="max">max</option>
         <option value="byDate">byDate</option>
         <option value="3d">3 d</option>

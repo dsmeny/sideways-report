@@ -2,8 +2,9 @@ import useStockApi from "../../../hooks/useStockApi";
 import { API_PARAMS, MONTHS } from "../../../../constants";
 import { useTimeSeries } from "../../../../contexts/timeseries-context";
 import { findStockYears, getIpoMonth } from "./history.helpers";
-import SelectDate from "./header/Header.select.date";
+import SelectByDate from "./header/Header.select.date";
 import SelectByYear from "./header/Header.select.year";
+import SelectByVolume from "./header/Header.select.volume";
 import Spinner from "../../spinner";
 import StockList from "./table/Table.list";
 import classes from "./History.module.css";
@@ -40,12 +41,17 @@ const CompanyHistory = ({ symbol }) => {
     <>
       {data && (
         <div className={classes["history-container"]}>
-          <SelectDate symbol={symbol} />
-          {date === "byDate" && (
-            <>
-              <SelectByYear years={years} />
-            </>
-          )}
+          <div className={classes["history-container-filters"]}>
+            <div>
+              <SelectByDate />
+              {date === "byDate" && (
+                <>
+                  <SelectByYear years={years} />
+                </>
+              )}
+            </div>
+            <SelectByVolume />
+          </div>
           <div className={classes["history-table"]}>
             <StockList stocks={data} />
           </div>

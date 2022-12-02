@@ -1,13 +1,14 @@
-import useByDate from "../header/filters/useByDate";
+import useTableFilters from "./useTable.filters";
 import { DataViewItem, DataViewList } from "../../Views.structure";
 import Spinner from "../../../spinner/Spinner";
-import Header from "../header/Header.headers";
+import Header from "./Table.list.headers";
 import { convertNumber } from "../../../../helpers/general.helpers";
 import { timeseriesModel } from "../../../../../constants";
 import classes from "../History.module.css";
 
 const StockItem = ({ items }) => {
   const { date, prices } = items;
+
   const keys = Object.values(timeseriesModel(prices));
 
   return (
@@ -25,9 +26,9 @@ const StockItem = ({ items }) => {
 };
 
 const StockList = ({ stocks }) => {
-  const stockData = useByDate(stocks);
+  const filteredData = useTableFilters(stocks);
 
-  if (!stockData) {
+  if (!filteredData) {
     return (
       <div>
         <Spinner />
@@ -51,7 +52,7 @@ const StockList = ({ stocks }) => {
       >
         <div className={classes["scrolling"]}>
           <div className={classes["table-list-items"]}>
-            {stockData.map((entry, index) => (
+            {filteredData.map((entry, index) => (
               <DataViewItem key={index} className={classes.backgrounds}>
                 <StockItem items={{ date: entry[0], prices: entry[1] }} />
               </DataViewItem>

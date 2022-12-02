@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { filterByDate, getLessThan } from "./filter.helpers";
+import { getStockYear } from "../../history.helpers";
 import { useTimeSeries } from "../../../../../../contexts/timeseries-context";
 
 const useByDate = (stocks) => {

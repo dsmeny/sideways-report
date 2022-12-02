@@ -32,8 +32,12 @@ const useTimeSeries = () => {
       type: "setIpoDate",
       payload: { ...dateObj },
     });
+  const setVolume = (vol) => dispatch({ type: "setVolume", payload: vol });
 
-  return [{ setDate, setSelectedYear, setMonth, setIpoDate }, timeseries];
+  return [
+    { setDate, setSelectedYear, setMonth, setIpoDate, setVolume },
+    timeseries,
+  ];
 };
 
 export { TimeseriesProvider, useTimeSeries };

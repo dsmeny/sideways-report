@@ -6,6 +6,13 @@
 .history-container-filters {
   background: var(--nav-bg-color);
   position: relative;
+  height: 5rem;
+}
+
+.history-container-filters > div {
+  display: flex;
+  align-items: center;
+  width: 100vw;
 }
 
 .history-table {
@@ -15,8 +22,10 @@
 
 .table-list-container {
   gap: 0.5rem;
-  padding: 0;
+  padding: 0 !important;
   align-items: flex-start !important;
+  margin-block-end: 0;
+  margin-block-start: 0;
 }
 
 .table-list-items {
@@ -71,8 +80,8 @@
   color: var(--background-color);
   gap: 1rem;
   background: var(--nav-bg-color);
-  border-bottom: 1px solid #ffffff36;
   padding-bottom: 1rem;
+  align-items: center;
 }
 
 .header-options-symbol {
@@ -93,9 +102,9 @@
 
 .header-filter {
   position: absolute;
-  z-index: 99999;
+  z-index: 999;
   right: 4rem;
-  top: 0;
+  top: 10px;
   color: #fff;
   font-size: 2rem;
   transition: all 1s ease;
@@ -171,7 +180,6 @@
   .table-list-container {
     flex-direction: column;
     align-items: flex-start !important;
-    padding: 0 !important;
     margin-block-end: 0 !important;
     margin-block-start: 0 !important;
   }

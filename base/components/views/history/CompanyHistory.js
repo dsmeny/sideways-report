@@ -43,14 +43,14 @@ const CompanyHistory = ({ symbol }) => {
         <div className={classes["history-container"]}>
           <div className={classes["history-container-filters"]}>
             <div>
-              <SelectByDate />
-              {date === "byDate" && (
-                <>
-                  <SelectByYear years={years} />
-                </>
-              )}
+              <SelectByDate symbol={symbol} />
+              <SelectByVolume />
             </div>
-            <SelectByVolume />
+            {date === "byDate" && (
+              <>
+                <SelectByYear years={years} />
+              </>
+            )}
           </div>
           <div className={classes["history-table"]}>
             <StockList stocks={data} />

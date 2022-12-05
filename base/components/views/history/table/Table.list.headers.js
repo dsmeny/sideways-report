@@ -5,32 +5,11 @@ import classes from "../History.module.css";
 const headers = ["date", "open", "high", "low", "close", "volume"];
 const SCROLLY = 124;
 
-const headerStyles = {
-  date: {
-    width: "200px",
-    color: "white",
-  },
-  volume: {
-    width: "200px",
-    color: "white",
-  },
-};
-
 const HeaderItems = ({ headers }) => {
   return (
     <>
       {headers.map((item, index) => (
-        <DataViewItem
-          style={
-            index === 0
-              ? headerStyles.date
-              : index === 5
-              ? headerStyles.volume
-              : { color: "white" }
-          }
-        >
-          {item}
-        </DataViewItem>
+        <DataViewItem key={index}>{item}</DataViewItem>
       ))}
     </>
   );
@@ -51,7 +30,10 @@ const Header = () => {
 
   return (
     <div className={`${classes["tableheader-wrapper"]}`}>
-      <DataViewList className={classes["tableheader-wrapper-options"]}>
+      <DataViewList
+        style={{ fontSize: "calc(20px + 0.6vw)" }}
+        className={classes["tableheader-wrapper-options"]}
+      >
         <HeaderItems headers={headers} />
       </DataViewList>
     </div>

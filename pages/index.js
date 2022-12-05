@@ -7,6 +7,11 @@ import SearchStockResults from "../features/search/SearchStockResults";
 import { symbolHandlers } from "../base/helpers/homePage.helpers";
 import { API_PARAMS, MEDIA_SIZES } from "../constants";
 
+const containerStyle = {
+  display: "flex",
+  height: "calc(100vh - var(--nav-height))",
+};
+
 export default function Home() {
   const [timeSeries, setTimeSeries] = useState("");
   const [isMobile, setIsMobile] = useState(false);
@@ -79,7 +84,7 @@ export default function Home() {
   }
 
   return (
-    <>
+    <div style={containerStyle}>
       <div
         style={{
           position: isMobile ? "absolute" : "relative",
@@ -107,6 +112,6 @@ export default function Home() {
           />
         </div>
       )}
-    </>
+    </div>
   );
 }

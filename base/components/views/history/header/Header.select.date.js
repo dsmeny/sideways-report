@@ -2,7 +2,7 @@ import { useTimeSeries } from "../../../../../contexts/timeseries-context";
 import Select from "../../../select/Select";
 import classes from "../History.module.css";
 
-const SelectDate = ({ symbol }) => {
+const SelectDate = () => {
   const [{ setDate }, timeseries] = useTimeSeries();
   const { date } = timeseries;
 
@@ -15,7 +15,6 @@ const SelectDate = ({ symbol }) => {
 
   return (
     <div className={classes["header-options"]}>
-      <div className={classes["header-options-symbol"]}>{symbol}</div>
       <Select name="dates" id="date" defaultValue={date} onChange={selectDates}>
         <option value="max">max</option>
         <option value="byDate">byDate</option>

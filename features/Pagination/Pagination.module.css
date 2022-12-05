@@ -4,7 +4,6 @@
   overflow-y: hidden;
   font-size: 1.4rem;
   max-width: 700px;
-  transform: translateX(63%);
 }
 
 @media (hover: none) {

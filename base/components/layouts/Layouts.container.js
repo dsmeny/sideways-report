@@ -4,19 +4,16 @@ const containerStyle = {
   display: "flex",
   flexDirection: "column",
   height: "100%",
-  width: "100vw",
-};
-
-const styles = {
-  display: "flex",
-  height: "calc(100vh - var(--nav-height))",
+  width: "100%",
+  maxWidth: "var(--desktop)",
+  margin: "0 auto",
 };
 
 const Layout = (props) => {
   return (
     <div style={containerStyle}>
       <MenuBar />
-      <main style={styles}>{props.children}</main>
+      <main>{props.children}</main>
     </div>
   );
 };

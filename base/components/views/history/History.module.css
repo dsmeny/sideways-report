@@ -5,19 +5,24 @@
 
 .history-container-filters {
   background: var(--nav-bg-color);
-  position: relative;
-  height: 5rem;
+  width: 100%;
+  max-width: var(--desktop);
+  padding-bottom: 10px;
 }
 
 .history-container-filters > div {
+  position: relative;
   display: flex;
   align-items: center;
-  width: 100vw;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
 }
 
 .history-table {
   width: 100%;
   overflow: hidden;
+  max-width: var(--desktop);
 }
 
 .table-list-container {
@@ -31,6 +36,8 @@
 .table-list-items {
   display: flex;
   align-items: unset !important;
+  padding: 0 !important;
+  gap: 1rem;
 }
 
 .tableheader-wrapper {
@@ -44,34 +51,34 @@
 .tableheader-wrapper-options {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 0 !important;
+  justify-content: flex-start;
   flex-wrap: nowrap;
   align-items: flex-start !important;
-  height: 74vh;
 }
 
 .tablelist-wrapper-options {
-  display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 0 !important;
   flex-wrap: nowrap;
   align-items: flex-start !important;
-  height: 74vh;
 }
 
 .tableheader-wrapper-options li,
 .tablelist-wrapper-options li {
   text-align: left;
   color: var(--primary-font-color);
-  font-size: calc(16px + 0.6vw);
+}
+
+.tableheader-wrapper-options li {
   width: 200px;
+  color: white;
 }
 
 .row-styling {
-  width: 123px;
+  width: 141px;
   padding-left: 14px !important;
+  padding-right: 14px !important;
 }
 
 .header-options {
@@ -87,26 +94,27 @@
 .header-options-symbol {
   text-align: left;
   color: #fff;
-  font-size: 1.2rem;
-  font-weight: 400;
+  font-size: 2rem;
+  font-weight: 300;
+  margin-block-start: auto;
+  margin-block-end: auto;
 }
 
 .header-radio {
   background: var(--nav-bg-color);
   position: absolute;
   z-index: 99999;
-  right: 4rem;
+  left: 50%;
+  translate: -50% 0;
   top: 0;
   animation: fadein 1s ease both;
+  width: 95%;
+  max-width: 536px;
 }
 
 .header-filter {
-  position: absolute;
-  z-index: 999;
-  right: 4rem;
-  top: 10px;
   color: #fff;
-  font-size: 2rem;
+  font-size: 2.2rem;
   transition: all 1s ease;
   animation: fadein 1s ease both;
 }
@@ -121,7 +129,6 @@
   gap: 1rem;
   color: #fff;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  width: 410px;
   padding: 10px;
   border-radius: 20px;
 }
@@ -139,7 +146,8 @@
 
 .header-radio-group > div {
   display: flex;
-  gap: 2rem;
+  font-size: 1.2rem;
+  justify-content: space-between;
 }
 
 .header-radio-btns {
@@ -163,7 +171,7 @@
 }
 
 .backgrounds:nth-child(even) {
-  background-color: rgba(18, 171, 220, 0.04);
+  background-color: rgba(18, 171, 220, 0.06);
 }
 
 @keyframes fadein {
@@ -179,28 +187,36 @@
 @media (min-width: 715px) {
   .table-list-container {
     flex-direction: column;
-    align-items: flex-start !important;
+    align-items: center !important;
     margin-block-end: 0 !important;
     margin-block-start: 0 !important;
   }
 
   .table-list-desktop {
-    width: 100vw !important;
+    max-width: var(--desktop);
+    width: 100%;
   }
 
   .table-list-items {
     flex-direction: column;
-    align-items: flex-start;
   }
 
   .tableheader-wrapper {
-    width: 100vw;
+    width: 100%;
+    max-width: var(--desktop);
   }
 
   .tableheader-wrapper-options {
     align-items: center !important;
     flex-direction: row;
-    height: 7vh;
+    height: 63px;
+    justify-content: space-between;
+  }
+
+  .tableheader-wrapper-options li,
+  .tablelist-wrapper-options li {
+    text-align: center;
+    width: 200px;
   }
 
   .list-cols {
@@ -212,8 +228,10 @@
     flex-direction: row;
     width: 100%;
     height: 16vh;
+    font-size: 1.5rem;
     align-items: center !important;
     padding: 0 10px 0 10px !important;
+    justify-content: space-between;
   }
 }
 

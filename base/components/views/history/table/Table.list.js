@@ -37,13 +37,13 @@ const StockList = ({ stocks }) => {
   }
 
   const containerStyle = {
-    width: "91vw",
     overflow: "hidden",
+    background: "white",
   };
 
   return (
     <DataViewList className={classes["table-list-container"]}>
-      <DataViewItem>
+      <DataViewItem style={{ width: "100%" }}>
         <Header />
       </DataViewItem>
       <DataViewItem
@@ -51,13 +51,13 @@ const StockList = ({ stocks }) => {
         className={classes["table-list-desktop"]}
       >
         <div className={classes["scrolling"]}>
-          <div className={classes["table-list-items"]}>
+          <DataViewList className={classes["table-list-items"]}>
             {filteredData.map((entry, index) => (
               <DataViewItem key={index} className={classes.backgrounds}>
                 <StockItem items={{ date: entry[0], prices: entry[1] }} />
               </DataViewItem>
             ))}
-          </div>
+          </DataViewList>
         </div>
       </DataViewItem>
     </DataViewList>

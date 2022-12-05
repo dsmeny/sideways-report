@@ -43,7 +43,8 @@ const CompanyHistory = ({ symbol }) => {
         <div className={classes["history-container"]}>
           <div className={classes["history-container-filters"]}>
             <div>
-              <SelectByDate symbol={symbol} />
+              <SelectByDate />
+              <h1 className={classes["header-options-symbol"]}>{symbol}</h1>
               <SelectByVolume />
             </div>
             {date === "byDate" && (

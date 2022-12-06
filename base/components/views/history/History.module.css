@@ -192,6 +192,10 @@
     margin-block-start: 0 !important;
   }
 
+  .table-list-container li {
+    width: 100%;
+  }
+
   .table-list-desktop {
     max-width: var(--desktop);
     width: 100%;

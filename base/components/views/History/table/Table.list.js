@@ -43,7 +43,7 @@ const StockList = ({ stocks }) => {
 
   return (
     <DataViewList className={classes["table-list-container"]}>
-      <DataViewItem style={{ width: "100%" }}>
+      <DataViewItem>
         <Header />
       </DataViewItem>
       <DataViewItem

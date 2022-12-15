@@ -7,10 +7,11 @@
   grid-template-columns: repeat(auto-fill, minmax(418px, 1fr));
   grid-template-rows: auto;
   gap: 2rem;
+  min-width: 365px;
 }
 
 .overview-list:nth-child(even) {
-  background-color: rgb(4 175 230 / 4%);
+  background-color: rgb(4 175 230 / 9%);
 }
 
 .overview-list > li {

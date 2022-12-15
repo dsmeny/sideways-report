@@ -26,7 +26,7 @@ const StockNews = () => {
   return (
     <div className={classes.news}>
       <h1>{symbol} - News</h1>
-      <div>
+      <div className={classes["news-outer-container"]}>
         <DataViewList className={classes["news-list"]}>
           {data &&
             data.feed.map((news) => (

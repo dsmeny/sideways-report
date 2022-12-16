@@ -25,3 +25,12 @@ export const expirationDate = () => {
 export const generateId = () => {
   return Date.now() + 2;
 };
+
+export const formatToString = (string) => {
+  const regex = /(?<=\.)\d(?!\d)/;
+  if (regex.test(string)) {
+    let num = +string;
+    return num.toFixed(2);
+  }
+  return string;
+};

@@ -2,7 +2,10 @@ import useTableFilters from "./useTable.filters";
 import { DataViewItem, DataViewList } from "../../Views.structure";
 import Spinner from "../../../spinner/Spinner";
 import Header from "./Table.list.headers";
-import { convertNumber } from "../../../../helpers/general.helpers";
+import {
+  convertNumber,
+  formatToString,
+} from "../../../../helpers/general.helpers";
 import { timeseriesModel } from "../../../../../constants";
 import classes from "../History.module.css";
 
@@ -18,7 +21,7 @@ const StockItem = ({ items }) => {
       <DataViewItem>{date}</DataViewItem>
       {keys.map((el, index) => (
         <DataViewItem key={index}>
-          {index === 4 ? convertNumber(el) : el}
+          {index === 4 ? convertNumber(el) : formatToString(el)}
         </DataViewItem>
       ))}
     </DataViewList>

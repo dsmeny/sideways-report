@@ -31,7 +31,7 @@ const Header = () => {
   return (
     <div className={`${classes["tableheader-wrapper"]}`}>
       <DataViewList
-        style={{ fontSize: "calc(20px + 0.6vw)" }}
+        style={{ fontSize: "calc(13px + 0.6vw)" }}
         className={classes["tableheader-wrapper-options"]}
       >
         <HeaderItems headers={headers} />

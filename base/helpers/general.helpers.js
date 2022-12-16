@@ -27,10 +27,6 @@ export const generateId = () => {
 };
 
 export const formatToString = (string) => {
-  const regex = /(?<=\.)\d(?!\d)/;
-  if (regex.test(string)) {
-    let num = +string;
-    return num.toFixed(2);
-  }
-  return string;
+  let num = +string;
+  return num.toFixed(2);
 };

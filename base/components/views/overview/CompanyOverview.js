@@ -2,11 +2,11 @@ import { DataViewItem, DataViewList } from "../Views.structure";
 import Spinner from "../../spinner/Spinner";
 import { overviewModel, API_PARAMS } from "../../../../constants";
 import { convertNumber } from "../../../helpers/general.helpers";
-import useStockApi from "../../../hooks/useStockApi";
+import useOverviewApi from "../../../hooks/useOverviewApi";
 import classes from "./Overview.module.css";
 
 const Overview = ({ symbol }) => {
-  const { stockData } = useStockApi({
+  const { stockData } = useOverviewApi({
     symbol,
     timeSeries: API_PARAMS.OVERVIEW,
   });

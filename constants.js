@@ -38,66 +38,89 @@ export const overviewModel = (stockData, convertNumber) => {
       Description: stockData.Description,
     },
     row2: {
+      ["Shares Outstanding"]: convertNumber(stockData.sharesOutstanding),
+      Float: convertNumber(stockData.floatShares),
+      ["Shares Short"]: convertNumber(stockData.sharesShort),
+      ["% Shares Out"]: `${stockData.sharesPercentSharesOut * 100}%`,
+    },
+    row3: {
+      ["Short Prev Month"]: convertNumber(
+        stockData.sharesShortPreviousMonthDate
+      ),
+      ["Short Prior Month"]: convertNumber(stockData.sharesShortPriorMonth),
+      ["% Short of Float"]: `${stockData.shortPercentOfFloat * 100}%`,
+      ["Short Ratio"]: stockData.shortRatio,
+    },
+    row4: {
+      ["% Held by Institutions"]: `${(
+        stockData.heldPercentInstitutions * 100
+      ).toFixed(2)}%`,
+      ["% Held by Insiders"]: `${(stockData.heldPercentInsiders * 100).toFixed(
+        2
+      )}%`,
+      ["Last Split Factor"]: stockData.lastSplitFactor ?? "N/A",
+    },
+    row5: {
       ["52 Week High"]: stockData["52WeekHigh"],
       ["52 Week Low"]: stockData["52WeekLow"],
       ["50 Day Moving Avg"]: stockData["50DayMovingAverage"],
       ["200 Day Moving Avg"]: stockData["200DayMovingAverage"],
     },
-    row3: {
-      ["Shares Outstanding"]: convertNumber(stockData.SharesOutstanding),
+    row6: {
       ["Market Cap (m)"]: convertNumber(stockData.MarketCapitalization),
       ["Book Value"]: stockData.BookValue,
+      ["Enterprise Value"]: convertNumber(stockData.enterpriseValue),
       Beta: stockData.Beta,
     },
-    row4: {
+    row7: {
       ["Analyst Target Price"]: stockData["AnalystTargetPrice"],
       EPS: stockData.EPS,
       Industry: stockData.Industry,
       Sector: stockData.Sector,
     },
-    row5: {
+    row8: {
       GrossProfitTTM: convertNumber(stockData.GrossProfitTTM),
       PERatio: stockData.PERatio,
       PEGRatio: stockData.PEGRatio,
       ["Asset Type"]: stockData.AssetType,
     },
-    row6: {
+    row9: {
       ["Quarterly Earnings Growth YOY"]: stockData.QuarterlyEarningsGrowthYOY,
       ["Quarterly Revenue Growth YOY"]: stockData.QuarterlyRevenueGrowthYOY,
       ["Revenue Per Share TTM"]: stockData.RevenuePerShareTTM,
       ["Revenue TTM"]: stockData.RevenueTTM,
     },
-    row7: {
+    row10: {
       ["Dividend Date"]: stockData.DividendDate,
       ["Dividend Per Share"]: stockData.DividendPerShare,
       ["Dividend Yield"]: stockData.DividendYield,
       ["Ex Dividend Date"]: stockData.ExDividendDate,
     },
-    row8: {
+    row11: {
       ["Price To Sales Ratio TTM"]: stockData.PriceToSalesRatioTTM,
       ["Price To Book Ratio"]: stockData.PriceToBookRatio,
       ["Trailing PE"]: stockData.TrailingPE,
       ["Forward PE"]: stockData.ForwardPE,
     },
-    row9: {
+    row12: {
       ["Profit Margin"]: stockData.ProfitMargin,
       ["EV To Revenue"]: stockData.EVToRevenue,
       ["EV To EBITDA"]: stockData.EVToEBITDA,
       EBITDA: stockData.EBITDA,
     },
-    row10: {
+    row13: {
       ["Operating Margin TTM"]: stockData.OperatingMarginTTM,
       ["Return On Assets TTM"]: stockData.ReturnOnAssetsTTM,
       ["Return On Equity TTM"]: stockData.ReturnOnEquityTTM,
       ["Diluted EPS TTM"]: stockData.DilutedEPSTTM,
     },
-    row11: {
+    row14: {
       ["Fiscal Year End"]: stockData.FiscalYearEnd,
       Currency: stockData.Currency,
       Country: stockData.Country,
       Exchange: stockData.Exchange,
     },
-    row12: {
+    row15: {
       CIK: stockData.CIK,
       Address: stockData.Address,
     },

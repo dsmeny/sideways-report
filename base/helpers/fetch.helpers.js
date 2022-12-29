@@ -9,7 +9,18 @@ const fetcher = async (...args) => {
   }
 
   const data = await res.json();
+
   return data;
 };
 
 export default fetcher;
+
+export const fetchAll = async (...args) => {
+  let response = await Promise.all(
+    Array.from(args, (url) => fetcher(url))
+  ).then((response) => response);
+
+  response = await { ...response[0], ...response[1].data.defaultKeyStatistics };
+
+  return response;
+};

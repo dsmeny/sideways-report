@@ -44,7 +44,7 @@ export const overviewModel = (stockData, convertNumber) => {
       ["% Shares Out"]: `${stockData.sharesPercentSharesOut * 100}%`,
     },
     row3: {
-      ["Short Prev Month"]: convertNumber(
+      ["Short Recent Month"]: convertNumber(
         stockData.sharesShortPreviousMonthDate
       ),
       ["Short Prior Month"]: convertNumber(stockData.sharesShortPriorMonth),

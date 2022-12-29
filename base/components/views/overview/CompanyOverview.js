@@ -1,8 +1,8 @@
-import { DataViewItem, DataViewList } from "../Views.structure";
-import Spinner from "../../spinner/Spinner";
 import { overviewModel, API_PARAMS } from "../../../../constants";
-import { convertNumber } from "../../../helpers/general.helpers";
 import useOverviewApi from "../../../hooks/useOverviewApi";
+import OverviewCategory from "./OverviewCategory";
+import { convertNumber } from "../../../helpers/general.helpers";
+import Spinner from "../../spinner/Spinner";
 import classes from "./Overview.module.css";
 
 const Overview = ({ symbol }) => {
@@ -19,22 +19,14 @@ const Overview = ({ symbol }) => {
     );
   }
 
+  const overview = Object.values(overviewModel(stockData, convertNumber));
+  const dayTrading = overview.slice(0, 5);
+  const investing = overview.slice(5);
+
   return (
     <div className={classes.overview}>
-      {Object.values(overviewModel(stockData, convertNumber)).map(
-        (elem, index) => (
-          <DataViewList className={classes["overview-list"]} key={index}>
-            {Object.entries(elem).map((el, index) => (
-              <DataViewItem key={index}>
-                <strong style={{ color: "var(--primary-font-color)" }}>
-                  {el[0]}
-                </strong>
-                {+el[1] ? `${convertNumber(el[1])}` : el[1]}
-              </DataViewItem>
-            ))}
-          </DataViewList>
-        )
-      )}
+      <OverviewCategory categoryTitle="TRADING" category={dayTrading} />
+      <OverviewCategory categoryTitle="INVESTING" category={investing} />
     </div>
   );
 };

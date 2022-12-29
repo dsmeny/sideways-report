@@ -4,7 +4,7 @@
 }
 
 .history-container-filters {
-  background: var(--nav-bg-color);
+  background: var(--primary-font-color);
   width: 100%;
   max-width: var(--desktop);
   padding-bottom: 10px;
@@ -44,7 +44,7 @@
   align-items: flex-start !important;
   box-shadow: rgb(4 175 230 / 10%) 2px 0px 0px 0px;
   padding: 0 10px 0 10px;
-  background-color: var(--nav-bg-color);
+  background-color: var(--primary-font-color);
   width: 90px;
 }
 
@@ -86,7 +86,7 @@
   padding: var(--padding);
   color: var(--background-color);
   gap: 1rem;
-  background: var(--nav-bg-color);
+  background: var(--primary-font-color);
   padding-bottom: 1rem;
   align-items: center;
 }
@@ -159,7 +159,7 @@
 .addSticky {
   position: fixed;
   width: 100%;
-  background-color: var(--nav-bg-color);
+  background-color: var(--primary-font-color);
   z-index: 9999;
   height: 4.4rem;
   top: 0px;

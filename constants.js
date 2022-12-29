@@ -35,7 +35,7 @@ export const overviewModel = (stockData, convertNumber) => {
       ["Latest Quarter"]: stockData.LatestQuarter,
       Symbol: stockData.Symbol,
       Name: stockData.Name,
-      Description: stockData.Description,
+      Description: stockData.Description ?? "N/A",
     },
     row2: {
       ["Shares Outstanding"]: convertNumber(stockData.sharesOutstanding),

@@ -101,7 +101,7 @@
 }
 
 .header-radio {
-  background: var(--nav-bg-color);
+  background: var(--primary-font-color);
   position: absolute;
   z-index: 99999;
   left: 50%;

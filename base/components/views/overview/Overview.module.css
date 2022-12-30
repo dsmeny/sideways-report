@@ -40,7 +40,7 @@
 }
 
 .categories input:disabled {
-  background-color: rgba(69, 92, 119, 0.5);
+  background-color: transparent;
   color: var(--primary-font-color);
   opacity: 0.4;
 }

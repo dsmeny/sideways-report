@@ -28,6 +28,11 @@ const StockItem = ({ items }) => {
   );
 };
 
+const containerStyle = {
+  overflow: "hidden",
+  background: "white",
+};
+
 const StockList = ({ stocks }) => {
   const filteredData = useTableFilters(stocks);
 
@@ -38,11 +43,6 @@ const StockList = ({ stocks }) => {
       </div>
     );
   }
-
-  const containerStyle = {
-    overflow: "hidden",
-    background: "white",
-  };
 
   return (
     <DataViewList className={classes["table-list-container"]}>

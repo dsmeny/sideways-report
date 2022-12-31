@@ -37,6 +37,12 @@
   font-size: 1rem;
   background-color: var(--primary-font-color);
   color: #fff;
+  transition: all 0.8s ease;
+}
+
+.categories input:hover {
+  border-radius: 0px;
+  color: rgba(255, 255, 255, 0.562);
 }
 
 .categories input:disabled {

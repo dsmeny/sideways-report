@@ -10,7 +10,7 @@ const titleStyle = {
   textAlign: "center",
   letterSpacing: "0.6rem",
   margin: "2rem 0",
-  fontSize: "3rem",
+  fontSize: "2rem",
   color: "rgba(69, 92, 119, 0.5)",
   fontWeight: "100",
 };

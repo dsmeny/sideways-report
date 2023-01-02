@@ -20,7 +20,6 @@
   flex-wrap: wrap;
   padding: 0.3rem;
   font-size: 1.2rem;
-  width: 86%;
 }
 
 .categories {
@@ -48,5 +47,5 @@
 .categories input:disabled {
   background-color: transparent;
   color: var(--primary-font-color);
-  opacity: 0.4;
+  opacity: 0.2;
 }

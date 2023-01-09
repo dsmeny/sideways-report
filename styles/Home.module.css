@@ -2,7 +2,6 @@
   align-self: stretch;
   transition: all 1s ease;
   background-color: var(--background-color);
-  margin: 0 1rem;
   top: 5rem;
 }
 

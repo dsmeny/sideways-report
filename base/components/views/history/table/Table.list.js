@@ -53,7 +53,7 @@ const StockList = ({ stocks }) => {
         style={containerStyle}
         className={classes["table-list-desktop"]}
       >
-        <div className={classes["scrolling"]}>
+        <div>
           <DataViewList className={classes["table-list-items"]}>
             {filteredData.map((entry, index) => (
               <DataViewItem key={index} className={classes.backgrounds}>

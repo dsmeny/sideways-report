@@ -38,6 +38,7 @@
   align-items: unset !important;
   padding: 0 !important;
   gap: 1rem;
+  overflow: scroll;
 }
 
 .tableheader-wrapper {
@@ -163,14 +164,10 @@
   position: fixed;
   width: 100%;
   background-color: var(--primary-font-color);
-  z-index: 9999;
+  z-index: 99999;
   height: 4.4rem;
   top: 0px;
   animation: fadein 0.3s ease both;
-}
-
-.scrolling {
-  overflow-x: scroll;
 }
 
 .backgrounds:nth-child(even) {
@@ -206,6 +203,7 @@
 
   .table-list-items {
     flex-direction: column;
+    overflow: visible;
   }
 
   .tableheader-wrapper {

@@ -1,30 +1,33 @@
-.pagination-wrapper {
-  display: flex;
+.pagination-wrapper-outer {
   overflow-x: auto;
   overflow-y: hidden;
   font-size: 1.4rem;
   max-width: 700px;
 }
 
+.pagination-wrapper-inner {
+  display: flex;
+}
+
 @media (hover: none) {
-  .pagination-wrapper::-webkit-scrollbar {
+  .pagination-wrapper-inner::-webkit-scrollbar {
     display: none;
   }
-  .pagination-wrapper::-webkit-scrollbar-thumb {
+  .pagination-wrapper-inner::-webkit-scrollbar-thumb {
     display: none;
   }
 }
 
 @media screen and (max-width: 1366px) {
-  .pagination-wrapper::-webkit-scrollbar {
+  .pagination-wrapper-inner::-webkit-scrollbar {
     display: none;
   }
-  .pagination-wrapper::-webkit-scrollbar-thumb {
+  .pagination-wrapper-inner::-webkit-scrollbar-thumb {
     display: none;
   }
 }
 
-.pagination-wrapper .pagination-item {
+.pagination-wrapper-inner .pagination-item {
   min-width: 120px;
   height: 110px;
   line-height: 110px;

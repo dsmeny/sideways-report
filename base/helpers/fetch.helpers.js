@@ -22,5 +22,7 @@ export const fetchAll = async (...args) => {
 
   response = await { ...response[0], ...response[1].data.defaultKeyStatistics };
 
+  console.log("response: ", response);
+
   return response;
 };

@@ -37,6 +37,7 @@
   --row-widths: 70vw;
   --row-padding: 0 2vw;
   --padding: 10px;
+  --container-width: 600px;
 
   /* widths */
   --mobile: 768px;

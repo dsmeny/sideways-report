@@ -6,11 +6,14 @@ const TriggerContext = createContext({
   showIcon: function () {},
   clickedTrigger: null,
   displayIcon: null,
+  isMobile: null,
+  handleScreenChanges: function () {},
 });
 
 export const TriggerContextProvider = (props) => {
   const [isSearch, setIsSearch] = useState(true);
   const [isClicked, setIsClicked] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   function searchHandler(e) {
     if (e === false) {
@@ -27,10 +30,16 @@ export const TriggerContextProvider = (props) => {
     window.scrollTo(0, 1000);
   }
 
+  function handleScreenChanges(mql) {
+    setIsMobile(mql.matches);
+  }
+
   const context = {
     searchTrigger: isSearch,
     showSearch: searchHandler,
     clickedTrigger: isClicked,
+    isMobile,
+    handleScreenChanges,
   };
 
   return (

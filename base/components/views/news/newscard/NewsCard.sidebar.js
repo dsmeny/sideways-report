@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { validateSentiment } from "./NewsCard.helpers";
 import { DataViewItem } from "../../Views.structure";
+import { counterNodes } from "./NewsCard.helpers";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import classes from "../News.module.css";
 
@@ -20,34 +21,7 @@ const Sidebar = ({ ticker_label, sentimentRef }) => {
   const countRef = useRef(0);
 
   function countHandler(direction) {
-    const listRefNode = listRef.current;
-    switch (direction) {
-      case "up":
-        countRef.current = countRef.current + INCREMENT_BY;
-        listRefNode.style.translate = `0 ${countRef.current}px`;
-        setCounter((prop) => {
-          return {
-            ...prop,
-            upper_bound: prop.upper_bound - 1,
-            lower_bound: prop.lower_bound - 1,
-          };
-        });
-        break;
-      case "down":
-        countRef.current = countRef.current - INCREMENT_BY;
-        listRefNode.style.translate = `0 ${countRef.current}px`;
-
-        setCounter((prop) => {
-          return {
-            ...prop,
-            lower_bound: prop.lower_bound + 1,
-            upper_bound: prop.upper_bound + 1,
-          };
-        });
-        break;
-      default:
-        break;
-    }
+    counterNodes(direction, listRef, countRef, setCounter, INCREMENT_BY);
   }
 
   useEffect(() => {

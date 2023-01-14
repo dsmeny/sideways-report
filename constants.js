@@ -8,7 +8,7 @@ const API_PARAMS = {
 };
 
 const MEDIA_SIZES = {
-  MOBILE: "720",
+  MOBILE: "880",
 };
 
 export { API_PARAMS, MEDIA_SIZES };

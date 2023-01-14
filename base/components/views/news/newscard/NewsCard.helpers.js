@@ -27,65 +27,39 @@ export const formatNewsDate = (dateStr) => {
   );
 };
 
-export const changeHandler = (
-  e,
-  { container, radio, hasChanged, currentID },
-  offsets
+export const counterNodes = (
+  direction,
+  listRef,
+  countRef,
+  setCounter,
+  INCREMENT_BY
 ) => {
-  const target = e.target;
+  const listRefNode = listRef.current;
+  switch (direction) {
+    case "up":
+      countRef.current = countRef.current + INCREMENT_BY;
+      listRefNode.style.translate = `0 ${countRef.current}px`;
+      setCounter((prop) => {
+        return {
+          ...prop,
+          upper_bound: prop.upper_bound - 1,
+          lower_bound: prop.lower_bound - 1,
+        };
+      });
+      break;
+    case "down":
+      countRef.current = countRef.current - INCREMENT_BY;
+      listRefNode.style.translate = `0 ${countRef.current}px`;
 
-  if (currentID !== target.id) {
-    currentID = target.id;
-    hasChanged = true;
-  }
-
-  const radioButtons = [...radio.firstChild.childNodes];
-
-  const getter = {
-    get widths() {
-      return offsets.rWidth / 2 + offsets.cWidth / 2;
-    },
-  };
-
-  const altNode = radioButtons.find((node) => node.id !== target.id);
-  altNode.checked = false;
-  target.checked = true;
-
-  const animationLeft = [
-    { translate: "0 0", opacity: "0" },
-    {
-      translate: `-${
-        offsets.sentiWidth
-          ? getter.widths - offsets.rWidthChild - offsets.sentiWidth
-          : getter.widths - offsets.rWidthChild
-      }px 0`,
-      opacity: "1",
-    },
-  ];
-  const animationRight = [
-    {
-      translate: `-${
-        offsets.sentiWidth
-          ? getter.widths + offsets.rWidthChild + offsets.sentiWidth
-          : getter.widths + offsets.rWidthChild
-      }px 0`,
-      opacity: "0",
-    },
-    { translate: "0 0", opacity: "1" },
-  ];
-
-  const animationTiming = {
-    duration: 800,
-    fill: "both",
-    easing: "ease-in-out",
-  };
-
-  if (hasChanged && currentID !== undefined) {
-    hasChanged = false;
-    if (target.id === "sentiment") {
-      container.animate(animationLeft, animationTiming);
-    } else {
-      container.animate(animationRight, animationTiming);
-    }
+      setCounter((prop) => {
+        return {
+          ...prop,
+          lower_bound: prop.lower_bound + 1,
+          upper_bound: prop.upper_bound + 1,
+        };
+      });
+      break;
+    default:
+      break;
   }
 };

@@ -4,8 +4,9 @@ import TriggerContext from "../contexts/context-provider";
 import SearchStocks from "../features/search/SearchStocks";
 import styles from "../styles/Home.module.css";
 import SearchStockResults from "../features/search/SearchStockResults";
+import useMobile from "../base/hooks/useMobile";
 import { symbolHandlers } from "../base/helpers/homePage.helpers";
-import { API_PARAMS, MEDIA_SIZES } from "../constants";
+import { API_PARAMS } from "../constants";
 
 const containerStyle = {
   display: "flex",
@@ -14,32 +15,17 @@ const containerStyle = {
 
 export default function Home() {
   const [timeSeries, setTimeSeries] = useState("");
-  const [isMobile, setIsMobile] = useState(false);
   const [symbol, setSymbol] = useState(null);
   const { searchTrigger, showSearch, clickedTrigger } =
     useContext(TriggerContext);
+  const { isMobile } = useMobile();
 
   const inputRef = useRef();
   const resultsRef = useRef();
   const searchRef = useRef();
 
-  const handleScreenChanges = (mql) => {
-    setIsMobile(mql.matches);
-  };
-
   useEffect(() => {
     showSearch(true);
-
-    const media = (size) => {
-      return window.matchMedia(`screen and (max-width: ${size}px)`);
-    };
-
-    const mediaMatch = media(MEDIA_SIZES.MOBILE);
-
-    if (!isMobile) {
-      handleScreenChanges(mediaMatch);
-    }
-    mediaMatch.addEventListener("change", handleScreenChanges);
   }, []);
 
   useEffect(() => {

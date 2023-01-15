@@ -127,7 +127,7 @@
 
 .news-content-summary p:nth-child(4) {
   max-width: var(--container-width);
-  padding-right: 2rem;
+  padding-right: 10px;
 }
 
 .news-content-title {
@@ -282,15 +282,14 @@
     justify-content: space-between;
   }
 
-  .news-content-summary p:nth-child(4) {
-    max-width: fit-content;
-    padding-right: 2rem;
-  }
-
   .news-container > div {
     position: relative;
     right: 0px;
     animation-name: none;
+  }
+
+  .news-content-summary p:nth-child(4) {
+    max-width: 725px;
   }
 
   .shorten-text {
@@ -306,7 +305,7 @@
 @media (min-width: 1200px) {
   .news-card {
     flex-direction: row;
-    gap: 3rem;
+    gap: 2rem;
   }
 
   .news-container {

@@ -30,13 +30,15 @@ const Sidebar = ({ ticker_label, sentimentRef }) => {
 
   return (
     <div className={classes["news-sidebar"]}>
-      <h2>Ticker Sentiment</h2>
-      <div className={classes["news-sidebar-items"]}>
+      <div>
+        <h2>Ticker Sentiment</h2>
         {count_length > 4 && (
-          <div className={classes.counter} ref={sentimentRef}>
+          <div ref={sentimentRef}>
             <p>{`${lower_bound}/${count_length}`}</p>
           </div>
         )}
+      </div>
+      <div className={classes["news-sidebar-items"]}>
         <div className={classes["news-sidebar-container"]}>
           {count_length > 4 && upper_bound > 1 && (
             <div className={classes.arrows} onClick={() => countHandler("up")}>

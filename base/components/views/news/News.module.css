@@ -148,16 +148,19 @@
   gap: 1rem;
 }
 
+.news-sidebar > div {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
 .news-sidebar h2 {
   font-weight: 400;
   font-size: 1.3rem;
 }
 
 .news-sidebar-items {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
@@ -269,11 +272,6 @@
   justify-content: flex-start;
   gap: 1rem;
   font-size: 0.8rem;
-}
-
-.counter {
-  translate: -10px -19px;
-  font-weight: 600;
 }
 
 @media (min-width: 885px) {
